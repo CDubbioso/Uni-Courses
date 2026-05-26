@@ -254,6 +254,7 @@ Supervised and Descriptive learning task.
     2. Random Forest, multiple trees combined
     3. Gradinet Boosting, trees built sequentially to correct errors 
 
+---
 ### Decision Tree
 - tree-like graph:
     - Nodes: pick a feature and ask a quesiton
@@ -329,6 +330,7 @@ $\sqrt{\text{Gini}}$​
 - do *not* care about those proportion shifts 
 - it's insensitive to changes in class distribution 
 
+---
 ### Regression Trees
 Decision Tree that can also be used when the target is a continuous numerical value. 
 
@@ -346,3 +348,135 @@ Finding Splits in Regression Trees
 * Try different thresholds on each feature.
 * Calculate weighted variance after splitting.
 * Choose the split with **lowest weighted variance**.
+
+------
+## 5. Distance-Based Models
+Classify instances by computing distances between these instances and a number of internally stored exemplars. 
+
+$\rightarrow$ compare the new point to the one you've already seen 
+
+EXEMPLARS $\rightarrow$ single point that represent at best a group of points
+- **CENTROID** : geometric mean
+    - easy to compute 
+    - virtual point $\rightarrow$ do not correspond to an actual point
+- **MEDOID** : geometric median
+    - time cosuming to calculate 
+        - you would need to calculate, for each data point, the total distance to all other data points, in order to choose the point that minimises it. 
+    - actual point 
+
+Measure Distance $\rightarrow$ **Minkowski** distance
+
+$$Dis_p(x, y) = \left( \sum_{j=1}^d |x_j - y_j|^p \right)^{1/p}$$
+
+* $p$ controls the type of distance.
+    * If $p=1$, this is **MANHATTAN distance**.
+    * If $p=2$, this is **EUCLIDEAN distance**.
+    * As $p \to \infty$, the distance becomes **CHEBYSHEV distance** (For maximum difference along any coordinate).
+
+
+Changing $p$ lets us adjust how we measure "closeness" between points. Different values of $p$ capture different notions of distance, which can be more suitable for certain data types or problems. 
+
+$\rightarrow$ by choosing the right $p$, we can help the algorithm perform better for the specific data or task at hand.
+
+**Distance Metric** must satisfy: 
+- **Zero distance to itself**: $\qquad \text{Dis}(x,x)=0$
+- **Positive for different points**: $\qquad \text{Dis}(x,y) > 0 \text{if} x \neq y$
+- **Symmetry**: $\qquad \text{Dis}(x,y) = \text{Dis}(y,x)$
+- **Triangle inequality:** $Dis(x, z) \leq Dis(x, y) + Dis(y, z)$
+
+if $2^{nd}$ condition allows "$0$" even though $x \neq y$ $\rightarrow$ PSEUDO-METRIC 
+
+--- 
+**KNN - Nearest-Neighbour Classification** 
+- each training instance acts as an exemplar
+- to classify a new point, find the *k-nearest* training points
+- take a vote among the k-nearest exemplars $\rightarrow$ class with majority of votes wins
+
+How to choose $k$? 
+- small $k$ $\rightarrow$ low bias, high variance, overfitting
+- big $k$ $\rightarrow$ high bias, low variance, underfitting
+
+$\rightarrow$ optimal $k$ usually between $0 \leq k \leq 10$
+- use cross-validation to find best $k$ 
+- weighted voting $\rightarrow$ give more weight to closer neighbours
+
+### Distance Based Predictive Clustering
+Predictive clustering: use a distance metric to construct exemplars and a distance-based decision rule to create clusters. 
+---
+**K-Means** Algorithm
+1. randomly initialize $k$ centroids
+2. assign each point to the nearest centroid 
+3. update centroids to be the mean of assigned points
+4. repeat 2-3 untill no change is centroids 
+
+Limitations:
+- sensible to initial centroids
+- need to know $k$ beforehand 
+- uses Euclidian distance
+- computation $\rightarrow$ $O(n)$ per cluster
+---
+**K-Medoids** Algorithm 
+$\rightarrow$ same structure of k-mean
+- works with any distance metric
+- more robust to noise/outliers
+- more expencive computationally $\rightarrow$ %O(n^2)% per cluster
+
+1. Pick K random points as medoids.
+2. Assign points to closest medoid.
+3. Update medoids to minimize total distance within cluster.
+4. Repeat until medoids stabilize.
+---
+**Evaluating Clustering**
+- INERTIA: how compact clusters are $\rightarrow$ low inertia = tight cluster
+
+$$\text{Inertia} = \sum_{i}^{n} \min_{\mu_i \in C} \|x_i - \mu_i\|^2$$
+
+- SILHOUETTE: how similar a data point is to its own cluster vs the next closest cluster
+
+$$s(x_i) = \frac{b(x_i) - a(x_i)}{max(a(x_i),b(x_i))}$$
+
+- $a(x_i)$ : average distance of $x_i$ to points in its cluster
+- $b(x_i)$ : average distance of $x_i$ to points in neighbour cluster
+
+- $s \rightarrow 1$, point in its cluster
+- $s \rightarrow 0$, point near cluster boudary
+- $s$ negative, point is closer to other cluster 
+
+$\rightarrow$ we want high $b$ and low $a$
+
+### Descriptive Hierarchical Clustering
+Build a hierarchy/tree of clusters
+- the output is a tree $\rightarrow$ **Dendrogram**:
+    - leaves are data points, internal nodes represent merged clusters
+    - height at which two groups join shows distance at which cluster merged (how different when they were merged)
+---
+**Linkage Functions** $\rightarrow$ How to measure distance between clusters
+* **Single linkage:** minimum distance between points in two clusters.
+    - measure from the _two closest members_, one from each group
+* **Complete linkage:** maximum distance between points in two clusters.
+    - measure from the _two farthest members_
+* **Average linkage:** average distance between points in two clusters.
+    - average distance over all cross-group pairs 
+* **Centroid linkage:** distance between cluster centroids.
+    - issue: a merged cluster's centroid can land in a spot that makes earlier sub-clusters effectively "vanish" 
+---
+**Hierarchical Agglomerative Clustering - HAC**
+Idea: build tree by gluing things together starting from smallest pieces.
+1. start by treating each data point as its own tiny cluster
+2. find the two closest clusters, using linkage functions, merge them into one 
+3. repeat untill one cluster remains
+
+Result $\rightarrow$ dendrogram that represent cluster hierarchy
+
+- choice of linkage function will affect the result
+- sometimes clusters suggested by dendrograms don't match real data
+- silhouette scores can help check cluster quality 
+
+
+---------------------------
+**Recap**
+
+Tree models -> "_is feature above certain threshold_?" 
+Distance-based models -> "_what do your neighbours look like_?"
+Linear models -> "_which side of this line/plane are you on_?"
+---------------------------
