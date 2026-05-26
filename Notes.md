@@ -254,7 +254,7 @@ Supervised and Descriptive learning task.
     2. Random Forest, multiple trees combined
     3. Gradinet Boosting, trees built sequentially to correct errors 
 
-**Decision Tree**
+### Decision Tree
 - tree-like graph:
     - Nodes: pick a feature and ask a quesiton
     - Branches: (sdges) answer the question
@@ -283,18 +283,20 @@ $$-p \log_2 p - (1-p) \log_2 (1-p)$$
 $$2p(1-p)$$
 
 Comparing Splits Using Impurity
-a. calculate weighted impurity for children after the split.
-b. choose the split that reduces impurity the most (purity gain):
+
+    a. calculate weighted impurity for children after the split.
+
+    b. choose the split that reduces impurity the most (purity gain):
 
 $$\text{Purity Gain} = \text{Impurity before split} − \text{Weighted impurity after split}$$
 
-c. The split with the ***highest purity gain*** is the best split.
+    c. The split with the ***highest purity gain*** is the best split.
 
 For Handling Continuous Features, we check impurity for each possible threshold and pick the best.
 
 ---
+**PRUNING** Decision Trees
 
-**Pruning** Decision Trees
 Trees can become very big to fit the data $\rightarrow$ creates risk of "overfitting" 
 
 To prevent this:
@@ -327,3 +329,21 @@ The reason this happens with trees specifically: entropy and Gini, the measures 
 $\sqrt{\text{Gini}}$​ 
 - do *not* care about those proportion shifts 
 - it's insensitive to changes in class distribution 
+
+### Regression Trees
+Decision Tree that can also be used when the target is a continuous numerical value. 
+
+$\rightarrow$ instead of class labels, leaf nodes hold mean values of target variable in that subset
+
+Measuring Impurity 
+- Use **variance** (average squared difference from mean) instead of class impurity:
+
+$$\text{Var}(Y) = \frac{1}{|Y|} \sum_{y \in Y} (y - \bar{y})^2$$
+
+- Find splits that **reduce variance** the most (variance reduction).
+
+Finding Splits in Regression Trees
+
+* Try different thresholds on each feature.
+* Calculate weighted variance after splitting.
+* Choose the split with **lowest weighted variance**.
