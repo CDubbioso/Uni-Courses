@@ -435,7 +435,6 @@ $$\text{Inertia} = \sum_{i}^{n} \min_{\mu_i \in C} \|x_i - \mu_i\|^2$$
 - SILHOUETTE: how similar a data point is to its own cluster vs the next closest cluster
 
 $$s(x_i) = \frac{b(x_i) - a(x_i)}{max(a(x_i),b(x_i))}$$
-
     - $a(x_i)$ : average distance of $x_i$ to points in its cluster
     - $b(x_i)$ : average distance of $x_i$ to points in neighbour cluster
 
