@@ -284,13 +284,12 @@ $$2p(1-p)$$
 
 Comparing Splits Using Impurity
 
-a. calculate weighted impurity for children after the split.
-
-b. choose the split that reduces impurity the most (purity gain):
+1. calculate weighted impurity for children after the split.
+2. choose the split that reduces impurity the most (purity gain):
 
 $$\text{Purity Gain} = \text{Impurity before split} − \text{Weighted impurity after split}$$
 
-c. The split with the ***highest purity gain*** is the best split.
+3. The split with the ***highest purity gain*** is the best split.
 
 For Handling Continuous Features, we check impurity for each possible threshold and pick the best.
 
