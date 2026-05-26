@@ -10,8 +10,8 @@
 - Decision Rule, ROC curve
 - 
 
-### ML Core Ingredients
-#### Tasks 
+## ML Core Ingredients
+### Tasks 
 Tasks can be "Predictive" or "Descriptive", and "Supervised" or "Unsupervised". 
 - Predictive $\rightarrow$ return a function that aims to predict an output given an input. 
 - Descriptive $\rightarrow$ aims to find patterns in the data. 
@@ -23,7 +23,7 @@ Tasks can be "Predictive" or "Descriptive", and "Supervised" or "Unsupervised".
 | ***Supervised*** | Classification, Regression | Subgroup discovery |
 | ***Unsupervised*** | Predictive Clustering | Descriptive clustering, Association rule discovery |
 
-#### Models 
+### Models 
 What is being learned from the data in order to solve a task.
 - Model Categorization by Intuition 
     - **Geometric Models** $\rightarrow$ uses distance, hyperplanes. 
@@ -44,7 +44,7 @@ What is being learned from the data in order to solve a task.
 | ***Grouping*** | K-means, K-NN  | Naive Bayes  | Decision Trees  |
 | ***Grading***  | Linear Regression, SVM, Perceptron | Logic Regression | rare |
 
-#### Features 
+### Features 
 Measurement that you can perform on any instance. 
 - Feature Engeneering: 
     - Feature Construction $\rightarrow$ Creating features from raw data.
@@ -53,7 +53,7 @@ Measurement that you can perform on any instance.
     - Feature Selection $\rightarrow$ Removing redundant or irrelevant features.
 
 
-### Binary Classification 
+## Binary Classification 
 **Binary Classifier** maps an instance to one of two class labels. 
 To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE. 
 |                | **Predicted Positive** | **Predicted Negative** | *Total* |
@@ -62,7 +62,7 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
 | **Actual Negative** | False Positive (FP) | True Negative (TN)  | Neg |
 | *Total* | TP + FP | FN + TN | n |
 
-#### Evaluate Perofrmance
+### Evaluate Perofrmance
 **Accuracy**  $\rightarrow$  correct predictions across test set
     $acc = \frac{TP + TN}{n}$ 
 **Recall** - TPR  $\rightarrow$  positives correctly identified
@@ -75,7 +75,7 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
     $ F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$ 
     $\rightarrow$ not affected by negatives 
 
-#### Evaluations Strategies
+### Evaluations Strategies
 TRAIN-TEST Split 
 - divide the data in trainig set (to learn the model) and test set (to evaluate the model).
 $\rightarrow$ data can be ordered in some way, therefore mix data before separating the two sets. 
@@ -89,9 +89,9 @@ TRAIN - VALIDATION - TEST
 - Validation set = use different dataset to compare _candidate models_ and pick th ebest one. 
     - candidate models: different algorithms or different hyperparameters
 
-#### Performance Measures
+### Performance Measures
 **Over-fitting**: model performs very well on trainig data but badly on test data. 
 **Under-fitting**: model performs badly on both training data and test data. 
 
-#### Visualising Classification Performance
+### Visualising Classification Performance
 **Decision Rule - Threshold** 
