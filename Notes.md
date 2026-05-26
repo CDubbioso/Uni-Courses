@@ -65,19 +65,25 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
 
 ### Evaluate Perofrmance
 **Accuracy**  $\rightarrow$  correct predictions across test set
+
 $$\text{accuracy} = \frac{TP + TN}{n}$$
 
 **Recall** - TPR  $\rightarrow$  positives correctly identified
+
 $$\text{rec} = \frac{TP}{Pos}$$
 
 **Specificity** - TNR  $\rightarrow$  negatives correctly identified
+
 $$\text{spec} = \frac{TN}{Neg}$$
 
 **Precision**  $\rightarrow$  reliability of positive predictions 
+
 $$\text{prec} = \frac{TP}{TP+FP}$$
 
 **$F_{1}$ Score**  $\rightarrow$  harmonic mean of precision and recall 
+
 $$F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$$ 
+
 $\rightarrow$ not affected by negatives 
 
 ### Evaluations Strategies
