@@ -9,9 +9,11 @@
 - evaluation strategies
 - Over-fitting, Under-fitting
 - Decision Rule, ROC curve
-- 
 
-## ML Core Ingredients
+**Lecture 3** - Multi-Class Classification
+
+----
+## 1. ML Core Ingredients
 ### Tasks 
 Tasks can be "Predictive" or "Descriptive", and "Supervised" or "Unsupervised". 
 - Predictive $\rightarrow$ return a function that aims to predict an output given an input. 
@@ -53,8 +55,8 @@ Measurement that you can perform on any instance.
     - Feature Transformation $\rightarrow$ Mapping data into a new space (e.g., PCA).
     - Feature Selection $\rightarrow$ Removing redundant or irrelevant features.
 
-
-## Binary Classification 
+----
+## 2. Binary Classification 
 **Binary Classifier** maps an instance to one of two class labels. 
 To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE. 
 |                | **Predicted Positive** | **Predicted Negative** | *Total* |
@@ -154,3 +156,6 @@ Ranking Error: how often a positive example is scored lower than a negative one.
 $$SE(x) = \frac{1}{2} \sum_i (\hat{p}_i(x) - I[c(x)=C_i])^2$$
 
 $$MSE(x) = \frac{1}{|\text{Te}} \sum_{x \in \text{Te}} SE(x)$$
+
+----
+## 3. Multi-Class Classification
