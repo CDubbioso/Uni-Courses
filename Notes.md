@@ -116,8 +116,8 @@ TRAIN - VALIDATION - TEST
 ### Visualising Classification Performance
 **Decision Rule - Threshold** 
 - classifiers uotput a score
-- if score > $\teta$, predict positive, else negative
-- changing $\teta$ you obtain a different contingency table
+- if score > τ, predict positive, else negative
+- changing τ you obtain a different contingency table
 
 **ROC Curve**
 Plots sensitivity (true positive rate) versus false positive rate (1-specificity). 
@@ -127,7 +127,30 @@ Plots sensitivity (true positive rate) versus false positive rate (1-specificity
 **AUC** - Arean Under the Curve
 - measures performance of a classifier across all thresholds. 
 - if AUC of model 1 is higher that another, it means that model 1 is better at distinguishing between classes
-    - AUC > 0.5 $\Rightarrow$ no skill 
+    - AUC = 0.5 $\Rightarrow$ no skill 
     - AUC $\rightarrow$ 1.0 $\Rightarrow$ perfect 
     - AUC $\rightarrow$ 0.0 $\Rightarrow$ bad 
 
+---
+
+### Scoring 
+Scoring classifier: outputs scores showing confidence for each class
+
+Margin: line that separates the correct and wrong classificaitons
+
+Loss Function: measure how bad predictions are and guide model training by minimizing loss.
+
+### Ranking
+Ranking Error: how often a positive example is scored lower than a negative one. 
+- Lower ranking error means better ranking quality. 
+
+--- 
+
+### Class Probability Estimation 
+- instead of outputting labels or scores, it estimate probabilities for each class. 
+
+**Mean Squared Error** (MSE): how close predicted probabilities are to true class labels
+
+$$SE(x) = \frac{1}{2} \sum_i (\hat{p}_i(x) - I[c(x)=C_i])^2$$
+
+$$MSE(x) = \frac{1}{\abs{\text{Te}}} \sum_{x \in \text{Te}} SE(x)$$
