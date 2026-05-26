@@ -11,6 +11,10 @@
 - Decision Rule, ROC curve
 
 **Lecture 3** - Multi-Class Classification
+- One Versus Rest
+- One Versus One
+- evaluating cluster performance: with and without ground truth 
+- Sub-Group Discovery
 
 -----
 ## 1. ML Core Ingredients
@@ -169,6 +173,7 @@ How to convert binary classifier into Multi-class classifier?
 - number of classifier needed:
     - with ordering $\rightarrow$  $k-1$
     - without orgerng $\rightarrow$  $k$ 
+
 **One Versus One**: each clasifier ignores all but two classes
 - number of classifiers needed:
     - symmetric $\rightarrow$  $\frac{k(k-1)}{2}$
@@ -183,7 +188,7 @@ $$\frac{\sum \text{diagonal entries})}{tot}$$
 
 Per-class Precision and Recall: 
 
-$$prec_i = \frac{TP_i}{TP-i + FP_i}       rec_i = \frac{TP_i}{TP_i + FN_i}$$
+$$prec_i = \frac{TP_i}{TP-i + FP_i}   \qquad \quad   rec_i = \frac{TP_i}{TP_i + FN_i}$$
 
 Weighted overall precision: 
 
@@ -192,15 +197,16 @@ $$\text{Prec} = \sum_i \text{prec}_i \times \text{proportion}$$
 **ROC Curve** for multi-class
 $\rightarrow$ compute one ROC per class, then aggregate
 - to summarize performance:
-    - MACRO-AVERAGE: $macro-TPR = \frac{TPR_1 + TPR_2 + ... + TPR_n}{n}$
+    - MACRO-AVERAGE: $\qquad$ $macro-TPR = \frac{TPR_1 + TPR_2 + ... + TPR_n}{n}$
         - sensitive to performance on rare classes
-    - MICRO-AVERAGE: $micro-TPR = \frac{TP_1 + ... + TP_n}{Pos_1 + ... + Pos_n}$
+    - MICRO-AVERAGE: $\qquad$ $micro-TPR = \frac{TP_1 + ... + TP_n}{Pos_1 + ... + Pos_n}$
         - reflect class imbalance 
 
 ### Regression 
 Regression models are evaluated by applying a loss function to the residuals.
 - Residual = Actual value − Predicted value
 - Loss functions measures how far predictions are from true values (Sum of residuals squared)
+
 Is the linear model performing good?
 - it has to have:
     - low error 
@@ -211,6 +217,7 @@ Is the linear model performing good?
 - Variance: Error from sensitivity to small fluctuations in training set.
 - Low bias → complex model 
 - low variance → simple model
+
 $\rightarrow$ Goal: balance both for best generalization. 
 
 ### Unsupervised and Descriptive Learning
@@ -231,3 +238,8 @@ Evaluating Clustering Performance
         * $a$: average distance to points in the same cluster
         * $b$: average distance to points in the nearest other cluster
 
+**Sub-Group Discovery**
+Supervised and Descriptive learning task.
+- finds subgroups in the data that are statistically unusual 
+    - not just aiming for accuracy 
+- Chi-square to see if the subgroup differs significantly. 
