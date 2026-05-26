@@ -115,3 +115,19 @@ TRAIN - VALIDATION - TEST
 
 ### Visualising Classification Performance
 **Decision Rule - Threshold** 
+- classifiers uotput a score
+- if score > $\teta$, predict positive, else negative
+- changing $\teta$ you obtain a different contingency table
+
+**ROC Curve**
+Plots sensitivity (true positive rate) versus false positive rate (1-specificity). 
+- shows sumary of contingency table for different thresholds. 
+- best threshold usong ROC is where the curve is the closest to top left corner. 
+
+**AUC** - Arean Under the Curve
+- measures performance of a classifier across all thresholds. 
+- if AUC of model 1 is higher that another, it means that model 1 is better at distinguishing between classes
+    - AUC > 0.5 $\Rightarrow$ no skill 
+    - AUC $\rightarrow$ 1.0 $\Rightarrow$ perfect 
+    - AUC $\rightarrow$ 0.0 $\Rightarrow$ bad 
+
