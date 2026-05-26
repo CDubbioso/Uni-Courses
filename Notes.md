@@ -379,12 +379,12 @@ Changing $p$ lets us adjust how we measure "closeness" between points. Different
 $\rightarrow$ by choosing the right $p$, we can help the algorithm perform better for the specific data or task at hand.
 
 **Distance Metric** must satisfy: 
-- **Zero distance to itself**: $\qquad \text{Dis}(x,x)=0$
-- **Positive for different points**: $\qquad \text{Dis}(x,y) > 0 \text{if} x \neq y$
-- **Symmetry**: $\qquad \text{Dis}(x,y) = \text{Dis}(y,x)$
+- **Zero distance to itself**: $\text{Dis}(x,x)=0$
+- **Positive for different points**: $\text{Dis}(x,y) > 0 \text{if} x \neq y$
+- **Symmetry**: $\text{Dis}(x,y) = \text{Dis}(y,x)$
 - **Triangle inequality:** $Dis(x, z) \leq Dis(x, y) + Dis(y, z)$
 
-if $2^{nd}$ condition allows "$0$" even though $x \neq y$ $\rightarrow$ PSEUDO-METRIC 
+if $2^{nd}$ condition allows $0$ even though $x \neq y$ $\rightarrow$ PSEUDO-METRIC 
 
 --- 
 **KNN - Nearest-Neighbour Classification** 
