@@ -64,21 +64,21 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
 | *Total* | TP + FP | FN + TN | n |
 
 ### Evaluate Perofrmance
-**Accuracy**  $\rightarrow$  correct predictions across test set
-> $acc = \frac{TP + TN}{n}$
+**Accuracy** → correct predictions across test set
+> acc = (TP + TN) / n
 
-**Recall** - TPR  $\rightarrow$  positives correctly identified
-> $rec = \frac{TP}{Pos} $
+**Recall** - TPR → positives correctly identified
+> rec = TP / Pos
 
-**Specificity** - TNR  $\rightarrow$  negatives correctly identified
-> $spec = \frac{TN}{Neg} $
+**Specificity** - TNR → negatives correctly identified
+> spec = TN / Neg
 
-**Precision**  $\rightarrow$  reliability of positive predictions 
-> $prec = \frac{TP}{TP+FP} $
+**Precision** → reliability of positive predictions
+> prec = TP / (TP + FP)
 
-**$F_{1}$ Score**  $\rightarrow$  harmonic mean of precision and recall 
-> $ F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$ 
-> $\rightarrow$ not affected by negatives 
+**F₁ Score** → harmonic mean of precision and recall
+> F₁ = 2 · (prec · rec) / (prec + rec)
+> → not affected by negatives
 
 ### Evaluations Strategies
 TRAIN-TEST Split 
