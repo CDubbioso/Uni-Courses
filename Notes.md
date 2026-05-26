@@ -247,3 +247,83 @@ Supervised and Descriptive learning task.
 
 ------
 ## 4. Tree Models
+- supervised learning
+- split data based on rules $\rightarrow$ easy to interpret
+- three main types:
+    1. Decision Trees, single tree
+    2. Random Forest, multiple trees combined
+    3. Gradinet Boosting, trees built sequentially to correct errors 
+
+**Decision Tree**
+- tree-like graph:
+    - Nodes: pick a feature and ask a quesiton
+    - Branches: (sdges) answer the question
+    - Leaves: outputs/class label 
+
+with "d" number of binary features: 
+**Max Depth** $\rightarrow$ $d + 1$ 
+**Max n of Leaves** $\rightarrow$ $2^d$
+
+$\Rightarrow$ we want to split data so that each child is as pure as possible 
+- two types of splits:
+    - **PURE** split, each child has only one class
+    - **IMPURE** split, children have mixed class 
+
+Measure Impurity, how mixed the class are in a node
+- Misclassification Error: 
+
+$$\text{min}(p, 1-p)$$
+
+- Entropy: measure uncertanty
+
+$$-p \log_2 p - (1-p) \log_2 (1-p)$$
+
+- Gini Index: measure prob. of uncertanty
+
+$$2p(1-p)$$
+
+Comparing Splits Using Impurity
+a. calculate weighted impurity for children after the split.
+b. choose the split that reduces impurity the most (purity gain):
+
+$$\text{Purity Gain} = \text{Impurity before split} − \text{Weighted impurity after split}$$
+
+c. The split with the ***highest purity gain*** is the best split.
+
+For Handling Continuous Features, we check impurity for each possible threshold and pick the best.
+
+---
+
+**Pruning** Decision Trees
+Trees can become very big to fit the data $\rightarrow$ creates risk of "overfitting" 
+
+To prevent this:
+- limit number of iterations
+- PRUNING $\rightarrow$ reduce tree size by removing weak branches 
+
+Reduced error pruning 
+* Start from leaves, replace a node with majority class label 
+* Keep the change only if validation accuracy does not drop
+
+$\rightarrow$ helps the tree generalize better the new data 
+
+$\rightarrow$ pruning will not improve accuracy on training set
+
+**Sensitivity** to Skewed Class Distribution 
+When classes are imbalanced, tress might be biased 
+
+Sources of imbalance:
+- asymmetric class distribution 
+    - one class has simply more examples than the other. 
+- asymmetric mis-classification cost
+    - the classes might be balanced in count, but getting the rare one wrong matters more. 
+
+Solutions:
+- add more samples to minority class
+- adjust impurity calculations or splitting criteria to be less sensitive to class imbalance 
+
+The reason this happens with trees specifically: entropy and Gini, the measures used to grow the tree, **react to the overall class proportions**. If you scale up the majority class, the impurity scores shift and the tree starts favoring splits that please the majority. This is also why introduce $\sqrt{\text{Gini}}$​ 
+
+$\sqrt{\text{Gini}}$​ 
+- do *not* care about those proportion shifts 
+- it's insensitive to changes in class distribution 
