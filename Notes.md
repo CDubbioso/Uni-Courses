@@ -65,19 +65,24 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
 
 ### Evaluate Perofrmance
 **Accuracy**  $\rightarrow$  correct predictions across test set
+    
     $acc = \frac{TP + TN}{n}$ 
 
 **Recall** - TPR  $\rightarrow$  positives correctly identified
+    
     $rec = \frac{TP}{Pos} $
 
 **Specificity** - TNR  $\rightarrow$  negatives correctly identified
+    
     $spec = \frac{TN}{Neg} $
 
 **Precision**  $\rightarrow$  reliability of positive predictions 
-    $prec = \frac{TP}{TP+FP} $
     
+    $prec = \frac{TP}{TP+FP} $
+
 **$F_{1}$ Score**  $\rightarrow$  harmonic mean of precision and recall 
-    $ F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$ 
+    
+    $F_{1} = 2 \times \frac{prec \times rec}{prec + rec} $
     $\rightarrow$ not affected by negatives 
 
 ### Evaluations Strategies
@@ -88,7 +93,7 @@ $\rightarrow$ data can be ordered in some way, therefore mix data before separat
 CROSS-VALIDATION 
 - repeat train-test split on differnt parts of data. 
 - average performance
-$\rightarrow$ !!! model might be biased on the dataset used!!! $\Rightarrow$ add ***validation set***. 
+$\rightarrow$ !!! model might be biased on the dataset used !!! $\Rightarrow$ add ***validation set***. 
 
 TRAIN - VALIDATION - TEST
 - Validation set = use different dataset to compare _candidate models_ and pick th ebest one. 
