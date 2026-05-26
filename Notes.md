@@ -16,7 +16,7 @@
 - evaluating cluster performance: with and without ground truth 
 - Sub-Group Discovery
 
------
+------
 ## 1. ML Core Ingredients
 ### Tasks 
 Tasks can be "Predictive" or "Descriptive", and "Supervised" or "Unsupervised". 
@@ -59,7 +59,7 @@ Measurement that you can perform on any instance.
     - Feature Transformation $\rightarrow$ Mapping data into a new space (e.g., PCA).
     - Feature Selection $\rightarrow$ Removing redundant or irrelevant features.
 
------
+------
 ## 2. Binary Classification 
 **Binary Classifier** maps an instance to one of two class labels. 
 To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE. 
@@ -161,9 +161,10 @@ $$SE(x) = \frac{1}{2} \sum_i (\hat{p}_i(x) - I[c(x)=C_i])^2$$
 
 $$MSE(x) = \frac{1}{|\text{Te}|} \sum_{x \in \text{Te}} SE(x)$$
 
------
+------
 ## 3. Multi-Class Classification
 Combine multiple binary classifiers. 
+
 How to convert binary classifier into Multi-class classifier?
 1. One versus Rest
 2. One versus One
@@ -172,7 +173,7 @@ How to convert binary classifier into Multi-class classifier?
 - is the point in my class or in any of the others? 
 - number of classifier needed:
     - with ordering $\rightarrow$  $k-1$
-    - without orgerng $\rightarrow$  $k$ 
+    - without ordering $\rightarrow$  $k$ 
 
 **One Versus One**: each clasifier ignores all but two classes
 - number of classifiers needed:
@@ -184,7 +185,7 @@ Confusion Matrix for multi-class
 
 Accuracy:
 
-$$\frac{\sum \text{diagonal entries})}{tot}$$
+$$\frac{\sum (\text{diagonal entries})}{tot}$$
 
 Per-class Precision and Recall: 
 
@@ -243,3 +244,6 @@ Supervised and Descriptive learning task.
 - finds subgroups in the data that are statistically unusual 
     - not just aiming for accuracy 
 - Chi-square to see if the subgroup differs significantly. 
+
+------
+## 4. Tree Models
