@@ -384,10 +384,10 @@ $\rightarrow$ by choosing the right $p$, we can help the algorithm perform bette
 - **Symmetry**: $\text{Dis}(x,y) = \text{Dis}(y,x)$
 - **Triangle inequality:** $Dis(x, z) \leq Dis(x, y) + Dis(y, z)$
 
-if $2^{nd}$ condition allows $0$ even though $x \neq y$ $\rightarrow$ PSEUDO-METRIC 
+if $2^{nd}$ condition allows $0$ even though $x \neq y \rightarrow$ PSEUDO-METRIC 
 
 --- 
-**KNN - Nearest-Neighbour Classification** 
+### KNN - Nearest-Neighbour Classification
 - each training instance acts as an exemplar
 - to classify a new point, find the *k-nearest* training points
 - take a vote among the k-nearest exemplars $\rightarrow$ class with majority of votes wins
@@ -402,8 +402,9 @@ $\rightarrow$ optimal $k$ usually between $0 \leq k \leq 10$
 
 ### Distance Based Predictive Clustering
 Predictive clustering: use a distance metric to construct exemplars and a distance-based decision rule to create clusters. 
+
 ---
-**K-Means** Algorithm
+### K-Means Algorithm
 1. randomly initialize $k$ centroids
 2. assign each point to the nearest centroid 
 3. update centroids to be the mean of assigned points
@@ -415,7 +416,7 @@ Limitations:
 - uses Euclidian distance
 - computation $\rightarrow$ $O(n)$ per cluster
 ---
-**K-Medoids** Algorithm 
+### K-Medoids Algorithm 
 $\rightarrow$ same structure of k-mean
 - works with any distance metric
 - more robust to noise/outliers
@@ -426,7 +427,7 @@ $\rightarrow$ same structure of k-mean
 3. Update medoids to minimize total distance within cluster.
 4. Repeat until medoids stabilize.
 ---
-**Evaluating Clustering**
+### Evaluating Clustering
 - INERTIA: how compact clusters are $\rightarrow$ low inertia = tight cluster
 
 $$\text{Inertia} = \sum_{i}^{n} \min_{\mu_i \in C} \|x_i - \mu_i\|^2$$
@@ -435,12 +436,12 @@ $$\text{Inertia} = \sum_{i}^{n} \min_{\mu_i \in C} \|x_i - \mu_i\|^2$$
 
 $$s(x_i) = \frac{b(x_i) - a(x_i)}{max(a(x_i),b(x_i))}$$
 
-- $a(x_i)$ : average distance of $x_i$ to points in its cluster
-- $b(x_i)$ : average distance of $x_i$ to points in neighbour cluster
+    - $a(x_i)$ : average distance of $x_i$ to points in its cluster
+    - $b(x_i)$ : average distance of $x_i$ to points in neighbour cluster
 
-- $s \rightarrow 1$, point in its cluster
-- $s \rightarrow 0$, point near cluster boudary
-- $s$ negative, point is closer to other cluster 
+    - $s \rightarrow 1$, point in its cluster
+    - $s \rightarrow 0$, point near cluster boudary
+    - $s$ negative, point is closer to other cluster 
 
 $\rightarrow$ we want high $b$ and low $a$
 
@@ -450,7 +451,7 @@ Build a hierarchy/tree of clusters
     - leaves are data points, internal nodes represent merged clusters
     - height at which two groups join shows distance at which cluster merged (how different when they were merged)
 ---
-**Linkage Functions** $\rightarrow$ How to measure distance between clusters
+#### Linkage Functions $\rightarrow$ How to measure distance between clusters
 * **Single linkage:** minimum distance between points in two clusters.
     - measure from the _two closest members_, one from each group
 * **Complete linkage:** maximum distance between points in two clusters.
@@ -460,7 +461,7 @@ Build a hierarchy/tree of clusters
 * **Centroid linkage:** distance between cluster centroids.
     - issue: a merged cluster's centroid can land in a spot that makes earlier sub-clusters effectively "vanish" 
 ---
-**Hierarchical Agglomerative Clustering - HAC**
+#### Hierarchical Agglomerative Clustering - HAC
 Idea: build tree by gluing things together starting from smallest pieces.
 1. start by treating each data point as its own tiny cluster
 2. find the two closest clusters, using linkage functions, merge them into one 
