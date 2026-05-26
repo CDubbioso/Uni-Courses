@@ -436,14 +436,13 @@ $$\text{Inertia} = \sum_{i}^{n} \min_{\mu_i \in C} \|x_i - \mu_i\|^2$$
 
 $$s(x_i) = \frac{b(x_i) - a(x_i)}{max(a(x_i),b(x_i))}$$
 
+- $\rightarrow$ we want high $b$ and low $a$
     - $a(x_i)$ : average distance of $x_i$ to points in its cluster
     - $b(x_i)$ : average distance of $x_i$ to points in neighbour cluster
 
     - $s \rightarrow 1$, point in its cluster
     - $s \rightarrow 0$, point near cluster boudary
     - $s$ negative, point is closer to other cluster 
-
-$\rightarrow$ we want high $b$ and low $a$
 
 ### Descriptive Hierarchical Clustering
 Build a hierarchy/tree of clusters
