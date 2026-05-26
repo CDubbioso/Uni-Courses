@@ -70,21 +70,23 @@ $$\text{accuracy} = \frac{TP + TN}{n}$$
 
 **Recall** - TPR  $\rightarrow$  positives correctly identified
 
-$$\text{rec} = \frac{TP}{Pos}$$
+$$\text{recall} = \frac{TP}{Pos}$$
 
 **Specificity** - TNR  $\rightarrow$  negatives correctly identified
 
-$$\text{spec} = \frac{TN}{Neg}$$
+$$\text{specificity} = \frac{TN}{Neg}$$
 
 **Precision**  $\rightarrow$  reliability of positive predictions 
 
-$$\text{prec} = \frac{TP}{TP+FP}$$
+$$\text{precision} = \frac{TP}{TP+FP}$$
 
 **$F_{1}$ Score**  $\rightarrow$  harmonic mean of precision and recall 
 
 $$F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$$ 
 
-$\rightarrow$ not affected by negatives 
+    $\rightarrow$ not affected by negatives 
+
+---
 
 ### Evaluations Strategies
 TRAIN-TEST Split 
@@ -102,10 +104,14 @@ TRAIN - VALIDATION - TEST
 - Validation set = use different dataset to compare _candidate models_ and pick th ebest one. 
     - candidate models: different algorithms or different hyperparameters
 
+---
+
 ### Performance Measures
 **Over-fitting**: model performs very well on trainig data but badly on test data. 
 
 **Under-fitting**: model performs badly on both training data and test data. 
+
+---
 
 ### Visualising Classification Performance
 **Decision Rule - Threshold** 
