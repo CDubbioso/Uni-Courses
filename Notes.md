@@ -84,7 +84,7 @@ $$\text{precision} = \frac{TP}{TP+FP}$$
 
 $$F_{1} = 2 \times \frac{prec \times rec}{prec + rec}$$ 
 
-    $\rightarrow$ not affected by negatives 
+$\rightarrow$ $F_1$ not affected by negatives 
 
 ---
 
@@ -98,7 +98,7 @@ CROSS-VALIDATION
 - repeat train-test split on differnt parts of data. 
 - average performance
 
-$\rightarrow$ !!! model might be biased on the dataset used!!! $\Rightarrow$ add ***validation set***. 
+$\rightarrow$ !!! model might be biased on the dataset used !!! $\Rightarrow$ add ***validation set***. 
 
 TRAIN - VALIDATION - TEST
 - Validation set = use different dataset to compare _candidate models_ and pick th ebest one. 
@@ -153,4 +153,4 @@ Ranking Error: how often a positive example is scored lower than a negative one.
 
 $$SE(x) = \frac{1}{2} \sum_i (\hat{p}_i(x) - I[c(x)=C_i])^2$$
 
-$$MSE(x) = \frac{1}{\abs{\text{Te}}} \sum_{x \in \text{Te}} SE(x)$$
+$$MSE(x) = \frac{1}{|\text{Te}} \sum_{x \in \text{Te}} SE(x)$$
