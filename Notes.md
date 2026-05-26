@@ -12,7 +12,7 @@
 
 **Lecture 3** - Multi-Class Classification
 
-----
+-----
 ## 1. ML Core Ingredients
 ### Tasks 
 Tasks can be "Predictive" or "Descriptive", and "Supervised" or "Unsupervised". 
@@ -55,7 +55,7 @@ Measurement that you can perform on any instance.
     - Feature Transformation $\rightarrow$ Mapping data into a new space (e.g., PCA).
     - Feature Selection $\rightarrow$ Removing redundant or irrelevant features.
 
-----
+-----
 ## 2. Binary Classification 
 **Binary Classifier** maps an instance to one of two class labels. 
 To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE. 
@@ -70,7 +70,7 @@ To assess performance of a binary classifier $\rightarrow$ CONTINGENCY TABLE.
 
 $$\text{accuracy} = \frac{TP + TN}{n}$$
 
-**Recall** - TPR  $\rightarrow$  positives correctly identified
+**Recall** - TPR - Sensitivity  $\rightarrow$  positives correctly identified
 
 $$\text{recall} = \frac{TP}{Pos}$$
 
@@ -155,7 +155,79 @@ Ranking Error: how often a positive example is scored lower than a negative one.
 
 $$SE(x) = \frac{1}{2} \sum_i (\hat{p}_i(x) - I[c(x)=C_i])^2$$
 
-$$MSE(x) = \frac{1}{|\text{Te}} \sum_{x \in \text{Te}} SE(x)$$
+$$MSE(x) = \frac{1}{|\text{Te}|} \sum_{x \in \text{Te}} SE(x)$$
 
-----
+-----
 ## 3. Multi-Class Classification
+Combine multiple binary classifiers. 
+How to convert binary classifier into Multi-class classifier?
+1. One versus Rest
+2. One versus One
+
+**One Verus Rest**: train one classifier per class 
+- is the point in my class or in any of the others? 
+- number of classifier needed:
+    - with ordering $\rightarrow$  $k-1$
+    - without orgerng $\rightarrow$  $k$ 
+**One Versus One**: each clasifier ignores all but two classes
+- number of classifiers needed:
+    - symmetric $\rightarrow$  $\frac{k(k-1)}{2}$
+    - asymmetric $\rightarrow$  $k(k-1)$
+
+### Evaluate Multi-class Classifiers
+Confusion Matrix for multi-class
+
+Accuracy:
+
+$$\frac{\sum \text{diagonal entries})}{tot}$$
+
+Per-class Precision and Recall: 
+
+$$prec_i = \frac{TP_i}{TP-i + FP_i}       rec_i = \frac{TP_i}{TP_i + FN_i}$$
+
+Weighted overall precision: 
+
+$$\text{Prec} = \sum_i \text{prec}_i \times \text{proportion}$$
+
+**ROC Curve** for multi-class
+$\rightarrow$ compute one ROC per class, then aggregate
+- to summarize performance:
+    - MACRO-AVERAGE: $macro-TPR = \frac{TPR_1 + TPR_2 + ... + TPR_n}{n}$
+        - sensitive to performance on rare classes
+    - MICRO-AVERAGE: $micro-TPR = \frac{TP_1 + ... + TP_n}{Pos_1 + ... + Pos_n}$
+        - reflect class imbalance 
+
+### Regression 
+Regression models are evaluated by applying a loss function to the residuals.
+- Residual = Actual value − Predicted value
+- Loss functions measures how far predictions are from true values (Sum of residuals squared)
+Is the linear model performing good?
+- it has to have:
+    - low error 
+    - generalisability
+
+**Bias-Variance Trade-off**
+- Bias: Error from wrong assumptions in model.
+- Variance: Error from sensitivity to small fluctuations in training set.
+- Low bias → complex model 
+- low variance → simple model
+$\rightarrow$ Goal: balance both for best generalization. 
+
+### Unsupervised and Descriptive Learning
+Evaluating Clustering Performance
+- With Ground Truth (We know the real groups): Use metrics like 
+   - Rand index
+   - Precision
+   - Recall
+   - F1 score.
+- Without Ground Truth (No real labels): Use internal metrics like 
+   - Davies-Bouldin index
+   - Calinski-Harabasz Index
+   - Silhouette coefficient
+        - $s = \frac{b - a}{\max(a,b)}$
+            - close to +1 → good clustering: 
+            - close to 0 → borderline;
+            - negative → wrong cluster:
+        * $a$: average distance to points in the same cluster
+        * $b$: average distance to points in the nearest other cluster
+
