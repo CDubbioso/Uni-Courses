@@ -452,7 +452,7 @@ Build a hierarchy/tree of clusters
     - leaves are data points, internal nodes represent merged clusters
     - height at which two groups join shows distance at which cluster merged (how different when they were merged)
 ---
-#### Linkage Functions $\rightarrow$ How to measure distance between clusters
+### Linkage Functions $\rightarrow$ How to measure distance between clusters
 * **Single linkage:** minimum distance between points in two clusters.
     - measure from the _two closest members_, one from each group
 * **Complete linkage:** maximum distance between points in two clusters.
@@ -462,7 +462,7 @@ Build a hierarchy/tree of clusters
 * **Centroid linkage:** distance between cluster centroids.
     - issue: a merged cluster's centroid can land in a spot that makes earlier sub-clusters effectively "vanish" 
 ---
-#### Hierarchical Agglomerative Clustering - HAC
+### Hierarchical Agglomerative Clustering - HAC
 Idea: build tree by gluing things together starting from smallest pieces.
 1. start by treating each data point as its own tiny cluster
 2. find the two closest clusters, using linkage functions, merge them into one 
@@ -482,7 +482,7 @@ Geometric model $\rightarrow$ use lines ans planes to draw boundaries, represent
 
 --- 
 
-#### Linear Regression
+### Linear Regression
 
 Best line is the one that sits _closest_ to all the points at once. 
 
@@ -545,7 +545,7 @@ Where $\lambda$ is a hyperparameter that controls the amount of regularization.
 
 --- 
 
-#### Using Least-Square for Classification
+### Using Least-Square for Classification
 
 **Linear Models for Classification** 
 
