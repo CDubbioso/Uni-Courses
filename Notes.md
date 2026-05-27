@@ -578,7 +578,7 @@ $\Rightarrow$ Perceptron = mistake-driven, self-correcting model
 
 $\rightarrow$ ***separate the classes with the widest possible gap.*** 
 
-$\rightarrow$ **Pick the boundary that maximizes the margin.** $\lefttarrow$
+$\rightarrow$ **Pick the boundary that maximizes the margin.** $\leftarrow$
 
 **Hard margin** : zero points in the gap $\rightarrow$ perfect classification
 - but there can be outliers that sits within this gap, and we don't want the gap to become absurdly narrow $\rightarrow$ use _soft margin_. 
@@ -595,7 +595,93 @@ _If you can't separate the data in its current space, lift it into a higher-dime
 ------
 ## 7. Features
 
+### Calculations on feaures
+Three main categories:
+1. Statistic of Central Tendency
+2. Statistic of Dispersion
+3. Shape Statistics
 
+**Statistics of central Tendency** $\rightarrow$ mean - median - mode 
+
+**Statistic of Dispersion**
+- **Variance** 
+- **Standard deviation** 
+- **Range:** Difference between max and min.
+- **Midrange:** Average of max and min.
+- **Percentiles**: 
+    - **p-th Percentiles**: $p$ percent of instances fall below the value
+    - **Quartiles**: percentiles for $p$ being multiple of $25$
+    - **Deciles**: percentiles for $p$ being multiple of $10$
+- **Interquartile range:** Difference between $3^rd$ and $1^st$ quartile.
+
+**Shape Statistics** $\rightarrow$ describe shape of data
+- SKEWNESS 
+- KUTROSIS, measures how sharp or flat the peak is compared to a normal distribution 
+    - positive = sharp, negative = flat
+
+--- 
+
+### Kinds of features
+- Categorical/Nominal
+- Ordinal
+- Quantitative
+- Boolean
+
+**Structured features** $\rightarrow$ captures complex info 
+- can be contructed:
+    - prior to the learning model $\rightarrow$ number of possible features grows out of control, very fast
+    - during the learning model
+
+--- 
+
+### Feature Transformation 
+
+| From \ To    | Quantitative | Ordinal | Categorical  | Boolean     |
+| ------------ | ------------- | ---------- | --------- | ----------- |
+| Quantitative | Normalisation, Calibration | Calibration | Calibration | Calibration |
+| Ordinal       | Discretisation | Ordering | Ordering | Ordering |
+| Categorical   | Discretisation | Unordering   | Grouping     | - |
+| Boolean       | Thresholding | Thresholding | Binarisation | - |
+
+- ***Calibration***: Assigns values to categorical data 
+    - can wrongly give more importance to some categories 
+- ***Thresholding***: Converts numeric/ordinal features into boolean by splitting at a threshold value 
+- ***Discretisation***: Converts quantitative features into ordinal 
+    - creates bins where each bin is an interval
+- ***Normalization***: rescale every feature to comparable range
+    - _MIN-MAX_ normalization $\rightarrow$ $\frac{(\text{value} - \text{min})}{(\text{max} - \text{min})}$
+    - _z-score_ normalization $\rightarrow$ $\frac{(\text{value} - \mu)}{\sigma}$
+        - creates data around mean $0$ and sd $1$ 
+
+--- 
+
+### Feature Cunstruction & Extraction
+**Construction** $\rightarrow$ combine or derive features from raw ones using domain knowledge. 
+
+**Extraction** $\rightarrow$ automatic version
+- let the data tell you which combinations matter $\rightarrow$ **PCA**
+
+--- 
+
+### PCA - Principal Component Analysis
+Goal: take many correlated features and replace them with new "***super-features***" that captures most of the variation 
+
+1. creates new features by combining original features
+2. it finds directions (_components_) where the data varies the most 
+- **PC1** explains the most variation
+- **PC2** explains the next most variation
+    - perpendicular to PC1
+
+Process: 
+1. find mean of the data
+2. center data by subtracting the mean
+3. find the first principal component (PC1)
+4. find the next principal components (PC2, PC3, ...)
+5. eigenvalues measure importance of each component
+6. eigenvectors give direction of components
+7. decide how many to keep
+
+$\rightarrow$ PCA helps reduce redundancy when features are correlated
 
 
 
