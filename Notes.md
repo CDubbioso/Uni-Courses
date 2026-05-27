@@ -400,6 +400,7 @@ $\rightarrow$ optimal $k$ usually between $0 \leq k \leq 10$
 - use cross-validation to find best $k$ 
 - weighted voting $\rightarrow$ give more weight to closer neighbours
 
+---
 ### Distance Based Predictive Clustering
 Predictive clustering: use a distance metric to construct exemplars and a distance-based decision rule to create clusters. 
 
@@ -444,6 +445,7 @@ $$s(x_i) = \frac{b(x_i) - a(x_i)}{max(a(x_i),b(x_i))}$$
     - $s \rightarrow 0$, point near cluster boudary
     - $s$ negative, point is closer to other cluster 
 
+---
 ### Descriptive Hierarchical Clustering
 Build a hierarchy/tree of clusters
 - the output is a tree $\rightarrow$ **Dendrogram**:
@@ -471,6 +473,130 @@ Result $\rightarrow$ dendrogram that represent cluster hierarchy
 - choice of linkage function will affect the result
 - sometimes clusters suggested by dendrograms don't match real data
 - silhouette scores can help check cluster quality 
+
+------
+## 6. Linear Models
+Geometric model $\rightarrow$ use lines ans planes to draw boundaries, represent similarities between points
+
+### The Least-Squares Method
+
+--- 
+
+#### Linear Regression
+
+Best line is the one that sits _closest_ to all the points at once. 
+
+$\rightarrow$ close = minimize square sum of residual
+
+$$\text{residual} = f(x_i) - \hat{f}(x_i)$$
+
+- given n data points $(x_i, y_i)$ and a model $\hat{f}(x_i) = a + b x_i$ 
+
+$$\text{Square Sum Residual} = \text{SSR or RSS} = \sum_{i=1}^n (y_i - (a + b x_i))^2$$
+
+- since SSR is convex (u shape) $\rightarrow$ the minimum is when partial derivative is $0$ 
+
+**Performance of Regression** 
+
+**Root Mean Squared Error** : how wrong am I on average
+
+$$\mathrm{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (f(x_i) - \hat{f}(x_i))^2}$$
+
+**$R^2$ - Coefficient of Determination** : is my line actually better that just guessing the average
+
+$$R^2 = 1 - \frac{\mathrm{RSS}}{\mathrm{TSS}}$$
+
+where:
+- Residual Sum of Squares, **RSS**:
+
+$$\mathrm{RSS} = \sum_{i=1}^n (f(x_i) - \hat{f}(x_i))^2$$
+
+- Total Sum of Squares, **TSS**: 
+
+$$\mathrm{TSS} = \sum_{i=1}^n (f(x_i) - \bar{f}(x_i))^2$$
+
+$\Rightarrow$ the closer $R^2$ is to $1$, the better the linear regression is. 
+
+--- 
+
+**Effect of Outliers**
+
+Outliers strongly eggect the regression line because of large residual
+
+Solution:
+1. train model $\rightarrow$ detect outliers $\rightarrow$ remove outliers $\rightarrow$ re-train 
+2. use *Total Least Square* method
+
+--- 
+
+**Regularized Regression** 
+
+With few data points, the model can overfit the training data. 
+
+$\rightarrow$ low error on training, high error on test 
+
+Regularisation adds a penalty on large weights to avoid overfitting.
+
+$$\text"{ERROR} + \lambda \cdot \text{Penalty on Weights}"$$
+
+Where $\lambda$ is a hyperparameter that controls the amount of regularization.
+- Low $\lambda$ → model tries harder to fit the data exactly.
+- High $\lambda$ → model keeps weights small and simpler, less sensitive to noise.
+
+--- 
+
+#### Using Least-Square for Classification
+
+**Linear Models for Classification** 
+
+We can encode two classes as real numbers:
+
+* Positive class: $y^+ = +1$
+* Negative class: $y^- = -1$
+
+Train linear regression to predict these labels.
+
+--- 
+
+### The Perceptron 
+Linear classifier that will achieve perfect separation on linearly separable data. 
+- starts with a random line
+- feed it with training points one at the time
+    - if point is correctly classified, move on;
+    - if point is misclassified, update the line towards fixing that mistake; 
+- repeat untill all points are correctly classified. 
+
+$\rightarrow$ if the data can be split by a straight line, the perceptron will find it. 
+- issue: it will find the fist line that happen to make zero mistakes, not necessarily the best one. 
+
+$\Rightarrow$ Perceptron = mistake-driven, self-correcting model
+
+---
+
+### SVM - Support Vector Machine
+- fixes the perceptron issue $\rightarrow$ which separating line to choose? 
+
+$\rightarrow$ ***separate the classes with the widest possible gap.*** 
+
+$\rightarrow$ **Pick the boundary that maximizes the margin.** $\lefttarrow$
+
+**Hard margin** : zero points in the gap $\rightarrow$ perfect classification
+- but there can be outliers that sits within this gap, and we don't want the gap to become absurdly narrow $\rightarrow$ use _soft margin_. 
+
+**Soft margin** : tollerate a few points in the gap if it lets a nice wide gap
+
+---
+
+### Kernels
+Allow to extend linear classifiers to non-linear problems. 
+
+_If you can't separate the data in its current space, lift it into a higher-dimentional space where you can_. 
+
+------
+## 7. Features
+
+
+
 
 
 ---------------------------
