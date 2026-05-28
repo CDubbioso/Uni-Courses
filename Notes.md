@@ -691,7 +691,7 @@ $\rightarrow$ PCA helps reduce redundancy when features are correlated
 ## 9. Model Ensembles
 Idea: combine many models so that individual mistake don't dominate
 
-$$\text{Diversity} + \text{Combination}$$ 
+$$\Large \text{DIVERSITY} + \text{COMBINATION}$$ 
 
 Bootstrapping: train-test many times on random samples
 - help reduce mistakes caused by one training set
