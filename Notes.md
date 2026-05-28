@@ -819,16 +819,16 @@ The **Neural network way** $\rightarrow$ instead of guessing $\phi$, let the mac
 Stacking linear layers gains you nothing $\rightarrow$ mathematically composing linear functions just give one linear function. 
 
 ### Activation Functions 
-examples: 
-* ReLU: $g(z) = \max(0, z)$
-* Sigmoid: $g(z) = \frac{1}{1+e^{-z}}$
-* Tanh: $g(z) = \tanh(z)$
-
 - small non-linear "kink" (bend) applied after each neuron's weighted sum 
 - each kink lets the network bend the space a little
     - stack many kinks and you bend the space into any shape you want/need
 
 $\rightarrow$ with enough neurons in a single hiddel layer you can approximate any function 
+
+examples: 
+* ReLU: $g(z) = \max(0, z)$
+* Sigmoid: $g(z) = \frac{1}{1+e^{-z}}$
+* Tanh: $g(z) = \tanh(z)$
 
 ### Neural Nets Training
 - weight randomly initializes, so its prediction are garbage
@@ -838,7 +838,7 @@ $\rightarrow$ with enough neurons in a single hiddel layer you can approximate a
 ### Gradient Descent
 Gradient descent is an optimisation algorithm that is used to update the weights of a neural network to reduce loss. 
 
-Blindfolded hiker analogy:
+_Blindfolded Hiker_ analogy:
 - loss = a landscape; position = weights, altitude = loss
 - blindfolded in fog → can't see whole map, can only feel slope underfoot
 - **gradient** = the slope (steepest downhill direction)
