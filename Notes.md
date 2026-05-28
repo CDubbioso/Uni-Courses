@@ -693,7 +693,7 @@ Idea: combine many models so that individual mistake don't dominate
 
 $$\Large \text{DIVERSITY} + \text{COMBINATION}$$ 
 
-Bootstrapping: train-test many times on random samples
+**Bootstrapping**: train-test many times on random samples
 - help reduce mistakes caused by one training set
 
 ### Bagging 
@@ -708,7 +708,7 @@ $\rightarrow$ ***reduce variance***
 Instead of using all features, you randomly pick only a small set of features for each model. 
 - Different models look at different parts of the data, so their errors won’t be the same. 
 
-$\rightarrow$ helps the combined model _perform better_ and avoid _overfitting_
+$\rightarrow$ helps the combined model ***perform better*** and ***avoid overfitting***
 
 ### Random Forest
 - Bagging + random feature selection for trees.
@@ -723,13 +723,6 @@ Method for reducing the error in supervised learning by converting weak learners
 
 $\rightarrow$ ***reduce bias***
 
-
-### Bagging Vs Boosting 
-| _Bagging_                                 |  _Boosting_                                                  | _Staking_ |
-| ----------------------------------------  | ------------------------------------------------------------ | --------- |
-| model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one | base model train in parallel, then a meta-learner on top |
-| **reduce variance** | **reduce bias** | **reduce both bias and variance**, depends on model used | 
-
 ### Staking
 - more flexible approach 
 
@@ -737,6 +730,13 @@ $\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best 
 1. train $k$ base learners on the data
 2. collect their predictions 
 3. train a second level learner (meta-learner)
+
+### Bagging Vs Boosting Vs Staking
+| _Bagging_                                 |  _Boosting_                                                  | _Staking_ |
+| ----------------------------------------  | ------------------------------------------------------------ | --------- |
+| model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one | base model train in parallel, then a meta-learner on top |
+| **reduce variance** | **reduce bias** | **reduce both bias and variance**, depends on model used | 
+
 
 ------
 ## Machine Learning Experiments
