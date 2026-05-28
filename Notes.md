@@ -747,6 +747,8 @@ When algorithm A beats algorithm B in your experiment, is that a real difference
 - compute $p$-_value_ 
 - reject if $p < \alpha$, where $\alpha$ is our significance level (typically $0.05$)
 
+---
+
 How many algorithms and how many datasets you're comparing?
 
 ### Paired t-test
@@ -774,12 +776,109 @@ How many algorithms and how many datasets you're comparing?
 
 
 ------
-## Neural Networks
+## 10. Neural Networks
+**Perceptron** $\rightarrow$ perfectly separate linearly separable classes with a line  
 
+To get ***non-linear boundaries*** you have to bend the space. 
+
+To introduce non-linearities we have to:
+1. map our input data 
+2. introduce kernels
+
+$\rightarrow$ we do not know a priori what constitutes a good kernel or a meaningful non-linear mapping of our data. 
+
+$\rightarrow$ manually engineering such non-linearities can lead to the **curse of dimensionality**. 
+
+Two approaches:
+1. **Non-deep learning approach**: manually engineer $\phi$ or kernel
+2. **Deep-learning approach**: learn the $\phi$ or kernel
+
+--- 
+
+### Non-Deep Learning approach
+Goal : introduce a transformation $\phi$ that wraps the data into a new space where it becomes linearly separable.
+- mechanisms:
+    - non-linear function $\phi$ $\rightarrow$ **basis function** 
+    - **kernel** (SVM) 
+
+$\rightarrow \phi$ doesn't always garantee the data becomes linearly separable, it makes it more linearly separable in many cases. 
+
+Problem : you have to guess the right $\phi$ in advance. 
+
+--- 
+
+### Deep-Learning approach
+The **Neural network way** $\rightarrow$ instead of guessing $\phi$, let the machine learn $\phi$. 
+
+### Multi Layer Network $\rightarrow$ *universal approximators*
+- Layer 1 : each neuron detects one simple pattern and reports "how much of that pattern it sees" 
+- Layer 2 : take reports and combine them into more complex patterns
+- .....
+- Output Layer : you built sophisticated concepts out of stacked simple parts 
+
+Stacking linear layers gains you nothing $\rightarrow$ mathematically composing linear functions just give one linear function. 
+
+### Activation Functions 
+examples: 
+* ReLU: $g(z) = \max(0, z)$
+* Sigmoid: $g(z) = \frac{1}{1+e^{-z}}$
+* Tanh: $g(z) = \tanh(z)$
+
+- small non-linear "kink" (bend) applied after each neuron's weighted sum 
+- each kink lets the network bend the space a little
+    - stack many kinks and you bend the space into any shape you want/need
+
+$\rightarrow$ with enough neurons in a single hiddel layer you can approximate any function 
+
+### Neural Nets Training
+- weight randomly initializes, so its prediction are garbage
+- measure how wrong is it with **Loss Function**
+- goal : update weights to minimize loss 
+
+### Gradient Descent
+Gradient descent is an optimisation algorithm that is used to update the weights of a neural network to reduce loss. 
+
+Blindfolded hiker analogy:
+- loss = a landscape; position = weights, altitude = loss
+- blindfolded in fog → can't see whole map, can only feel slope underfoot
+- **gradient** = the slope (steepest downhill direction)
+- strategy: feel downhill → take small step → refeel → repeat
+- **learning rate** = step size
+    - too small → crawls forever
+    - too large → overshoots the valley, bounces around
+- why not solve directly? NN loss is **non-convex**
+    - linear regression = one smooth bowl → solve formula for the bottom
+    - NN = bumpy terrain, many valleys (**local minima**) → must descend iteratively
+    - starting point (initialization) affects which valley you reach
+
+Steps:
+1. Calculate gradient (how loss changes w.r.t. weights).
+2. Update weights by a small step (learning rate × gradient).
+3. Repeat until loss stops decreasing $\rightarrow$ local minima
+
+### Back-propagation 
+Computes the error at the output, then propagates blame backward layer by layer, reusing each layer's computation for the one before it 
+
+To assign blame fairly, you work backwards — first figure out how much the final runner's mistake cost, then trace back how much the runner before them contributed to that mistake, and so on
+
+$\rightarrow$ lets gradient descent know how to update each weight.
+
+### Improving Efficiency
+Calculating gradients over the whole dataset (batch gradient descent) is slow.
+
+- Variants to speed up training:
+    - **Batch Gradient Descent**: Uses the whole dataset per update.
+        - most accurate direction, but very slow (1 step = full pass over data)
+    - **Stochastic Gradient Descent** (**SGD**): Updates weights after each training example.
+        - fast, many steps, but noisy/zigzag path
+        - bonus: noise helps escape bad local minima
+    - **Mini-batch Gradient Descent**: Uses small groups (batches) of data per update (common in practice). 
+        - balance of accuracy + speed
+        - maps well onto GPU parallelism
 
 
 ------
-## xAI - Explainable AI
+## 11. xAI - Explainable AI
 
 
 
