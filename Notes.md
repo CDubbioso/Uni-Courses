@@ -738,7 +738,7 @@ $\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best 
 | **reduce variance** | **reduce bias** | **reduce both bias and variance**, depends on model used | 
 
 
-------
+-----
 ## Machine Learning Experiments
 When algorithm A beats algorithm B in your experiment, is that a real difference or just luck from how the data happened to split $\rightarrow$ use ***Statistical significance testing***
 
@@ -879,9 +879,65 @@ Calculating gradients over the whole dataset (batch gradient descent) is slow.
 
 ------
 ## 11. xAI - Explainable AI
+$\rightarrow$ "How easily a human can understand why the model decided what it decided?"
 
+ML models are powerful but silent about their reasoning. xAI fill this gap by connecting the output to the input. 
 
+--- 
 
+### White Box Vs Black Box
+**White box** = interpretable model
+- ex: decision tree, linear models
+
+**Black box** = non-interpretable model
+- ex: neural networks
+
+Explainability vs performance trade-off
+- the most accurate models tend to be the least interpretable (black box), while the trasparent one are often weaker. 
+
+--- 
+
+### Categories of Explainable AI Methods
+| Category | Description |
+| ------------------------- | ------------------------------------- |
+| **Post-hoc** | Explain model decisions *after* training (applies to any model, especially black-boxes) |
+| **Intrinsic** | Models designed to be interpretable by themselves (white-box models) |
+| **Model-specific** | Methods designed for a particular type of model (linear regression coefficients) |
+| **Model-agnostic** | Methods that work without needing to know model internals, just input-output behavior (LIME) |
+| **Local explainability** | Explain a single prediction for one specific input instance |
+| **Global explainability** | Explain the overall behavior of the entire model |
+
+--- 
+
+### LIME 
+**LIME** = ***Local Interpretable Model-Agnostic Explanations***
+
+**Local** $\rightarrow$ instead of explaining the entire model, LIME explains one specific prediction by approximating the model in the small region around that instance.
+
+**Interpretable** $\rightarrow$ LIME uses an inherently interpretable model (translator) called **surrogate**
+- surrogate goal : mimic the black box behaviour in the local part it selected 
+- The surrogate is only locally faithful — a feature important for one instance may be irrelevant globally, and vice versa
+
+**Model-Agnostic** $\rightarrow$ only needs to query inputs-outputs 
+
+### Perturbation-based xAI
+Mechanism: 
+- break input into interpretable pieces 
+- perturb them 
+- query the black box 
+- weight by proximity 
+- fit a weighted linear model 
+- read off the weights as feature importances.
+
+LIME minimizes a loss with two terms:
+
+$$\xi(x) = \arg\min_{g} \; \mathcal{L}(f, g, \pi_x) + \Omega(g)$$
+
+where $\mathcal{L}$ rewards local faithfulness and $\Omega(g)$ penalizes complexity (e.g. number of non-zero weights). 
+- too simple → low fidelity
+- too complex → not interpretable. 
+
+Canonical example: LIME revealed a husky/wolf classifier was actually detecting snow in the background — right answers for the wrong reason
 
 ---------------------------
 **Recap**
