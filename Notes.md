@@ -262,8 +262,8 @@ Supervised and Descriptive learning task.
     - Leaves: outputs/class label 
 
 with "d" number of binary features: 
-**Max Depth** $\rightarrow$ $d + 1$ 
-**Max n of Leaves** $\rightarrow$ $2^d$
+- **Max Depth** $\rightarrow$ $d + 1$ 
+- **Max n of Leaves** $\rightarrow$ $2^d$
 
 $\Rightarrow$ we want to split data so that each child is as pure as possible 
 - two types of splits:
@@ -682,6 +682,69 @@ Process:
 7. decide how many to keep
 
 $\rightarrow$ PCA helps reduce redundancy when features are correlated
+
+------
+## 8. Probabilistic Models
+
+
+------
+## 9. Model Ensembles
+Idea: combine many models so that individual mistake don't dominate
+
+Bootstrapping: train-test many times on random samples
+- help reduce mistakes caused by one training set
+
+### Bagging 
+$\rightarrow$ Bootstrap AGregating 
+- Create multiple bootstrap samples from the original data.
+- Train separate models (learners) on each sample. (**Bootstrap**)
+- Combine their predictions by voting or averaging. (**Aggregate**)
+
+$\rightarrow$ ***reduce variance***
+
+### Subspace Sampling
+Instead of using all features, you randomly pick only a small set of features for each model. 
+- Different models look at different parts of the data, so their errors won’t be the same. 
+
+$\rightarrow$ helps the combined model _perform better_ and avoid _overfitting_
+
+### Random Forest
+- Bagging + random feature selection for trees.
+- Train many decision trees on different bootstrap samples and random feature subsets.
+- Predict by majority vote (classification) or average (regression).
+
+$\rightarrow$ forces tree to be more diverse $\rightarrow$ ***reduce variance*** 
+
+### Boosting
+Method for reducing the error in supervised learning by converting weak learners to strong ones. 
+- each model learn from the mistakes of the previous one 
+
+$\rightarrow$ ***reduce bias***
+
+
+### Bagging Vs Boosting 
+| _Bagging_                                   |  _Boosting_                                                    | 
+| ----------------------------------------  | ------------------------------------------------------------ | 
+| model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one |
+| **reduce variance**                       | **reduce bias**                                              |
+
+### Staking
+- more flexible approach 
+
+$\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best to combine the predictions of multiple base models
+1. train $k$ base learners on the data
+2. collect their predictions 
+3. train a second level learner (meta-learner)
+
+
+------
+## Neural Networks
+
+
+
+------
+## xAI - Explainable AI
+
 
 
 
