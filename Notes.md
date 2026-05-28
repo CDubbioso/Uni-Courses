@@ -421,7 +421,7 @@ Limitations:
 $\rightarrow$ same structure of k-mean
 - works with any distance metric
 - more robust to noise/outliers
-- more expencive computationally $\rightarrow$ %O(n^2)% per cluster
+- more expencive computationally $\rightarrow$ $O(n^2)$ per cluster
 
 1. Pick K random points as medoids.
 2. Assign points to closest medoid.
@@ -691,6 +691,8 @@ $\rightarrow$ PCA helps reduce redundancy when features are correlated
 ## 9. Model Ensembles
 Idea: combine many models so that individual mistake don't dominate
 
+$$\text{Diversity} + \text{Combination}$$ 
+
 Bootstrapping: train-test many times on random samples
 - help reduce mistakes caused by one training set
 
@@ -723,10 +725,10 @@ $\rightarrow$ ***reduce bias***
 
 
 ### Bagging Vs Boosting 
-| _Bagging_                                   |  _Boosting_                                                    | 
-| ----------------------------------------  | ------------------------------------------------------------ | 
-| model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one |
-| **reduce variance**                       | **reduce bias**                                              |
+| _Bagging_                                 |  _Boosting_                                                  | _Staking_ |
+| ----------------------------------------  | ------------------------------------------------------------ | --------- |
+| model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one | base model train in parallel, then a meta-learner on top |
+| **reduce variance** | **reduce bias** | **reduce both bias and variance**, depends on model used | 
 
 ### Staking
 - more flexible approach 
@@ -735,6 +737,40 @@ $\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best 
 1. train $k$ base learners on the data
 2. collect their predictions 
 3. train a second level learner (meta-learner)
+
+------
+## Machine Learning Experiments
+When algorithm A beats algorithm B in your experiment, is that a real difference or just luck from how the data happened to split $\rightarrow$ use ***Statistical significance testing***
+
+### Significance testing:
+- start with a _null hypothesis_ $\rightarrow$ assumption that there is no real difference and any observed gap is due to chance
+- compute $p$-_value_ 
+- reject if $p < \alpha$, where $\alpha$ is our significance level (typically $0.05$)
+
+How many algorithms and how many datasets you're comparing?
+
+### Paired t-test
+- ***two algorithms, one dataset*** $\rightarrow$ **paired t-test**
+    - use cross-validation
+    - compute difference in accuracy on each fold
+
+### Wilcoxon signed-rank test 
+- ***two algorithms, multiple datasets*** $\rightarrow$ **Wilcoxon signed-rank test**
+    - rank performance differences in absolute value
+    - calculate sum of ranks for positive and negative differences separately and take the smaller of these sums as our test statistic. 
+    - compare against a critical value from the table
+    - Null Hypothesis: the two algorithms perform equally across datasets. 
+
+### Friedman Test
+- ***multiple algorithms, multiple datasets*** $\rightarrow$ **Friedman test**
+    - rank performance of $k$ algorithms within each data set 
+    - average each algorithm's ranks across datasets 
+    - Null Hypothesis: all algorithms perform equally $\rightarrow$ all average ranks are equal
+
+### Post-hoc test
+**Friedman Test** $\rightarrow$ needs ***post-hoc test*** 
+- Friedman only tells you whether there's a significant difference somewhere among the algorithms, not which pairs differ $\rightarrow$ calculte a **Critical Difference** (**CD**) value
+    - if difference between the average ranks of two algorithms is greater than CD, their performance difference is significant. 
 
 
 ------
