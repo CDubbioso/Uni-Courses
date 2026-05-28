@@ -1,20 +1,85 @@
-**Lecture 1** - Machine Learning Core Ingredients
+**[Part 1](#1-ml-core-ingredients)** - Machine Learning Core Ingredients
 - tasks 
 - models 
 - features
 
-**Lecture 2** - Binary Classification 
+**[Part 2](#2-binary-classification)** - Binary Classification 
 - contingency table
 - performance metrics 
 - evaluation strategies
 - Over-fitting, Under-fitting
 - Decision Rule, ROC curve
 
-**Lecture 3** - Multi-Class Classification
+**[Part 3](#3-multi-class-classification)** - Multi-Class Classification
 - One Versus Rest
 - One Versus One
 - evaluating cluster performance: with and without ground truth 
 - Sub-Group Discovery
+
+**[Part 4](#4-tree-models)** - Tree Models
+- decision trees 
+- impurity measures 
+    - misclassification 
+    - entropy
+    - Gini
+- purity gain, splitting
+- pruning
+- sensitivity to skewed class distribution
+- regression trees
+
+**[Part 5](#5-distance-based-models)** - Distance-Based Models
+- Centroid - Medoid 
+- KNN
+- K-Mean
+- K-Medoid
+- Inertia - Silhouette
+- Dendrogram 
+- Linkage Functions
+
+**[Part 6](#6-linear-models)** - Linear Models
+- Least-Square Method
+- Linear Regression 
+    - RMSA 
+    - $R^2$
+- Perceptron 
+- SVM
+- Kernels
+
+**[Part 7](#7-features)** - Featrues
+- Calculations on features
+- Types of features 
+- Feature Transformation 
+- **PCA** 
+
+**[Part 8](#8-probabilistic-models)** - Probabilistic Models
+
+**[Part 9](#9-model-ensembles)** - Model Ensembles
+- Bootsrapping
+- Bagging 
+- Subspace Sampling
+- Random Forest 
+- Boosting 
+- Stacking 
+
+- [Significance Testing](#machine-learning-experiments) 
+    - t-test
+    - Wilcoxon 
+    - Friedman
+    - post-hoc
+
+**[Part 10](#10-neural-networks)** - Neural Networks 
+- non-deep vs deep learning approaches
+- Multi Layer Network
+- Activation functions
+- Gradient Descent
+- Back-propagation 
+- Efficiency improvement
+
+**[Part 11](#11-xai---explainable-ai)** - xAI 
+- White Box vs Black Box
+- Categorie xAI 
+- LIME 
+- Perturbation-based xAI
 
 ------
 ## 1. ML Core Ingredients
@@ -723,7 +788,7 @@ Method for reducing the error in supervised learning by converting weak learners
 
 $\rightarrow$ ***reduce bias***
 
-### Staking
+### Stacking
 - more flexible approach 
 
 $\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best to combine the predictions of multiple base models
@@ -731,8 +796,8 @@ $\rightarrow$ you train a second level model (*META-LEARNER*) to learn how best 
 2. collect their predictions 
 3. train a second level learner (meta-learner)
 
-### Bagging Vs Boosting Vs Staking
-| _Bagging_                                 |  _Boosting_                                                  | _Staking_ |
+### Bagging Vs Boosting Vs Stacking
+| _Bagging_                                 |  _Boosting_                                                  | _Stacking_ |
 | ----------------------------------------  | ------------------------------------------------------------ | --------- |
 | model train in parallel, are independent  | sequestial → each model learns from mistakes of previous one | base model train in parallel, then a meta-learner on top |
 | **reduce variance** | **reduce bias** | **reduce both bias and variance**, depends on model used | 
@@ -940,9 +1005,9 @@ where $\mathcal{L}$ rewards local faithfulness and $\Omega(g)$ penalizes complex
 Canonical example: LIME revealed a husky/wolf classifier was actually detecting snow in the background — right answers for the wrong reason
 
 ---------------------------
-**Recap**
+# Recap
 
 Tree models -> "_is feature above certain threshold_?" 
 Distance-based models -> "_what do your neighbours look like_?"
 Linear models -> "_which side of this line/plane are you on_?"
----------------------------
+
