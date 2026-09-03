@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Methods in AI — Study Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0c0e13;
+    --stage:#11141b;
+    --line:#242a36;
+    --mut:#8a93a6;
+    /* notes (warm) world */
+    --paper:#faf8f2;
+    --paper2:#f1ebdf;
+    --ink:#2d2a24;
+    --warm-mut:#7a7060;
+    --terra:#e07b6b;
+    --peach:#e8a87c;
+    /* quiz (cool) world */
+    --cool:#4f8cff;
+    --cool-soft:#9ec0ff;
+    --quiz-ink:#e8eaed;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:
+      radial-gradient(900px 500px at 22% -10%, rgba(232,168,124,.10), transparent 60%),
+      radial-gradient(900px 500px at 80% 0%, rgba(79,140,255,.12), transparent 60%),
+      var(--void);
+    color:#e9ebf0;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(1.25rem,4vw,3rem);
+  }
+
+  /* ── HERO ── */
+  .hero{
+    text-align:center;
+    max-width:720px;
+    margin-bottom:clamp(2rem,5vw,3.25rem);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--mut);
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+    margin-bottom:1.1rem;
+  }
+  .eyebrow::before,.eyebrow::after{
+    content:'';width:26px;height:1px;background:var(--line);
+  }
+  .hero h1{
+    font-family:'Lora',Georgia,serif;
+    font-weight:600;
+    font-size:clamp(2rem,6vw,3.4rem);
+    line-height:1.04;
+    letter-spacing:-.02em;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;
+    background:linear-gradient(100deg,var(--peach),var(--cool-soft));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{
+    margin-top:1rem;color:var(--mut);
+    font-size:clamp(.95rem,2vw,1.05rem);font-weight:300;
+  }
+
+  /* ── CARDS ── */
+  .deck{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(1rem,2.5vw,1.6rem);
+    width:100%;max-width:860px;
+  }
+  .card{
+    position:relative;
+    border-radius:20px;
+    padding:clamp(1.5rem,3vw,2.1rem);
+    min-height:300px;
+    display:flex;flex-direction:column;
+    text-decoration:none;
+    border:1px solid var(--line);
+    overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease;
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .card:nth-child(1){animation-delay:.08s}
+  .card:nth-child(2){animation-delay:.16s}
+
+  .tag{
+    font-family:'DM Mono',monospace;
+    font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.5rem;
+    margin-bottom:auto;
+  }
+  .tag .dot{width:7px;height:7px;border-radius:50%}
+  .card h2{
+    font-family:'Lora',Georgia,serif;
+    font-weight:600;font-size:1.7rem;line-height:1.1;
+    margin-top:1.4rem;
+  }
+  .card .desc{
+    margin-top:.65rem;font-size:.92rem;line-height:1.55;font-weight:300;
+  }
+  .go{
+    margin-top:1.5rem;
+    font-weight:600;font-size:.95rem;
+    display:inline-flex;align-items:center;gap:.5rem;
+    transition:gap .25s ease;
+  }
+  .go .arrow{transition:transform .25s ease}
+  .card:hover .go .arrow,.card:focus-visible .go .arrow{transform:translateX(5px)}
+
+  /* NOTES — warm paper world */
+  .notes{
+    background:
+      radial-gradient(120% 120% at 0% 0%, var(--paper) 0%, var(--paper2) 100%);
+    color:var(--ink);
+    border-color:#e7ddc9;
+  }
+  .notes::after{ /* faint ruled-paper texture */
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(45,42,36,.045) 27px 28px);
+    -webkit-mask-image:linear-gradient(180deg,transparent,#000 30%);
+            mask-image:linear-gradient(180deg,transparent,#000 30%);
+  }
+  .notes .tag{color:var(--terra)}
+  .notes .tag .dot{background:var(--terra)}
+  .notes .desc{color:var(--warm-mut)}
+  .notes .go{color:var(--terra)}
+  .notes:hover,.notes:focus-visible{
+    transform:translateY(-6px);
+    box-shadow:0 22px 50px -18px rgba(224,123,107,.55);
+    border-color:var(--peach);
+  }
+
+  /* QUIZZES — dark console world */
+  .quiz{
+    background:
+      radial-gradient(120% 120% at 100% 0%, #1b2436 0%, var(--stage) 70%);
+    color:var(--quiz-ink);
+  }
+  .quiz::after{ /* faint grid for the "terminal" feel */
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(79,140,255,.06) 1px,transparent 1px) 0 0/26px 26px,
+      linear-gradient(0deg,rgba(79,140,255,.06) 1px,transparent 1px) 0 0/26px 26px;
+    -webkit-mask-image:radial-gradient(80% 80% at 100% 0%,#000,transparent 75%);
+            mask-image:radial-gradient(80% 80% at 100% 0%,#000,transparent 75%);
+  }
+  .quiz .tag{color:var(--cool-soft)}
+  .quiz .tag .dot{background:var(--cool);box-shadow:0 0 0 3px rgba(79,140,255,.25)}
+  .quiz .desc{color:var(--mut)}
+  .quiz .go{color:var(--cool-soft)}
+  .quiz:hover,.quiz:focus-visible{
+    transform:translateY(-6px);
+    box-shadow:0 22px 50px -18px rgba(79,140,255,.55);
+    border-color:var(--cool);
+  }
+
+  .card:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+  /* lecture chips inside quiz card */
+  .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.9rem}
+  .chip{
+    font-family:'DM Mono',monospace;font-size:.66rem;
+    color:var(--cool-soft);border:1px solid rgba(79,140,255,.3);
+    border-radius:999px;padding:.18rem .5rem;
+  }
+
+  footer{
+    margin-top:clamp(2rem,5vw,3rem);
+    color:var(--mut);font-size:.78rem;text-align:center;
+    font-family:'DM Mono',monospace;letter-spacing:.04em;
+  }
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  @media (max-width:680px){
+    .deck{grid-template-columns:1fr}
+    .card{min-height:auto}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <span class="eyebrow">Leiden · Research Methods in AI</span>
+    <h1>Pick where you're <em>headed</em></h1>
+    <p>One course, two ways to prepare — read through the notes, or test what's stuck.</p>
+  </div>
+
+  <main class="deck">
+
+    <a class="card notes" href="notes.html">
+      <span class="tag"><span class="dot"></span>Notes</span>
+      <h2>Read the notes</h2>
+      <p class="desc">Complete exam notes across all six lectures — scientific principles, data collection, simulation, analysis, reproducible research, and ethics in AI.</p>
+      <span class="go">Open notes <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card quiz" href="all_quizzes.html">
+      <span class="tag"><span class="dot"></span>Quizzes</span>
+      <h2>Test yourself</h2>
+      <p class="desc">Six self-graded practice quizzes, one per lecture. Answer, hit check, get a score for each independently.</p>
+      <div class="chips">
+        <span class="chip">W1 Principles</span>
+        <span class="chip">W2 Data</span>
+        <span class="chip">L3 Simulation</span>
+        <span class="chip">L4 Analysis</span>
+        <span class="chip">L5 Reproducibility</span>
+        <span class="chip">W6 Ethics</span>
+      </div>
+      <span class="go">Start quizzes <span class="arrow">→</span></span>
+    </a>
+
+  </main>
+
+  <footer>Keep all three files in the same folder · open this page to start</footer>
+
+</body>
+</html>

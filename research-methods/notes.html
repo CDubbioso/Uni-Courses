@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Methods in AI — Complete Exam Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface2: #f4f1eb;
+    --border: #e8e2d9;
+    --text: #2d2a24;
+    --muted: #7a7060;
+    --accent1: #5b8fa8; /* soft teal-blue */
+    --accent2: #e8a87c; /* warm peach */
+    --accent3: #7eb89a; /* sage green */
+    --accent4: #c589b0; /* dusty lilac */
+    --accent5: #e07b6b; /* terracotta */
+    --l1: #eef6fb;
+    --l2: #fdf3ec;
+    --l3: #eef7f2;
+    --l4: #f9f0f7;
+    --l5: #fdf1ef;
+    --highlight: #fff8e1;
+    --highlight-border: #f9c846;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, #deeaf4 0%, #f4eee8 50%, #e4f0ea 100%);
+    border-bottom: 2px solid var(--border);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(91,143,168,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(126,184,154,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .site-header h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .site-header .subtitle {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 400;
+    position: relative;
+  }
+  .badge-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.2rem;
+    position: relative;
+  }
+  .badge {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  /* ── NAV ── */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .toc a {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .toc a:hover { background: var(--surface2); color: var(--text); }
+  .toc-label { font-size: 0.75rem; color: var(--muted); font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; margin-right: 0.5rem; flex-shrink: 0; }
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  /* ── LECTURE SECTIONS ── */
+  .lecture-block {
+    margin-bottom: 3rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .lecture-header {
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .lec1 .lecture-header { background: linear-gradient(120deg, #deeaf4, #eaf4fb); }
+  .lec2 .lecture-header { background: linear-gradient(120deg, #fdf3ec, #fce8d9); }
+  .lec3 .lecture-header { background: linear-gradient(120deg, #eef7f2, #e0f2ea); }
+  .lec4 .lecture-header { background: linear-gradient(120deg, #f9f0f7, #f2e4f0); }
+  .lec5 .lecture-header { background: linear-gradient(120deg, #fdf1ef, #f9e4e1); }
+  .lec6 .lecture-header { background: linear-gradient(120deg, #f0f4fb, #e4eaf9); }
+  .lec-num {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    color: white;
+  }
+  .lec1 .lec-num { background: var(--accent1); }
+  .lec2 .lec-num { background: var(--accent2); color: white; }
+  .lec3 .lec-num { background: var(--accent3); }
+  .lec4 .lec-num { background: var(--accent4); }
+  .lec5 .lec-num { background: var(--accent5); }
+  .lec6 .lec-num { background: #6b82c9; }
+  .lec-title { flex: 1; }
+  .lec-title h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .lec-title .lec-sub { font-size: 0.82rem; color: var(--muted); }
+  .lecture-body { padding: 1.5rem 2rem 2rem; }
+  /* ── TOPICS ── */
+  .topic { margin-bottom: 2rem; }
+  .topic h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .topic h3 .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .lec1 .dot { background: var(--accent1); }
+  .lec2 .dot { background: var(--accent2); }
+  .lec3 .dot { background: var(--accent3); }
+  .lec4 .dot { background: var(--accent4); }
+  .lec5 .dot { background: var(--accent5); }
+  .lec6 .dot { background: #6b82c9; }
+  /* ── DEFINITION BOXES ── */
+  .def-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem; }
+  .def-card {
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border);
+  }
+  .def-card .term { font-weight: 600; font-size: 0.88rem; color: var(--text); margin-bottom: 0.3rem; }
+  .def-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.55; }
+  .def-card.blue { background: var(--l1); border-color: #c3dceb; }
+  .def-card.orange { background: var(--l2); border-color: #f2ccac; }
+  .def-card.green { background: var(--l3); border-color: #b8dfc9; }
+  .def-card.purple { background: var(--l4); border-color: #ddb8d4; }
+  .def-card.red { background: var(--l5); border-color: #e8b8b0; }
+  .def-card.indigo { background: #f0f1fb; border-color: #c4caf0; }
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--highlight);
+    border: 1.5px solid var(--highlight-border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 0.85rem 0;
+    font-size: 0.9rem;
+  }
+  .highlight-box strong { font-weight: 600; color: #b8860b; }
+  /* ── EXAM TIP ── */
+  .exam-tip {
+    background: #fff3f3;
+    border-left: 4px solid #e07b6b;
+    border-radius: 0 8px 8px 0;
+    padding: 0.85rem 1.1rem;
+    margin: 0.85rem 0;
+    font-size: 0.88rem;
+  }
+  .exam-tip .tip-label { font-weight: 700; color: var(--accent5); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.2rem; }
+  /* ── LIST ── */
+  .note-list { padding-left: 1.1rem; }
+  .note-list li { margin-bottom: 0.45rem; font-size: 0.9rem; line-height: 1.6; }
+  .note-list li strong { color: var(--text); }
+  /* ── TABLE ── */
+  .note-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; margin: 0.75rem 0; }
+  .note-table th { background: var(--surface2); padding: 0.6rem 0.9rem; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); font-size: 0.82rem; }
+  .note-table td { padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .note-table tr:last-child td { border-bottom: none; }
+  .note-table tr:nth-child(even) td { background: var(--surface2); }
+  /* ── CODE ── */
+  .code-block {
+    background: #2d2a24;
+    color: #f0ead6;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+    line-height: 1.6;
+  }
+  .code-block .kw { color: #f9c846; }
+  .code-block .fn { color: #88d4b0; }
+  .code-block .str { color: #e8a87c; }
+  .code-block .num { color: #c589b0; }
+  .code-block .cm { color: #7a7060; font-style: italic; }
+  /* ── FORMULA ── */
+  .formula {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    text-align: center;
+    margin: 0.75rem 0;
+    color: var(--text);
+  }
+  /* ── TWO-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .toc { flex-wrap: wrap; white-space: normal; } }
+  /* ── COMPARE CARD ── */
+  .compare-card {
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .compare-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text); }
+  .compare-card ul { padding-left: 1rem; }
+  .compare-card ul li { font-size: 0.85rem; margin-bottom: 0.3rem; color: var(--muted); }
+  /* ── CYCLE DIAGRAM ── */
+  .cycle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .cycle-step {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 110px;
+  }
+  .cycle-arrow { font-size: 1.2rem; color: var(--muted); padding: 0 0.3rem; }
+  /* ── CONFUSION MATRIX ── */
+  .cm-table { border-collapse: collapse; font-size: 0.85rem; }
+  .cm-table th, .cm-table td { padding: 0.6rem 1rem; border: 1px solid var(--border); text-align: center; }
+  .cm-table .tp { background: #e0f2ea; font-weight: 600; }
+  .cm-table .tn { background: #e0f2ea; font-weight: 600; }
+  .cm-table .fp { background: #fdf1ef; }
+  .cm-table .fn { background: #fdf1ef; }
+  /* ── SECTION DIVIDER ── */
+  .section-tag {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.6rem; color: var(--text); }
+  /* ── QUIZ BOXES ── */
+  .quiz-item {
+    background: #f9f7ff;
+    border: 1px solid #d8d0f0;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.88rem;
+  }
+  .quiz-item .q { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz-item .answer { color: var(--accent3); font-weight: 600; margin-top: 0.35rem; }
+  /* footer */
+  .footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:14px;left:16px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;color:#5b8fa8;text-decoration:none;background:#fff;border:1.5px solid #c8d8e2;border-radius:20px;padding:5px 13px;box-shadow:0 2px 8px rgba(0,0,0,0.08)">&#8592; Home</a>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <h1>Research Methods in AI</h1>
+  <p class="subtitle">Complete Exam Notes — Lectures 1 through 6 · 2025–2026</p>
+  <div class="badge-row">
+    <span class="badge">Closed-book MCQ Exam</span>
+    <span class="badge">40% of Final Grade</span>
+    <span class="badge">Leiden University</span>
+  </div>
+</header>
+
+<!-- ========== NAV ========== -->
+<nav class="toc">
+  <span class="toc-label">Jump to</span>
+  <a href="#lec1">L1 Scientific Thinking</a>
+  <a href="#lec2">L2 Data Collection</a>
+  <a href="#lec3">L3 Data Simulation</a>
+  <a href="#lec4">L4 Data Analysis</a>
+  <a href="#lec5">L5 Open &amp; Reproducible</a>
+  <a href="#lec6">L6 Ethics</a>
+</nav>
+
+<div class="container">
+
+<!-- ======================================================== -->
+<!-- LECTURE 1                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec1" id="lec1">
+  <div class="lecture-header">
+    <div class="lec-num">1</div>
+    <div class="lec-title">
+      <h2>Principles of Scientific Research</h2>
+      <span class="lec-sub">Scientific Thinking · Empirical Cycle · Validity · GenAI in Research</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- SCIENTIFIC THINKING -->
+    <div class="topic">
+      <h3><span class="dot"></span>Scientific Thinking &amp; Cognitive Biases</h3>
+      <p>Scientists must actively resist cognitive shortcuts that distort reasoning. The first principle: <em>"You must not fool yourself – and you are the easiest person to fool."</em></p>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Confirmation Bias</div>
+          <p>Tendency to look for evidence that <strong>confirms</strong> your belief and ignore disconfirming evidence. (Card-flipping problem — people flip the vowel and the even number, but should flip the vowel AND the odd number.)</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Availability Heuristic</div>
+          <p>Judge frequency by how easily examples come to mind. Words starting with "r" seem more common than words with "r" in the 3rd position — but there are actually <em>more</em> of the latter.</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Representativeness Heuristic</div>
+          <p>Judge probability by how much something resembles a prototype. Arthur sounds like a librarian, but there are far more cashiers than librarians — base rate neglect.</p>
+        </div>
+        <div class="def-card purple">
+          <div class="term">Hindsight Bias</div>
+          <p>"I knew it all along." After learning an outcome, we believe we predicted it. Distorts evaluation of research.</p>
+        </div>
+      </div>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Be able to match each bias to its example from the slides (card/vowel = confirmation, r-words = availability, Arthur = representativeness).</div>
+    </div>
+
+    <!-- EMPIRICAL CYCLE -->
+    <div class="topic">
+      <h3><span class="dot"></span>The Empirical Cycle</h3>
+      <p>A structured loop for generating and testing scientific knowledge. The phases are not always sharply distinguished and can be filled in differently depending on the research.</p>
+      <div class="cycle">
+        <div class="cycle-step">1. Observation</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">2. Induction</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">3. Deduction</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">4. Testing</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">5. Evaluation</div>
+      </div>
+      <table class="note-table">
+        <thead><tr><th>#</th><th>Phase</th><th>What happens</th><th>Example (serial position effect)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Observation</strong></td><td>Starting point: a question, problem, or unexpected event based on personal experience, imagination, or prior research.</td><td>You notice first and last items on a shopping list are easier to remember.</td></tr>
+          <tr><td>2</td><td><strong>Induction</strong></td><td>Develop a general rule / theoretical framework from specific instances. A "leap of faith" — going from particulars to a general claim.</td><td>U-shaped relation between presentation order and recall ability.</td></tr>
+          <tr><td>3</td><td><strong>Deduction</strong></td><td>From the theory, derive a <em>testable, falsifiable</em> hypothesis with specific predictions.</td><td>If people see a 10-word list, they should recall first and last words better.</td></tr>
+          <tr><td>4</td><td><strong>Testing</strong></td><td>Conduct a study: collect data and analyse it.</td><td>Draw a sample, run a memory experiment, analyse results.</td></tr>
+          <tr><td>5</td><td><strong>Evaluation</strong></td><td>What did we learn? Confirmation or falsification? Reflect on the study; plan follow-up work.</td><td>Results support (or refute) the u-shape theory.</td></tr>
+        </tbody>
+      </table>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Phase 3 (Deduction) = making a <strong>testable hypothesis</strong> from a theory. If the question says "if the hypothesis is true, then…" — that is Deduction, not Observation.</div>
+    </div>
+
+    <!-- VALIDITY -->
+    <div class="topic">
+      <h3><span class="dot"></span>Validity — Are Our Claims Correct?</h3>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">External Validity</div>
+          <p>Do findings <strong>generalise</strong> beyond this sample/setting/time? Threatened by biased sampling (e.g., convenience sampling, non-response bias).</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Internal Validity</div>
+          <p>Is the <strong>causal story correct</strong>? Are there confounds or alternative explanations? Threatened by extraneous variables, poor design.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Confounding Variables</h4>
+      <p>A confound (third variable) causes a spurious association between two variables. Classic example:</p>
+      <div class="highlight-box"><strong>Ice cream sales ↑ → Shark attacks ↑</strong> — but <em>Temperature</em> drives both. This pattern is called <strong>common response</strong>. Correlation ≠ causation.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Study Types</h4>
+      <div class="two-col">
+        <div class="compare-card">
+          <h4>Correlational Study</h4>
+          <ul>
+            <li>Measure variables, see how they relate</li>
+            <li>Cannot establish causation</li>
+            <li>Alternative explanations remain</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4>Experimental Study</h4>
+          <ul>
+            <li>Manipulate variables (IV)</li>
+            <li>Random assignment to conditions</li>
+            <li>Rules out most alternatives</li>
+            <li>Stronger internal validity</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Within vs Between Subjects</h4>
+      <table class="note-table">
+        <thead><tr><th>Design</th><th>What it means</th><th>Pros</th><th>Cons</th><th>Solution</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Within subjects</strong> (repeated measures)</td><td>Each participant does ALL conditions</td><td>Fewer participants needed; controls individual differences</td><td>Order effects (training, fatigue)</td><td><strong>Counterbalancing</strong></td></tr>
+          <tr><td><strong>Between subjects</strong></td><td>Each participant does ONE condition</td><td>No contamination from other conditions</td><td>Pre-existing group differences</td><td><strong>Random assignment</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Sampling Methods</h4>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Simple Random Sampling</div>
+          <p>Every member of population has equal chance of selection. More likely to generalise. Not always feasible.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Convenience Sampling</div>
+          <p>Use whoever is easiest to recruit (e.g., students). Quicker/cheaper, but less generalisable; risk of bias.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENAI -->
+    <div class="topic">
+      <h3><span class="dot"></span>GenAI in Research</h3>
+      <ul class="note-list">
+        <li>GenAI is <strong>not an author</strong> — it cannot take responsibility.</li>
+        <li>Policies vary across journals; many require a statement on genAI use.</li>
+        <li>In this course: only allowed for spelling/grammar/style. Must disclose prompts and reflect.</li>
+      </ul>
+
+      <!-- Quiz answers -->
+      <div class="highlight-box">
+        <strong>Quiz answers from lecture:</strong><br>
+        "If the hypothesis is true, students using the app should score higher" → <strong>Deduction (C)</strong><br>
+        "Internal validity is mainly concerned with…" → <strong>Whether the study shows a trustworthy causal relationship (B)</strong>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- LECTURE 2                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec2" id="lec2">
+  <div class="lecture-header">
+    <div class="lec-num">2</div>
+    <div class="lec-title">
+      <h2>Data Collection</h2>
+      <span class="lec-sub">Variables &amp; Metrics · Collection Methods · Annotation · Research Proposal</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- VARIABLES -->
+    <div class="topic">
+      <h3><span class="dot"></span>Variables &amp; Measurement</h3>
+      <p>In research we measure <strong>variables</strong>. In supervised ML these split into:</p>
+      <div class="def-grid">
+        <div class="def-card orange">
+          <div class="term">Features (X)</div>
+          <p>Predictor / input variables used to make predictions.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Target / Label (Y)</div>
+          <p>What we want to predict or are primarily interested in.</p>
+        </div>
+        <div class="def-card blue">
+          <div class="term">Quantitative / Numerical</div>
+          <p>Numerical values (continuous or discrete) allowing arithmetic operations.</p>
+        </div>
+        <div class="def-card blue">
+          <div class="term">Qualitative / Categorical</div>
+          <p>Labels and ranks. Note: qualitative ≠ always categorical (e.g., interview data).</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Requirements for Variables</h4>
+      <div class="def-grid">
+        <div class="def-card green">
+          <div class="term">Exhaustive</div>
+          <p>Fully covers what is being measured — every possible answer has a category.</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Mutually Exclusive</div>
+          <p>No overlap between categories — each observation belongs to exactly one category.</p>
+        </div>
+      </div>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>A bad set of categories (easy, fast, popular) fails both — they overlap and leave out many options. A good set adds an "Other: ___" option and assigns languages to exactly one category.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Structured vs Unstructured Data</h4>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Structured (Tabular)</div>
+          <p>Clear relationships between variables. Think spreadsheet: each row = unit of analysis, each column = variable. <code>height(Leia) = 150</code>.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Unstructured</div>
+          <p>No clear schema — images, free text, audio. ~80–90% of corporate data growth. Requires annotation or feature extraction.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLLECTION METHODS -->
+    <div class="topic">
+      <h3><span class="dot"></span>Data Collection Methods</h3>
+      <table class="note-table">
+        <thead><tr><th>Method</th><th>What it is</th><th>Key points</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Self-report</strong></td><td>Questionnaires, surveys, interviews</td><td>Measures attitudes, beliefs, emotions, judgments</td></tr>
+          <tr><td><strong>2. Behavioural observation</strong></td><td>Recording observable behaviour</td><td>Divided by setting (naturalistic vs contrived) and concealment (concealed vs unconcealed)</td></tr>
+          <tr><td><strong>3. Physiological / sensor</strong></td><td>Heart rate, EEG, fMRI, wearables</td><td>Objective physiological signals, lab conditions</td></tr>
+          <tr><td><strong>4. Archival data</strong></td><td>Existing datasets (medical, social media, web)</td><td>Web-scale corpora: social media posts, online reviews, website text</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Self-Report Sub-Types</h4>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Questionnaire</div>
+          <p>A <em>tool</em> (not a method). Structured set of questions; written or digital; can be self-administered or researcher-administered; yields quantitative data but can include open-ended items.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Survey</div>
+          <p>A <em>method / design strategy</em>. Broader than questionnaire. Used to collect data from a sample and generalise to a population. Can include both questionnaires and interviews.</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Interview</div>
+          <p>Direct interaction. Ranges from <strong>structured</strong> (fixed questions, like a questionnaire) → <strong>semi-structured</strong> (guided but flexible) → <strong>unstructured</strong> (open, conversational). Often qualitative.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Response Formats</h4>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Open-ended questions</div>
+          <p>Not leading; rich info; but harder to code and analyse.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Rating scales (Likert)</div>
+          <p>Easy to use/process. Choices: number of points (4, 5, 7…) and labels (yes/no vs degree wording).</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Multiple choice</div>
+          <p>Depends on response options chosen. Risk: options don't cover all possibilities.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Response Biases</h4>
+      <div class="def-grid">
+        <div class="def-card purple">
+          <div class="term">Social Desirability Bias</div>
+          <p>Participants answer the way they think looks good, not honestly. <strong>Solutions:</strong> anonymity, indirect questioning, self-administration.</p>
+        </div>
+        <div class="def-card red">
+          <div class="term">Acquiescence Bias ("Yea-saying")</div>
+          <p>Tendency to agree regardless of content. Even LLMs show this! <strong>Solutions:</strong> reverse-scored items, neutral language, control questions.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Behavioural Observation Details</h4>
+      <div class="two-col">
+        <div class="compare-card">
+          <h4>By Setting</h4>
+          <ul>
+            <li><strong>Naturalistic:</strong> real-life context, behaviour as it occurs naturally</li>
+            <li><strong>Contrived:</strong> artificial setting (lab or field experiment)</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4>By Concealment</h4>
+          <ul>
+            <li><strong>Unconcealed:</strong> participants know they're observed → <em>reactivity</em></li>
+            <li><strong>Concealed:</strong> unaware/deceived → ethical concerns</li>
+            <li><strong>Solutions:</strong> partial concealment, knowledgeable informants, unobtrusive measures</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOTATION -->
+    <div class="topic">
+      <h3><span class="dot"></span>Annotation</h3>
+      <p>AI models often need labelled data. <strong>Annotators/coders/raters</strong> are humans who provide that context.</p>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Crowdworking Platforms</h4>
+      <p>Amazon Mechanical Turk, Prolific, Appen — collect labels at scale. Useful for large datasets where expert labelling is costly.</p>
+      <div class="def-grid">
+        <div class="def-card red">
+          <div class="term">Risks of Crowdworking</div>
+          <p>Low-quality labels (careless responses), unclear instructions → inconsistent annotations, demographic bias in annotator pool.</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Solutions</div>
+          <p>Multiple annotations per item, inter-rater reliability checks, qualification/training, gold standard checks, expert review.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Annotation Aggregation Methods</h4>
+      <table class="note-table">
+        <thead><tr><th>Method</th><th>How</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Majority vote</strong></td><td>Label chosen by most annotators wins</td><td>Categorical labels (sentiment analysis, object detection)</td></tr>
+          <tr><td><strong>Mean score</strong></td><td>Numerical average of ratings</td><td>Continuous scores (sentiment intensity, subjective difficulty)</td></tr>
+          <tr><td><strong>Confidence-weighted voting</strong></td><td>Weight annotators by reliability/performance</td><td>When annotator expertise varies; reduces low-quality influence</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box"><strong>Goal:</strong> Aggregated scores serve as a <strong>gold standard</strong> for model evaluation.</div>
+    </div>
+
+    <!-- SMART -->
+    <div class="topic">
+      <h3><span class="dot"></span>SMART Research Proposals</h3>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">S — Specific</div><p>Narrows the research field of interest.</p></div>
+        <div class="def-card orange"><div class="term">M — Measurable</div><p>Appropriate metrics defined for implementation.</p></div>
+        <div class="def-card green"><div class="term">A — Achievable</div><p>Feasible; doesn't rely on impossible requirements.</p></div>
+        <div class="def-card purple"><div class="term">R — Relevant</div><p>Proposed contribution answers the research question.</p></div>
+        <div class="def-card red"><div class="term">T — Time-Bound</div><p>Realistic planning with a timeline.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- LECTURE 3                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec3" id="lec3">
+  <div class="lecture-header">
+    <div class="lec-num">3</div>
+    <div class="lec-title">
+      <h2>Data Simulation</h2>
+      <span class="lec-sub">Measurement Levels · Distributions · Linear Model · Logistic Model · R Code</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- MEASUREMENT LEVELS -->
+    <div class="topic">
+      <h3><span class="dot"></span>Measurement Levels (Types of Variables)</h3>
+      <table class="note-table">
+        <thead><tr><th>Level</th><th>Properties</th><th>Operations</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Nominal</strong></td><td>Categories, no order</td><td>= ≠</td><td>Favourite colour, emoji use (yes/no)</td></tr>
+          <tr><td><strong>Ordinal</strong></td><td>Categories with order</td><td>= ≠ &lt; &gt;</td><td>Disease status (healthy/mild/severe), Likert scale</td></tr>
+          <tr><td><strong>Interval</strong></td><td>Numeric, <em>no</em> meaningful zero</td><td>= ≠ &lt; &gt; + −</td><td>Temperature (°C/°F), IQ test result</td></tr>
+          <tr><td><strong>Ratio</strong></td><td>Numeric, meaningful zero</td><td>= ≠ &lt; &gt; + − × ÷</td><td>Distance (km), response latency (s), word count</td></tr>
+        </tbody>
+      </table>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Interval has NO meaningful zero (0°C is not "no temperature"). Ratio HAS a meaningful zero (0 seconds = no time elapsed). You can say "twice as long" for ratio but not for interval.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Discrete vs Continuous</h4>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Discrete</div>
+          <p>Limited number of possible values (integers). E.g., number of words in a response. R: <code>sample()</code>, <code>rpois()</code>.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Continuous</div>
+          <p>Infinite possible values in a range. E.g., response latency in seconds. R: <code>rnorm()</code>, <code>runif()</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISTRIBUTIONS -->
+    <div class="topic">
+      <h3><span class="dot"></span>Probability Distributions</h3>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Probability Mass Function (PMF)</div>
+          <p>For <strong>discrete</strong> distributions. Vertical lines at each possible value; height = probability. All heights sum to 1.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">Probability Density Function (PDF)</div>
+          <p>For <strong>continuous</strong> distributions. Probability of any single exact value = 0. <strong>Area under the curve</strong> for a range = probability. Total area = 1.</p>
+        </div>
+      </div>
+      <table class="note-table">
+        <thead><tr><th>Distribution</th><th>R function</th><th>Use for</th><th>Parameters</th></tr></thead>
+        <tbody>
+          <tr><td>Discrete Uniform</td><td><code>sample()</code></td><td>Equally likely integers (e.g., response length 30–200 words)</td><td>range, size, replace</td></tr>
+          <tr><td>Continuous Uniform</td><td><code>runif()</code></td><td>Equally likely values in interval</td><td>min, max</td></tr>
+          <tr><td>Normal / Gaussian</td><td><code>rnorm()</code></td><td>Latency, many natural phenomena</td><td>mean, sd</td></tr>
+          <tr><td>Poisson</td><td><code>rpois()</code></td><td>Count data (e.g., times chatbot says "Great question!")</td><td>lambda (mean count)</td></tr>
+          <tr><td>Binomial</td><td><code>sample()</code> or <code>rbinom()</code></td><td>Binary outcomes (emoji: yes/no)</td><td>prob</td></tr>
+        </tbody>
+      </table>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Know when to use each distribution. Poisson → count data (non-negative integers, no upper bound). Normal → continuous, bell-shaped, real-valued. Uniform → all values equally likely.</div>
+    </div>
+
+    <!-- LINEAR MODEL -->
+    <div class="topic">
+      <h3><span class="dot"></span>Simulating with the Linear Model</h3>
+      <div class="formula">y = b₀ + b₁·x₁ + b₂·x₂ + ... + ε</div>
+      <ul class="note-list">
+        <li><strong>b₀</strong> = intercept (baseline value of y when all x = 0)</li>
+        <li><strong>b₁, b₂…</strong> = regression coefficients (how much y changes per unit change in x)</li>
+        <li><strong>ε (epsilon)</strong> = error / noise — often simulated as <code>rnorm(n, 0, sd)</code>. Represents unexplained variation / residuals.</li>
+        <li>Positive coefficient → x increases → y increases. Negative → inverse relationship.</li>
+      </ul>
+      <p><strong>Chatbot example:</strong> frustration = −2 + 3·latency + 0.1·great_question − 0.01·response_length + 2·(emojis=="yes") + ε</p>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Categorical predictors in R</h4>
+      <div class="code-block"><span class="cm"># Convert "yes"/"no" to 0/1</span>
+(emojis == <span class="str">"yes"</span>) * <span class="num">2</span>  <span class="cm"># multiplies TRUE=1, FALSE=0 by 2</span></div>
+    </div>
+
+    <!-- RECODING -->
+    <div class="topic">
+      <h3><span class="dot"></span>Recoding &amp; Transformations</h3>
+      <ul class="note-list">
+        <li><strong>Clamping/clipping:</strong> <code>pmin(x, 10)</code>, <code>pmax(x, 0)</code> — enforce upper/lower bounds</li>
+        <li><strong>Rounding:</strong> <code>round(x)</code> — convert to integers</li>
+        <li><strong>Power transformation:</strong> <code>x^2</code> creates a right-skewed distribution from a normal one</li>
+        <li><strong>Thresholding:</strong> <code>x &gt; 5</code> converts continuous to binary (TRUE/FALSE)</li>
+      </ul>
+    </div>
+
+    <!-- LOGISTIC MODEL -->
+    <div class="topic">
+      <h3><span class="dot"></span>Logistic Model (for Binary Outcomes)</h3>
+      <p>When the outcome is binary (yes/no, 0/1), model the <strong>probability</strong> of the outcome instead of the outcome directly.</p>
+      <div class="formula">π = 1 / (1 + e<sup>−(b₀ + b₁x₁ + b₂x₂)</sup>)&nbsp;&nbsp;&nbsp;(Sigmoid function)</div>
+      <p>Equivalently (the log-odds form, which is linear):</p>
+      <div class="formula">log(π / (1−π)) = b₀ + b₁x₁ + b₂x₂</div>
+      <ul class="note-list">
+        <li>Maps from (−∞, +∞) → (0, 1) — always gives a valid probability</li>
+        <li><strong>Intercept</strong> controls the average probability — higher intercept = higher probabilities overall</li>
+        <li><strong>Range of linear predictor</strong> controls how extreme probabilities get — larger range = more extreme probabilities</li>
+        <li>To get binary outcome from probabilities: use <code>sample(c("no","yes"), prob=c(1−π, π))</code></li>
+      </ul>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Logistic model does NOT include noise/ε in the linear predictor (the randomness comes from sampling yes/no with the computed probability).</div>
+    </div>
+
+    <!-- WHY SIMULATE -->
+    <div class="topic">
+      <h3><span class="dot"></span>Why Simulate Data?</h3>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">Evaluate/compare methods</div><p>Test how a statistical method or algorithm performs under known conditions.</p></div>
+        <div class="def-card orange"><div class="term">Test an analysis plan</div><p>Fake pilot data — try out your pipeline before real data is collected.</p></div>
+        <div class="def-card green"><div class="term">Education / illustration</div><p>Demonstrate concepts cleanly without real-world messiness.</p></div>
+        <div class="def-card red"><div class="term">Benchmarks</div><p>Evaluate models with commonly used datasets (MNIST, iris) or synthetic data.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- LECTURE 4                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec4" id="lec4">
+  <div class="lecture-header">
+    <div class="lec-num">4</div>
+    <div class="lec-title">
+      <h2>Data Analysis</h2>
+      <span class="lec-sub">Exploratory Analysis · Confirmatory Analysis · P-values · Prediction &amp; Classification</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- EXPLORATORY -->
+    <div class="topic">
+      <h3><span class="dot"></span>Exploratory Data Analysis (EDA)</h3>
+      <p>Look at patterns without modelling or testing. Essential first step — reveals outliers, errors, deviations from assumptions, inspires hypotheses.</p>
+      <div class="highlight-box"><strong>Warning:</strong> If you form hypotheses by exploring data, then test those hypotheses on the <em>same</em> data, you inflate Type I error. Spurious patterns look significant (see <a href="https://tylervigen.com/spurious-correlations" style="color:var(--accent1)">spurious correlations</a>).</div>
+
+      <table class="note-table">
+        <thead><tr><th>Variable types</th><th>Descriptive statistics</th><th>Visualisation</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Categorical</strong></td><td><code>table()</code>, <code>prop.table()</code>; mode = most frequent value</td><td>Bar chart, pie chart</td></tr>
+          <tr><td><strong>Numerical</strong></td><td>mean, median, <code>summary()</code> (5-number + mean), var, sd</td><td>Histogram, boxplot</td></tr>
+          <tr><td><strong>Cat × Cat</strong></td><td>Cross-table: <code>table(a, b)</code></td><td>Grouped bar chart</td></tr>
+          <tr><td><strong>Num × Num</strong></td><td>Pearson correlation <code>cor()</code>, Spearman <code>cor(..., method="spearman")</code></td><td>Scatter plot</td></tr>
+          <tr><td><strong>Cat × Num</strong></td><td><code>by(y, group, summary)</code></td><td>Side-by-side boxplots</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Key Descriptive Statistics</h4>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">Mean</div><p>Average value. Sensitive to outliers.</p></div>
+        <div class="def-card blue"><div class="term">Median</div><p>Value of the middle observation. Robust to outliers.</p></div>
+        <div class="def-card orange"><div class="term">Variance (s²)</div><p>s² = Σ(xᵢ − x̄)² / (n−1). Average squared deviation from mean.</p></div>
+        <div class="def-card orange"><div class="term">Standard Deviation (s)</div><p>s = √s². Same unit as the variable.</p></div>
+        <div class="def-card green"><div class="term">Quartiles / IQR</div><p>Q1 (25th pct), Q2 (median, 50th pct), Q3 (75th pct). IQR = Q3−Q1. Outliers in boxplot: &gt;1.5×IQR outside box.</p></div>
+        <div class="def-card green"><div class="term">Pearson Correlation (r)</div><p>r = cov(x,y) / (s_x · s_y). Ranges −1 to +1. Measures linear association.</p></div>
+      </div>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div><strong>Spearman correlation</strong> uses <em>ranks</em> instead of actual values → more robust to outliers and non-linear monotone relationships.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Dimension Reduction &amp; Clustering</h4>
+      <div class="def-grid">
+        <div class="def-card purple"><div class="term">PCA (linear)</div><p>Principal Component Analysis — <code>prcomp()</code> in R. Finds orthogonal directions of maximum variance.</p></div>
+        <div class="def-card purple"><div class="term">t-SNE / UMAP (non-linear)</div><p>Better for visualising cluster structure in high-dimensional data. Non-linear.</p></div>
+        <div class="def-card red"><div class="term">Hierarchical Clustering</div><p>Agglomerative — <code>hclust()</code>. Builds a dendrogram. Unsupervised.</p></div>
+        <div class="def-card red"><div class="term">k-means Clustering</div><p><code>kmeans()</code>. Assigns observations to k clusters by minimising within-cluster variance.</p></div>
+      </div>
+    </div>
+
+    <!-- CONFIRMATORY -->
+    <div class="topic">
+      <h3><span class="dot"></span>Confirmatory (Inferential) Analysis</h3>
+      <p>We use a <strong>sample</strong> to make inferences about a <strong>population</strong>. Because sampling is random, we could be wrong.</p>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Frequentist Hypothesis Testing</h4>
+      <div class="cycle">
+        <div class="cycle-step">Assume H₀ (null hypothesis)</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">Collect data, compute test statistic</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">Calculate p-value</div><span class="cycle-arrow">→</span>
+        <div class="cycle-step">If p &lt; α → reject H₀</div>
+      </div>
+
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">p-value (definition)</div>
+          <p>The probability of observing a test statistic <strong>this extreme or more extreme</strong>, <em>assuming H₀ is true</em>. It is NOT the probability that H₀ is true.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">α (significance threshold)</div>
+          <p>Conventionally α = 0.05. This is the acceptable Type I error rate — probability of falsely rejecting H₀.</p>
+        </div>
+      </div>
+
+      <div class="exam-tip"><div class="tip-label">Exam Tip — p-value statement</div>The p-value is a statement about <strong>the data (or test statistic)</strong>, NOT about the null hypothesis or the alternative hypothesis. If H₀ is true, p-values are uniformly distributed (flat) from 0 to 1.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Types of Error</h4>
+      <div class="def-grid">
+        <div class="def-card red">
+          <div class="term">Type I Error (α)</div>
+          <p>Reject H₀ when H₀ is <strong>true</strong>. False positive. "Find an effect that isn't there." Probability = α.</p>
+        </div>
+        <div class="def-card purple">
+          <div class="term">Type II Error (β)</div>
+          <p>Fail to reject H₀ when H₀ is <strong>false</strong>. False negative. "Miss a real effect." Power = 1 − β.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Confidence Intervals</h4>
+      <p>Rather than just reporting point estimates, report <strong>95% confidence intervals</strong>. If 0 is not in the CI for a coefficient, it is statistically significant at α = 0.05.</p>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Statistical Models</h4>
+      <table class="note-table">
+        <thead><tr><th>Model</th><th>R code</th><th>Use when</th></tr></thead>
+        <tbody>
+          <tr><td><strong>OLS Linear Regression</strong></td><td><code>lm(y ~ x1 + x2)</code></td><td>Continuous outcome</td></tr>
+          <tr><td><strong>Logistic Regression</strong></td><td><code>glm(y ~ x, family="binomial")</code></td><td>Binary outcome; gives log-odds</td></tr>
+          <tr><td><strong>Chi-squared test</strong></td><td><code>chisq.test(a, b)</code></td><td>Two categorical variables; tests independence</td></tr>
+          <tr><td><strong>Independent t-test</strong></td><td><code>t.test(y ~ group)</code></td><td>Continuous outcome, 2 groups</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Bayesian vs Frequentist Probability</h4>
+      <div class="two-col">
+        <div class="compare-card">
+          <h4>Frequentist</h4>
+          <ul>
+            <li>Truth is fixed; hypotheses have no probabilities</li>
+            <li>Only sample statistics are random variables</li>
+            <li>Uses p-values and confidence intervals</li>
+            <li>Most common in practice</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4>Bayesian</h4>
+          <ul>
+            <li>Probability = degree of belief</li>
+            <li>Probabilities for everything (models, parameters)</li>
+            <li>Updates prior beliefs with data → posterior</li>
+            <li>Uses Bayes Factors, posterior distributions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREDICTION -->
+    <div class="topic">
+      <h3><span class="dot"></span>Prediction &amp; Classification</h3>
+      <p>Models for inference (like logistic regression) can also be used for prediction. Other common classifiers:</p>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">Random Forest</div><p>Ensemble of decision trees. Uses majority vote. Less interpretable ("black box"). <code>randomForest()</code>.</p></div>
+        <div class="def-card orange"><div class="term">k-Nearest Neighbours (k-NN)</div><p>Classify by majority vote of k nearest training examples. <code>knn3()</code> in caret. <strong>k=1 → overfitting!</strong></p></div>
+        <div class="def-card green"><div class="term">Neural Net</div><p>Layers of connected nodes. <code>nnet()</code>. Flexible but needs scaling of inputs and careful tuning.</p></div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Confusion Matrix &amp; Metrics</h4>
+      <div style="overflow-x:auto; margin: 0.75rem 0;">
+        <table class="cm-table">
+          <tr>
+            <th></th><th>Actual: Positive (Spam)</th><th>Actual: Negative (Not spam)</th>
+          </tr>
+          <tr>
+            <th>Predicted: Positive</th>
+            <td class="tp">True Positive (TP)</td>
+            <td class="fp">False Positive (FP) — Type I</td>
+          </tr>
+          <tr>
+            <th>Predicted: Negative</th>
+            <td class="fn">False Negative (FN) — Type II</td>
+            <td class="tn">True Negative (TN)</td>
+          </tr>
+        </table>
+      </div>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">Accuracy</div><p>(TP + TN) / Total. Misleading with class imbalance!</p></div>
+        <div class="def-card orange"><div class="term">Precision</div><p>TP / (TP + FP). Of all predicted positives, how many are real?</p></div>
+        <div class="def-card green"><div class="term">Recall (Sensitivity)</div><p>TP / (TP + FN). Of all actual positives, how many did we find?</p></div>
+        <div class="def-card purple"><div class="term">F1 Score</div><p>2 × (Precision × Recall) / (Precision + Recall). Harmonic mean; good when classes are imbalanced.</p></div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Overfitting</h4>
+      <div class="highlight-box"><strong>Overfitting:</strong> Model fits training data perfectly (e.g., k-NN with k=1 → perfect training accuracy) but generalises poorly to new data. More complex models → better training fit, not necessarily better test performance. Solutions: train/validation/test split, cross-validation.</div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="topic">
+      <h3><span class="dot"></span>Lecture 4 Quiz Answers</h3>
+      <div class="quiz-item">
+        <div class="q">Q1: In statistics, what is a Type I error?</div>
+        <div class="answer">✓ A: H₀ is rejected, while H₀ is true.</div>
+      </div>
+      <div class="quiz-item">
+        <div class="q">Q2: The p-value is a probability statement about…?</div>
+        <div class="answer">✓ C: The data (the test statistic under H₀).</div>
+      </div>
+      <div class="quiz-item">
+        <div class="q">Q3: If H₀ is true, what should the distribution of p-values look like?</div>
+        <div class="answer">✓ D: Uniform (flat) distribution from 0 to 1.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- LECTURE 5                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec5" id="lec5">
+  <div class="lecture-header">
+    <div class="lec-num">5</div>
+    <div class="lec-title">
+      <h2>Open &amp; Reproducible Research</h2>
+      <span class="lec-sub">Open Data · Computational Reproducibility · Replication · CS/AI Issues · Publication Process</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- OPEN DATA -->
+    <div class="topic">
+      <h3><span class="dot"></span>Open Data</h3>
+      <p>Technology enables easy sharing of data, materials, code, notes. This is valuable for: evaluating scientific contributions, reusability by others.</p>
+      <ul class="note-list">
+        <li>Major journals (Nature, Science) and top AI conferences (NeurIPS, AAAI) require data/code sharing upon publication.</li>
+        <li>Despite policies: ~27–38% of authors don't share data when requested.</li>
+        <li><strong>Reasons for not sharing:</strong> data lost/inaccessible, collaborator left, privacy rules, no time, proprietary constraints, copyright issues.</li>
+      </ul>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Know the difference between sharing obligation vs actual compliance rates (quite low in practice).</div>
+    </div>
+
+    <!-- COMPUTATIONAL REPRODUCIBILITY -->
+    <div class="topic">
+      <h3><span class="dot"></span>Computational Reproducibility</h3>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Definition</div>
+          <p>The possibility to obtain the <strong>same results and claims</strong> using the <strong>same data and same analytical procedures</strong>.</p>
+        </div>
+      </div>
+      <p>Even without access to data, reproducibility can be partially assessed:</p>
+      <ul class="note-list">
+        <li><strong>statcheck.io</strong> — recalculates p-values from test statistics and degrees of freedom; reported p ≠ recalculated p is a red flag.</li>
+        <li><strong>SPRITE (rsprite)</strong> — checks if reported mean and SD of integer data are mathematically possible given the sample size.</li>
+      </ul>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Causes of Irreproducibility</h4>
+      <ul class="note-list">
+        <li>Copy-pasting errors, manual rounding</li>
+        <li>Changes through review-revision cycles</li>
+        <li>Inadvertent omission of crucial information</li>
+        <li>Questionable research practices (QRPs)</li>
+        <li>Fraud</li>
+        <li>No random seed specified for simulations</li>
+      </ul>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Solutions</h4>
+      <ul class="note-list">
+        <li>Co-pilot (second person independently checking analysis)</li>
+        <li>Reproducibility check by journals/reviewers</li>
+        <li><strong>Literate programming tools:</strong> Jupyter Notebook, Rmarkdown, Quarto — code and text are integrated</li>
+      </ul>
+    </div>
+
+    <!-- REPLICATION -->
+    <div class="topic">
+      <h3><span class="dot"></span>Replication</h3>
+      <div class="def-grid">
+        <div class="def-card orange">
+          <div class="term">Definition (NSF)</div>
+          <p>The ability to <strong>duplicate the results of a prior study</strong> if the same procedures are followed <strong>but new data are collected</strong>.</p>
+        </div>
+      </div>
+      <div class="highlight-box"><strong>Key distinction:</strong> Computational reproducibility = same data + same code = same result. Replication = same procedure + <em>new</em> data = same result.</div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Replication Prevalence (it's low!)</h4>
+      <table class="note-table">
+        <thead><tr><th>Field</th><th>% of articles that are replications</th></tr></thead>
+        <tbody>
+          <tr><td>Psychology</td><td>~0.2–1.07%</td></tr>
+          <tr><td>Economics</td><td>~0.1%</td></tr>
+          <tr><td>Ecology &amp; Evolution</td><td>~0.02%</td></tr>
+          <tr><td>Software Engineering</td><td>&lt;0.01%</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Why so few replications?</h4>
+      <ul class="note-list">
+        <li>Bad reputation: successful = "nothing new"; failed = "personal attack"</li>
+        <li>Costly; not enough computing power/time/money</li>
+        <li>Information not available for replication</li>
+      </ul>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Replication Success Rates</h4>
+      <ul class="note-list">
+        <li>Psychology (Open Science Collaboration 2015): only ~36–64% of findings replicated</li>
+        <li>Nutritional epidemiology: very low replication success (many reversals)</li>
+      </ul>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Explanations for Low Success</h4>
+      <ul class="note-list">
+        <li>Fraud, QRPs, different procedures (incomplete reporting), poor computational reproducibility</li>
+      </ul>
+    </div>
+
+    <!-- CS/AI REPRODUCIBILITY -->
+    <div class="topic">
+      <h3><span class="dot"></span>Reproducibility Issues Specific to CS/AI</h3>
+      <p>In CS/AI, the distinction between computational reproducibility and replication can blur (library updates, hardware differences, "what is new data?").</p>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Data Splitting Issues</h4>
+      <div class="def-grid">
+        <div class="def-card red">
+          <div class="term">Confounds in Splits</div>
+          <p>"We took the last 10% as test set" — temporal ordering may confound results. <strong>Solution:</strong> verify split properties are similar; random shuffle before splitting.</p>
+        </div>
+        <div class="def-card red">
+          <div class="term">Underspecification</div>
+          <p>Reporting "50/25/25 split" without code → not reproducible. <strong>Solution:</strong> Share exact code for how splits were created.</p>
+        </div>
+        <div class="def-card red">
+          <div class="term">Leakage</div>
+          <p>Test/validation info "leaks" into training (e.g., preprocessing on full data before split, overlapping examples). <strong>Solution:</strong> Split FIRST, then preprocess. Inspect data carefully.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Metric Issues</h4>
+      <div class="def-grid">
+        <div class="def-card purple">
+          <div class="term">Class Imbalance</div>
+          <p>Accuracy can be misleading when one class dominates. F1, Precision, Recall are more robust. Example: 85% accuracy on spam detection might just be classifying everything as "not spam."</p>
+        </div>
+        <div class="def-card purple">
+          <div class="term">Seed Selection</div>
+          <p>Non-deterministic processes give different results with different seeds. <strong>Solution:</strong> seed averaging (run with multiple seeds, average performance).</p>
+        </div>
+      </div>
+
+      <div class="exam-tip"><div class="tip-label">Exam Tip — Class imbalance worked example</div>
+        If 140 "not spam" and 30 spam: accuracy = (30+140)/200 = 85%, but F1 = 67%. These tell very different stories about model quality.
+      </div>
+    </div>
+
+    <!-- PUBLICATION PROCESS -->
+    <div class="topic">
+      <h3><span class="dot"></span>Publication Process</h3>
+      <div class="cycle" style="flex-direction:column; align-items:flex-start; gap:0.5rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="cycle-step" style="min-width:160px;">1. Identify outlet</div>
+          <span style="font-size:0.85rem; color:var(--muted);">Be wary of predatory journals (no quality control, fast, charge fees) and paper mills.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="cycle-step" style="min-width:160px;">2. Editor assesses fit</div>
+          <span style="font-size:0.85rem; color:var(--muted);">Can lead to <em>desk reject</em> (not sent for review), or sent to 1–5 peer reviewers.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="cycle-step" style="min-width:160px;">3. Peer review</div>
+          <span style="font-size:0.85rem; color:var(--muted);">Single-blind (reviewers anonymous), double-blind (both anonymous), or open. Reviewers generally don't rerun analyses. Not paid.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="cycle-step" style="min-width:160px;">4. Editorial decision</div>
+          <span style="font-size:0.85rem; color:var(--muted);">Accept as-is, minor revision, major revision, or reject. Publication bias: positive results more likely accepted → file-drawer effect.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="cycle-step" style="min-width:160px;">5. Revision &amp; response</div>
+          <span style="font-size:0.85rem; color:var(--muted);">Authors revise. Response letter: thank editor/reviewers, address each point, repeat until accepted or rejected.</span>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Peer Review Details</h4>
+      <ul class="note-list">
+        <li><strong>Single-blind:</strong> reviewer anonymous, author identity known to reviewer.</li>
+        <li><strong>Double-blind:</strong> both parties anonymous.</li>
+        <li>Reviews can be published openly.</li>
+        <li>Reviewers generally do <strong>not</strong> assess reproducibility (don't rerun analyses).</li>
+        <li>Potential for scooping and other fraudulent practices (e.g., plagiarism by reviewer).</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>Publication bias + File-drawer effect:</strong> Statistically significant / positive results are more publishable. Studies with null results languish in file drawers, skewing the literature.
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-item">
+        <div class="q">Quiz: Which statement about peer review is correct?</div>
+        <div class="answer">✓ In some cases, reviewers plagiarize the manuscript they were tasked to evaluate.</div>
+        (Reviewers are NOT always anonymous to authors; it's NOT always constructive; reviewers do NOT usually rerun analyses.)
+      </div>
+      <div class="quiz-item">
+        <div class="q">Quiz: Researcher A gets 82% accuracy; Researcher B reproduces at 71%. What could explain this?</div>
+        <div class="answer">✓ All of the above: class imbalance, fraud, or confound in train/test split.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- LECTURE 6                                                  -->
+<!-- ======================================================== -->
+<section class="lecture-block lec6" id="lec6">
+  <div class="lecture-header">
+    <div class="lec-num">6</div>
+    <div class="lec-title">
+      <h2>Ethics in Research &amp; AI</h2>
+      <span class="lec-sub">Belmont Framework · Facebook Experiment · GDPR · QRPs · AI Ethics · EU AI Act</span>
+    </div>
+  </div>
+  <div class="lecture-body">
+
+    <!-- INTRO -->
+    <div class="topic">
+      <h3><span class="dot"></span>Why Ethics Matters in Every Stage</h3>
+      <table class="note-table">
+        <thead><tr><th>Week</th><th>Topic</th><th>Ethical dimension</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Scientific Research</td><td>Honesty, integrity</td></tr>
+          <tr><td>2</td><td>Data collection</td><td>Consent, scraping</td></tr>
+          <tr><td>3</td><td>Simulation</td><td>Transparent assumptions</td></tr>
+          <tr><td>4</td><td>Data analysis</td><td>Flexibility in reporting</td></tr>
+          <tr><td>5</td><td>Open &amp; Reproducible</td><td>Accountability</td></tr>
+          <tr><td>6</td><td>Ethics</td><td>All of the above</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Ethical failures:</strong> hurt participants, create shoddy science, damage public trust in science. Historical example: <strong>Tuskegee Syphilis Experiment (1932–1972)</strong> — patients not informed of diagnosis, treatment withheld for 40 years → directly led to the Belmont Report and Institutional Review Boards (IRBs).</p>
+    </div>
+
+    <!-- BELMONT -->
+    <div class="topic">
+      <h3><span class="dot"></span>The Belmont Framework</h3>
+      <p>Three core ethical principles (also exists: Helsinki Declaration, APA ethics, Hippocratic Oath):</p>
+      <div class="def-grid">
+        <div class="def-card indigo">
+          <div class="term">1. Respect for Persons</div>
+          <p>Treat people as <strong>autonomous agents</strong>. Provide more protection to those at risk (children, vulnerable groups). Application: <strong>informed consent</strong>.</p>
+        </div>
+        <div class="def-card indigo">
+          <div class="term">2. Beneficence</div>
+          <p>Beyond "do no harm" — actively consider risks to participants, both immediate and long-term. Application: <strong>risk-benefit assessment</strong>.</p>
+        </div>
+        <div class="def-card indigo">
+          <div class="term">3. Justice</div>
+          <p>Equitable and fair distribution of benefits and burdens. Counter manipulation, coercion, and biases. Application: <strong>fair subject selection</strong>.</p>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Informed Consent — 3 Conditions</h4>
+      <div class="def-grid">
+        <div class="def-card blue"><div class="term">1. Information</div><p>Participants must know what they are agreeing to.</p></div>
+        <div class="def-card orange"><div class="term">2. Comprehension</div><p>Information must be understood (not just given).</p></div>
+        <div class="def-card green"><div class="term">3. Voluntariness</div><p>Participation must be free — no coercion. Genuine option to decline.</p></div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Risk-Benefit Assessment</h4>
+      <ul class="note-list">
+        <li>Evaluate: kinds of risk (physical, psychological, social, legal)</li>
+        <li>Evaluate: severity and likelihood of risks</li>
+        <li>Done <em>before</em> the study — prospective, not retrospective</li>
+      </ul>
+
+      <div class="highlight-box"><strong>Belmont Checklist for every study:</strong><br>1. Was consent valid? &nbsp; 2. Were the risks justified? &nbsp; 3. Was subject selection fair?</div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div class="topic">
+      <h3><span class="dot"></span>Case Study: Facebook Emotional Contagion Experiment (2014)</h3>
+      <p>Facebook randomly assigned users to see more positive or more negative content in their news feed, then analysed their posts for emotional tone (published in PNAS 2014).</p>
+      <table class="note-table">
+        <thead><tr><th>Belmont Principle</th><th>What happened</th><th>What should have happened</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Consent</strong></td><td>Nothing disclosed; Terms of Service did not cover research participation; no opportunity to decline.</td><td>Opt-in recruitment with genuine informed consent.</td></tr>
+          <tr><td><strong>Risk-Benefit</strong></td><td>No systematic risk assessment; effect on depressed users not considered; even small effect sizes at Facebook's scale = huge aggregate impact.</td><td>Prospective harm assessment; monitoring during study.</td></tr>
+          <tr><td><strong>Justice / Subject selection</strong></td><td>Minors included, depressed users included, no opt-out available.</td><td>Exclude minors; IRB review; opt-in only.</td></tr>
+        </tbody>
+      </table>
+      <div class="exam-tip"><div class="tip-label">Exam Tip</div>Facebook argued the ToS covered it — but the ToS did NOT include a clause about being used in experiments. The absence of IRB review was a key failing.</div>
+    </div>
+
+    <!-- ETHICS IN PRACTICE -->
+    <div class="topic">
+      <h3><span class="dot"></span>Ethics in Practice</h3>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:0 0 0.5rem;">1. Collection &amp; Scraping</h4>
+      <ul class="note-list">
+        <li>Check <code>robots.txt</code> — specifies what bots may/may not access</li>
+        <li>Respect rate limits — don't overload servers</li>
+        <li>Read the Terms of Service</li>
+      </ul>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">2. Data Storage &amp; GDPR</h4>
+      <p>In the EU, personal data is protected by law (GDPR):</p>
+      <ul class="note-list">
+        <li>Must have a <strong>lawful basis</strong> (consent, legitimate interest, or legal obligation)</li>
+        <li>Collect <strong>only what is necessary</strong> (data minimisation)</li>
+        <li>Set retention periods; control access</li>
+      </ul>
+      <div class="def-grid">
+        <div class="def-card blue">
+          <div class="term">Pseudonymisation</div>
+          <p>Identity replaced (e.g., name → robotkiller123) but a key still exists. Still considered <strong>personal data</strong> → GDPR applies.</p>
+        </div>
+        <div class="def-card green">
+          <div class="term">Anonymisation</div>
+          <p>Identity cannot be recovered (redaction, aggregation). <strong>Not personal data</strong> → GDPR does not apply.</p>
+        </div>
+      </div>
+      <table class="note-table">
+        <thead><tr><th>Belmont</th><th>GDPR equivalent</th></tr></thead>
+        <tbody>
+          <tr><td>Informed consent</td><td>Legal consent / lawful basis</td></tr>
+          <tr><td>Risk minimisation</td><td>Data minimisation</td></tr>
+          <tr><td>Justice / fairness</td><td>Rights of data subjects</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">3. Analysis &amp; Questionable Research Practices (QRPs)</h4>
+      <div class="def-grid">
+        <div class="def-card red">
+          <div class="term">Selective Reporting</div>
+          <p>Only reporting the significant/positive results from many analyses run on the same data.</p>
+        </div>
+        <div class="def-card red">
+          <div class="term">p-hacking</div>
+          <p>Running many tests / tweaking analyses until p &lt; 0.05. Inflates Type I error.</p>
+        </div>
+        <div class="def-card red">
+          <div class="term">HARKing</div>
+          <p><strong>H</strong>ypothesising <strong>A</strong>fter <strong>R</strong>esults are <strong>K</strong>nown. Presenting post-hoc findings as if they were pre-planned hypotheses.</p>
+        </div>
+      </div>
+      <div class="highlight-box"><strong>Multiverse analysis (Steegen et al., 2016):</strong> Running all reasonable analysis choices and reporting all outcomes, increasing transparency.</div>
+    </div>
+
+    <!-- AI ETHICS -->
+    <div class="topic">
+      <h3><span class="dot"></span>AI Ethics</h3>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:0 0 0.5rem;">Where Things Go Wrong in AI</h4>
+      <ul class="note-list">
+        <li>Data labellers often work under poor conditions for low pay</li>
+        <li>Training data carries the biases of whoever collected it</li>
+        <li>Deployed models are hard to audit or contest</li>
+        <li>Large models have real environmental cost</li>
+      </ul>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Belmont Applied to AI</h4>
+      <div class="def-grid">
+        <div class="def-card indigo"><div class="term">Respect for Persons</div><p>Transparency, explainability, right to contest AI decisions.</p></div>
+        <div class="def-card indigo"><div class="term">Beneficence</div><p>Harm testing before deployment.</p></div>
+        <div class="def-card indigo"><div class="term">Justice</div><p>Bias audits, equitable access to AI benefits.</p></div>
+      </div>
+
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">EU AI Act (2024) — First comprehensive legal framework for AI</h4>
+      <div class="def-grid">
+        <div class="def-card red">
+          <div class="term">Unacceptable Risk (Prohibited)</div>
+          <p>Social scoring, manipulative AI, emotional inference without consent.</p>
+        </div>
+        <div class="def-card orange">
+          <div class="term">High Risk (Strict Regulation)</div>
+          <p>Hiring tools, credit scoring, education admissions — must comply with strict requirements.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUALISATION ETHICS -->
+    <div class="topic">
+      <h3><span class="dot"></span>Ethical Data Visualisation</h3>
+      <p>"A misleading figure is a misleading claim." Visualisation is part of analysis and must be reproducible and honest.</p>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:0.5rem 0;">Common Bad Visualisation Practices</h4>
+      <ul class="note-list">
+        <li><strong>Truncated y-axis</strong> — exaggerates differences</li>
+        <li><strong>3D charts</strong> — distort proportions via perspective</li>
+        <li><strong>No uncertainty shown</strong> — hiding variability</li>
+        <li><strong>Combined plots</strong> that mix scales or apples with oranges</li>
+      </ul>
+      <h4 style="font-size:0.92rem; font-weight:600; margin:1rem 0 0.5rem;">Colourblind-Friendly Design</h4>
+      <ul class="note-list">
+        <li>Use palettes: <strong>viridis</strong>, <strong>Okabe-Ito</strong>, <strong>ColorBrewer</strong></li>
+        <li>Test with <code>colorblindcheck</code> R package or colorblindness simulation websites</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL SUMMARY -->
+<section style="background: linear-gradient(135deg, #edf4fb, #f4ece8, #e8f4ee); border: 1.5px solid var(--border); border-radius: 16px; padding: 2rem; margin-top: 2rem;">
+  <h2 style="font-family:'Lora',serif; font-size:1.2rem; margin-bottom:1.2rem; color:var(--text);">🎯 Quick-fire Exam Cheat Sheet</h2>
+  <div class="def-grid">
+    <div class="def-card blue"><div class="term">Empirical cycle Phase 3 = ?</div><p>Deduction — making a testable hypothesis FROM a theory.</p></div>
+    <div class="def-card orange"><div class="term">Internal vs External validity</div><p>Internal = causal story correct. External = generalises to other settings/populations.</p></div>
+    <div class="def-card green"><div class="term">Within vs Between subjects</div><p>Within = everyone does all conditions (use counterbalancing). Between = different groups per condition (use random assignment).</p></div>
+    <div class="def-card purple"><div class="term">Questionnaire vs Survey</div><p>Questionnaire = a tool. Survey = a method/design strategy.</p></div>
+    <div class="def-card red"><div class="term">Type I vs Type II error</div><p>I = reject true H₀ (false positive, prob = α). II = keep false H₀ (false negative, prob = β).</p></div>
+    <div class="def-card indigo"><div class="term">p-value is NOT…</div><p>Not the probability H₀ is true. It's P(data this extreme | H₀ true).</p></div>
+    <div class="def-card blue"><div class="term">Reproducibility vs Replication</div><p>Reproducibility = same data + same code. Replication = new data + same procedure.</p></div>
+    <div class="def-card orange"><div class="term">Leakage in ML</div><p>Test set info contaminating training. Prevent by: split data FIRST, then preprocess.</p></div>
+    <div class="def-card green"><div class="term">Belmont 3 principles</div><p>Respect for Persons (→ consent), Beneficence (→ risk-benefit), Justice (→ fair selection).</p></div>
+    <div class="def-card purple"><div class="term">Pseudonymisation vs Anonymisation</div><p>Pseudo = reversible, still personal data (GDPR applies). Anon = irreversible (GDPR doesn't apply).</p></div>
+    <div class="def-card red"><div class="term">HARKing</div><p>Hypothesising After Results are Known. A QRP.</p></div>
+    <div class="def-card indigo"><div class="term">EU AI Act high-risk examples</div><p>Hiring tools, credit scoring, education admissions.</p></div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<div class="footer">Research Methods in AI — Exam Notes · Leiden University 2025–2026 · All content derived from course lecture slides.</div>
+
+</body>
+</html>
