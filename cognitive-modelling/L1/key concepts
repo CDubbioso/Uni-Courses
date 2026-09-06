@@ -1,0 +1,170 @@
+# Key Concepts — Lecture 01 (Introduction) + Lindsay Ch. 1
+
+Entries are grouped thematically and are meant to stand alone. Source is given as `[L1: slide n]` for the lecture deck and `[Lindsay Ch1]` for the reading.
+
+## Conceptual prerequisites for this lecture
+
+You will get more out of it if you already have: basic probability (probability distributions, conditional probability); the idea of a likelihood function; linear regression and least squares; the notion of an optimisation/minimisation problem; and Python basics (functions, loops, NumPy arrays, `scipy.optimize`). No neuroscience background is assumed, but familiarity with a classic paradigm (e.g. a two-alternative forced-choice task or a bandit task) helps.
+
+---
+
+## A. What a model is
+
+**Computational model** — A quantitative simulation of a natural phenomenon, usually implemented as code. `[L1: 13]`
+Not specific to psychology: weather forecasting, protein folding, chess engines and the ideal gas law all qualify. What makes something a model is that it takes inputs and parameters and produces outputs you can compare to reality. The key move is that the theory is stated precisely enough that a computer, which has no intuitions, can execute it.
+
+**Cognitive model** — A formal (equation-based) model that mimics the intelligent behaviour of humans or animals; a mathematical description of the internal processes producing behavioural or physiological phenomena. `[L1: 14; Nassar & Frank, 2016]`
+The distinguishing feature is the _target_: natural cognition, not just performance. A model that beats humans at a task without behaving like one is an engineering success and a cognitive-modelling failure.
+
+**Model as a quantitative stand-in for a theory** — The claim that the model does not _describe_ your theory but _is_ your theory in runnable form. `[L1: 28]`
+Consequence: criticising the model is criticising the theory, and a model that cannot be made to run reveals a theory that was never complete.
+
+**"A narrative is not a model"** — Verbal theories can hide internal inconsistencies, logical contradictions and gaps that formalisation exposes; a running model is a sufficiency proof that the ideas cohere. `[L1: 17, 28; Fum, Del Missier & Stocco, 2007]`
+Example: "working memory holds 7 ± 2 items" sounds precise but does not specify what an item is, how items are encoded, or what happens at capacity. Three modellers would build three different models from it.
+
+**Wiener's cat / spherical cow** — The observation that a perfect model of a system is the system itself, and therefore useless for understanding; all useful models are deliberate simplifications. `[L1: 27–28; Lindsay Ch1]`
+Wiener (1945): the best material model of a cat is another, preferably the same, cat. Lindsay's "spherical cow" is the same idea told as a physics joke. _Synonymous framings:_ abstraction trade-off, the map–territory problem, "all models are wrong but some are useful" (Box).
+
+**Level of abstraction** — The grain at which a model represents the system: synapses, cells, circuits, networks, systems, behaviour. `[L1: 34, 42]`
+There is no globally correct level; the right level is the one that is useful for the phenomenon you are explaining. Choosing it is the modeller's first substantive decision and the main thing you must justify in a lab report.
+
+---
+
+## B. Types of model
+
+**Descriptive (statistical) model** — A model that quantifies relationships in data without claiming to reproduce the process that generated them. `[L1: 29]`
+Examples: linear regression, the general linear model, factor models, most of supervised ML. Appropriate when the generating process is unknown or unmeasurable. _Weakness:_ it tells you a relationship exists, not why. Relationships per se are not explanations.
+
+**Process (mechanistic) model** — A program that mimics the data-generating process itself, rather than describing the data. `[L1: 32, 48]`
+Written so that it (i) is inspired by brain mechanisms, (ii) has parameters that vary across individuals and groups, (iii) produces data directly comparable to human data. Canonical example: `Q(a)_new = Q(a)_old + α(R − Q(a)_old)`. _Synonyms:_ mechanistic model, generative model (loosely), simulation model.
+
+**Inference ticket** — A pejorative label for a theoretical construct that licenses inferences without doing explanatory work. `[L1: 31]`
+Example given in the lecture: _g_ in factor models of intelligence — extracted from the covariance of test scores, then used to "explain" those same scores. A warning about circularity in descriptive modelling.
+
+**Latent variable** — A quantity that cannot be observed directly but is inferred from behaviour by fitting a model. `[L1: 51]`
+Examples from this course: learning rate, response caution (decision threshold), perceptual sensitivity (drift rate). This is why process models double as _measurement instruments_: they convert behaviour into psychologically interpretable numbers.
+
+**Free parameter** — A quantity in the model not fixed by theory, whose value is estimated from data. `[L1: 51, 61, 64]`
+More free parameters means more flexibility, better fit, and worse generalisation — hence the penalty terms in AIC/BIC.
+
+---
+
+## C. Levels and traditions
+
+**Marr's three levels** — Computational theory (what is the goal of the computation and why is it appropriate?), representation and algorithm (how is it implemented — what representations, what algorithm?), hardware implementation (how is it physically realised?). `[L1: 41; Marr, 1982]`
+The levels are semi-independent: the same computation can be achieved by different algorithms, and the same algorithm by different hardware. Most cognitive models in this course live at the algorithmic level while borrowing constraints from the other two.
+
+**Newell's timescale of human action** — A hierarchy of explanatory levels ordered by the timescale of the phenomena, from millisecond neural activity to large-scale brain dynamics to choice behaviour. `[L1: 34]`
+The temporal counterpart of Marr's functional hierarchy; cognitive modelling mostly targets the behaviour/cognition bands.
+
+**Reverse-engineering vs. engineering the brain** — Reverse-engineering (psychology, neuroscience) aims to understand existing natural intelligence; engineering (AI, ML) aims to build intelligence in silico. `[L1: 33]`
+Cognitive modelling borrows tools freely from the engineering side while keeping the reverse-engineering goal, which is why "it fits the data" is never sufficient here.
+
+**Behaviourism / cognitivism / connectionism / Bayesianism** — Four successive (and overlapping) paradigms in the history of the search for a unified theory of mind. `[L1: 38]`
+Roughly: behaviourism (Pavlov, Watson, Skinner; ~1900–1960) refuses to model internal states; cognitivism (Marr, Chomsky, Posner, Shallice; ~1960s–) posits internal symbolic representations and processing stages; connectionism (Hinton, McClelland; ~1980s–) explains cognition via learned distributed representations in networks; Bayesianism (Tenenbaum, Friston; ~2000s–) casts cognition as probabilistic inference under uncertainty. Each remains alive; the course samples several.
+
+**Start from the mind vs. start from the brain** — Two modelling traditions. Mind-first models use explicit symbols and their manipulation (interpretable, easy to fit); brain-first models take biology as the existence proof of intelligence and use deep neural networks (very powerful, hard to interpret). `[L1: 44, 49; Bermúdez, 2014]`
+
+**Normative model** — A model specifying what an _optimal_ agent would do given the structure of the task, used as a benchmark or as a hypothesis about behaviour. `[L1: 40]`
+The rational-analysis logic (cf. Anderson): evolution favours effective behaviour, optimal inference is Bayesian, therefore assume people invert the task's generative model. Attractive because it can require no free parameters. _Weakness:_ optimality is only defined relative to a chosen objective and set of constraints, so "people are optimal" often smuggles in an assumption dressed as a finding.
+
+**Cost-function approach** — Rather than hand-designing mechanisms, specify the optimisation objective (minimise classification/reconstruction error, maximise reward, plus intrinsic costs) and let a sufficiently powerful network learn the computations by function approximation. `[L1: 46; Marblestone et al.]`
+The dominant strategy in deep-learning-based models of the brain. _Trade-off:_ maximal predictive power, minimal interpretability.
+
+---
+
+## D. Fitting, comparison, uncertainty
+
+**Model fitting** — Finding the parameter values that make model output resemble observed data as closely as possible. Requires three ingredients: a model that generates data from parameters, a cost function, and an optimisation algorithm. `[L1: 52]`
+
+**Cost function (objective function)** — A number quantifying the mismatch between model predictions and data, which the optimiser minimises. `[L1: 52–54]`
+Candidates ranked in the lecture: Pearson correlation and % variance accounted for (weakest), SSE and RMSE (better), likelihood (best). _Synonyms:_ loss function, objective function, error function.
+
+**Likelihood** — The probability of the observed data given the model and a particular set of parameter values, viewed as a function of the parameters. `[L1: 53–55]`
+Note the direction: it is _not_ the probability of the parameters. In practice one works with the **log-likelihood** (sums are more numerically stable than products) and minimises its negative.
+
+**Maximum likelihood estimation (MLE)** — Choosing the parameter values that maximise the likelihood of the observed data. `[L1: 55; Myung, 2003]`
+Preferred because of **sufficiency** (the estimator captures the information the data carry about the parameter), **consistency** (the true generating value is recovered asymptotically), and **parameter invariance** (the solution does not depend on how the model was parameterised). Least-squares estimation is described in the lecture as a hack that is nonetheless correct for linear regression.
+
+**Non-convex optimisation / local minima** — A cost landscape with multiple valleys, so that a downhill search can settle in a suboptimal one. `[L1: 58]`
+Aggravated by expensive evaluations (>1 s), noisy evaluations, and roughness from numerical approximation. Practical defence: multiple random starting points, sensible bounds, grid search (`scipy.optimize.brute`).
+
+**Hard bounds vs. plausible bounds** — Hard bounds exclude impossible parameter values (e.g. a learning rate outside [0,1]); plausible bounds mark the range you expect. `[L1: 60; Wilson & Collins, 2019]`
+A best-fitting estimate sitting exactly on a bound is a diagnostic warning, not a result.
+
+**Goodness of fit** — How closely a fitted model reproduces the observed data. `[L1: 61]`
+Necessary but _not sufficient_: a good fit only qualifies a model as a candidate for further scrutiny.
+
+**Parsimony** — Preferring the simplest model that does not fit significantly worse than more complex alternatives. `[L1: 61]`
+
+**Generalisability** — The model's ability to account for new, unseen data. `[L1: 61]`
+The quantity you actually care about, and the one that peaks and then declines as complexity grows.
+
+**Overfitting** — Fitting noise rather than signal, so that goodness of fit keeps improving while generalisability declines. `[L1: 62; Pitt & Myung, 2002]`
+The gap between the goodness-of-fit and generalisability curves in the Pitt & Myung figure _is_ overfitting.
+
+**Penalized likelihood (AIC, BIC)** — Model-comparison criteria that add a penalty for the number of free parameters to the maximum log-likelihood. `[L1: 63–64; Vandekerckhove et al., 2015]`
+`AIC = −2 log p(Y|X, θ̂) + 2k`; `BIC = −2 log p(Y|X, θ̂) + k log n`, with `k` parameters and `n` trials. Smaller is better. BIC penalises complexity more as data accumulate, so it is more conservative. Each is valid only under assumptions that are frequently unmet in practice.
+
+**Cross-validation** — Fitting on part of the data and evaluating prediction on held-out data; typically 10-fold or leave-one-out. `[L1: 63, 65]`
+Takes the model's actual structure into account rather than merely counting parameters, at higher computational cost. The ML-side counterpart of penalized likelihoods.
+
+**Bootstrapping** — Repeatedly resampling the data with replacement, refitting each time, and using the resulting spread of estimates as a sampling distribution for standard errors and confidence intervals. `[L1: 68–72]`
+Useful precisely because traditional interval estimates are only asymptotically correct, and cognitive datasets are often small per subject.
+
+**Parameter recovery** — Simulating data from known parameter values, fitting the model to that synthetic data, and checking whether the true values are recovered. `[L1: 69–72, 77]`
+If you cannot recover your own ground truth, any parameter estimates from real data are uninterpretable. Step 4 of the five simple rules.
+
+**Model identifiability** — Whether distinct models (or distinct parameter settings) can be told apart on the basis of the data you have. `[L1: 48, 75, 77]`
+Related question from slide 75: which _specific pattern_ in the data discriminates between competing models? If none does, the experiment cannot settle the question no matter how good the fitting is.
+
+**Falsification / absolute model fit** — Testing whether the winning model can actually generate data resembling the observed data, rather than only beating its rivals. `[L1: 75–76; Palminteri, Wyart & Koechlin, 2017]`
+Relative comparison alone can crown the least-bad member of a set of uniformly wrong models.
+
+---
+
+## E. How the concepts connect
+
+```
+                        theory (verbal)
+                              │ formalise
+                              ▼
+                     model (runnable code)
+                     ╱                  ╲
+        descriptive ╱                    ╲ process/mechanistic
+   (what relation?)                        (what mechanism?)
+                     ╲                  ╱
+                      ▼                ▼
+        cost function + optimiser  →  fitted parameters (latent variables)
+                              │
+                ┌─────────────┼──────────────┐
+                ▼             ▼              ▼
+       goodness of fit   parsimony     generalisability
+       (necessary, not   (AIC/BIC)     (cross-validation)
+        sufficient)
+                              │
+                              ▼
+             falsification / absolute fit / parameter recovery
+                              │
+                              ▼
+                    revise the model space  ──► back to top
+```
+
+- **Abstraction level → model type.** Deciding how much of the cat to keep (Wiener/Lindsay) determines whether you end up with a descriptive or a process model, and at which Marr level.
+- **Model type → cost function.** Descriptive models often use least squares; process models generally need likelihoods, because they specify a probability of each observed response.
+- **Free parameters → complexity → overfitting.** This chain is why fit alone cannot select models and why AIC/BIC and cross-validation exist.
+- **Model space (slide 37) → model comparison.** Comparison is only ever _relative to the models you wrote down_; falsification (Palminteri) is the check on that blind spot.
+- **Bayesianism appears twice** — once as a historical paradigm (slide 38) and once as a source of models via the normative stance (slide 40). Distinguish "Bayesian model of cognition" (a claim about the mind) from "Bayesian model fitting" (a statistical method for estimating parameters of any model). The lecture uses both senses.
+
+## Terminology mapping (same idea, different names)
+
+| Term used here    | Also called                                                    |
+| ----------------- | -------------------------------------------------------------- |
+| Process model     | Mechanistic model, generative model, simulation model          |
+| Cost function     | Objective function, loss function, error function              |
+| Descriptive model | Statistical model, phenomenological model, curve-fitting model |
+| Free parameter    | Fitted parameter, latent parameter, degree of freedom          |
+| Prediction error  | Surprise, RPE (reward prediction error), δ (delta)             |
+| Response caution  | Decision threshold, boundary separation, _a_ (in the DDM)      |
+| Generalisability  | Out-of-sample predictive accuracy, predictive performance      |
+| Spherical cow     | Toy model, minimal model, idealisation, abstraction            |

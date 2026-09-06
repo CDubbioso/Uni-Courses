@@ -1,0 +1,255 @@
+# Lecture 01 — Introduction to Cognitive Modelling ("aka how to build a brain")
+
+---
+
+## 1. Main topic and learning objective
+
+This lecture is the conceptual foundation for the whole course. It does three things in sequence:
+
+1. **Defines what a (cognitive) model is** and why formalising a theory in equations and code is worth the trouble.
+2. **Asks where models come from** and lays out four strategies for choosing a model space.
+3. **Introduces the machinery of model fitting, model comparison and uncertainty**, plus best practices.
+
+---
+
+## What is a model?
+
+A **computational model** is a _quantitative simulation of a natural phenomenon, typically implemented in computer code_. I doesn't have to be specific to psychology, it can be: weather forecasting, protein folding, global finance, chess engines, LLMs and the Ideal Gas Law are all computational models.
+
+A **cognitive model** narrows this: a formal (equation-based) model that mimics the intelligent behaviour of humans or animals — or, a mathematical description of the internal processes that give rise to behavioural or physiological phenomena.
+
+- **A model is a quantitative stand-in for a theory**. The model _is_ the theory, made precise enough to run.
+- **A narrative is not a model.** Verbal theories ("attention is a spotlight") feel explanatory but hide inconsistencies, contradictions and gaps. A running program is a <q>sufficiency proof of the internal coherence</q> of the ideas behind it. If your verbal theory can't be made to run, you didn't have a complete theory.
+
+### The spherical-cow problem, in cat form
+
+A perfect model of a cat _is_ a cat — which explains nothing, because it is exactly as hard to understand as the original. Every useful model is therefore a deliberate distortion. The slide contrasts several "models of a cat" at different abstraction levels: the real cat (ground truth), a robot cat, a psychological model relating crunchies and hunger to purring, and a formalisation like
+
+```
+p(purr) = f(crunchies, hunger)
+```
+
+None of these is "the" right level. **Choosing the level of abstraction that is useful for the phenomenon you care about is the modeller's core decision**.
+
+---
+
+## Why build cognitive models?
+
+- **description** (what is happening),
+- **explanation** (how it happens),
+- **prediction** (what will happen under new circumstances),
+- **control** (can we change it).
+
+By formalisation, we get:
+
+- **Explicit predictions.** The implications of a verbal theory frequently defy the intuitions of the person who proposed it. Running the model gives a sufficience proof for the completeness and consistency of the theory.
+- **Communication and cumulative progress.** Equations and code are unambiguous in a way that "working memory holds 7 ± 2 items" is not.
+
+Concrete payoffs of building cognitiv models:
+
+1. Insight into the mind — fundamental laws
+2. Linking computational principles to brain activity
+3. Better robots and AI
+4. Behavioural data science (models as measurement instruments)
+
+**How is this different from ML/RL?** The target here is _biological_ as well as _artificial_ intelligence. The goal is to understand natural cognition — with the side benefit that understanding it probably helps us build it. Computational cognitive modelling is the intersection of:
+
+- cognitive neuroscience/psychology,
+- (big) data science,
+- AI/ML;
+- while mathematical psychology sits between psychology and data science.
+
+---
+
+## Descriptive vs. process models
+
+**Descriptive (statistical) models**
+
+- are useful for prediction and quantification,
+- tell you nothing about the mechanism. We want to understand _why_ there is a relationship.
+
+**Process (mechanistic) models**
+
+- the model is not a mathematical description of the _data_ but a program that mimics the _data-generating process_.
+
+Such a program is written so that it:
+
+- is inspired by mechanisms and processes in the brain,
+- has parameters that can vary between individuals and groups (making them measurable psychological quantities),
+- produces data comparable to human data.
+
+**The inferential leap:** if a program generates human-like data across different conditions, we _may_ have captured the responsible process.
+
+---
+
+## Where does a model come from? The space of models
+
+Nobody tells you how to identify the space of models. The universe of models is theoretically limitless; you only ever search a tiny considered subspace, and you have no guarantee it contains anything good.
+
+```
+        universe of models (limitless)
+   ┌─────────────────────────────────────┐
+   │        A                            │
+   │            ┌───────────┐            │
+   │      C     │  space of │      D     │   <- the true model may
+   │            │  models   │            │      be outside the box
+   │            │ considered│            │
+   │        B   └───────────┘            │
+   └─────────────────────────────────────┘
+```
+
+Four practical strategies (each with a characteristic failure mode):
+
+1. **Use past models as theories**. Science is incremental; most people copy what worked before. Efficient, but inherits the blind spots of the literature.
+2. **Take a normative stance**. Reason from optimality: evolution favours clever organisms → people are probably near-optimal → optimal inference is Bayesian → assume people invert the generative model of the task that you, the experimenter, built. Attractive because it can need no free parameters.
+3. **Look at neurobiology**. Constrain models with what is known across systems → networks → circuits → cells → synapses: Gaussian tuning curves, mutual inhibition, recurrent excitation, adaptive coding. Grounded, but biological plausibility does not guarantee explanatory value.
+4. **Design a cost function instead**. Skip hand-designed mechanisms; specify the optimisation objective (minimise classification error, minimise reconstruction error, maximise external reward, plus intrinsic costs) and let a sufficiently powerful network learn the computations by function approximation. Powerful — but not interpretable.
+
+---
+
+## Three central questions in science
+
+1. **Which model best explains reality?** → model _building_ and model _comparison_.
+   - What are the parameters and their relations?
+   - Are more or fewer needed?
+   - How do toy models relate to the real world?
+2. **How should we set the parameters?** → model _fitting_.
+   - For descriptive models these are regression coefficients;
+   - for process models they are psychological quantities such as response caution, learning rate, or perceptual sensitivity.
+   - This is _latent variable inference_: measuring something you cannot observe directly.
+3. **How sure are we?** → uncertainty and _statistics_.
+   - Is a parameter different from zero?
+   - Can the model simulate data that looks like real data?
+
+---
+
+### 1. Model fitting
+
+**Three ingredients**:
+
+1. A _computational model_ that produces data as a function of its parameters.
+2. A **cost (objective) function** that evaluates how close model output is to observed data.
+3. An **optimisation algorithm** to find the parameters that minimise that cost.
+
+**Which cost function?**
+
+$\rightarrow$ **likelihood is best**
+
+**Maximum likelihood estimation** is preferred because of three properties:
+
+- **Sufficiency** — the estimator carries the information about the parameter that the data contain.
+- **Consistency** — asymptotically, the true generating parameter is recovered as data accumulate.
+- **Parameter invariance** — the same solution is obtained regardless of how the model is parameterised.
+
+**Why optimisation is hard**? The optimiser cannot see the landscape; it feels its way downhill. Problems: multiple local minima and saddle points (non-convex surfaces), expensive function evaluations (can exceed 1 s per evaluation), noisy evaluations, and rough landscapes caused by numerical approximations.
+
+```
+cost
+ │   ╲          ╱╲
+ │    ╲___╱╲   ╱  ╲        <- an optimiser starting here...
+ │         ╲__╱    ╲___
+ │                     ╲__╱      <- ...never finds the global minimum here
+ └────────────────────────────► parameter value
+```
+
+**Practical tips**:
+
+- Make sure log-likelihoods are finite, including at the initial conditions.
+- Choose constraints carefully: distinguish **hard bounds** (values that are impossible) from **plausible bounds**, and treat solutions sitting on a bound as a warning sign.
+- Consider reparameterising to make parameters more independent of each other.
+- Always refit from multiple random starting points to guard against local minima. Grid search is one blunt option: `scipy.optimize.brute(evalmodel, [[min,max],[min,max]], args, Ns=20, full_output=1)`.
+
+---
+
+### 2. Model comparison: fit is necessary but not sufficient
+
+Three things to optimise:
+
+- **Goodness of fit** (SSE, log L, RMSE). A good fit only qualifies a model as a _candidate_ for further consideration — necessary but not sufficient.
+- **Parsimony** — the simplest model that does not fit significantly worse than more complex alternatives.
+- **Generalisability** — can the model account for new, unseen data?
+
+The Pitt & Myung (2002) figure is the key visual: as model complexity increases, goodness of fit rises monotonically, but generalisability rises and then _falls_. The gap between the two curves is **overfitting**. A too-simple model underfits a curved dataset; a too-complex model chases noise.
+
+![alt text](Uni-Courses/Figures/CM/image1.jpg)
+
+**Two ways to compensate for model complexity**:
+
+1. **Penalized likelihoods** — common in psychology/statistics:
+
+   ```
+   AIC = −2 log p(Y | X, θ̂) + 2k
+   BIC = −2 log p(Y | X, θ̂) + k log n
+   ```
+
+   where `k` = number of parameters and `n` = number of trials. The first term is (minus twice) the maximum log-likelihood — how well the model fits. The second is the penalty for flexibility. Smaller is better. Because BIC's penalty grows with the log of the number of trials, **BIC is more conservative** (it favours simpler models more strongly than AIC as data accumulate). Both are easy to compute and transparent, but each is correct only under specific assumptions that are not always met in practice.
+
+2. **Cross-validation** — common in ML. Fit on part of the data, evaluate prediction on held-out data; typically 10-fold or leave-one-out. It takes the actual structure of the model and its parameters into account rather than just counting parameters, at the cost of being computationally expensive.
+
+---
+
+### 3. Parameter uncertainty and bootstrapping
+
+If you ran the experiment again you would get different data and a different best-fitting parameter. Reporting a point estimate without a measure of confidence hides that. Traditional confidence intervals are only asymptotically correct (large N), which cognitive experiments often are not, per subject.
+
+**Bootstrapping** solves this by resampling:
+
+1. Take a subset of the data **with replacement**.
+2. Redo the whole fitting procedure and store the parameter estimates.
+3. Repeat many times.
+4. The spread of the resulting **sampling distribution** gives standard errors and confidence intervals.
+
+The uncertainty you get out depends on both the amount of data and the quality of the model.
+
+---
+
+## Modelling best practices
+
+- **Don't put blind faith in the numerical value of a fit**. The cost function and optimiser can be sensitive to outliers and starting points. The better question is: _what specific pattern in the data distinguishes the predictions of different models?_ Design for that pattern.
+- **Falsification matters**. Relative model comparison only tells you which of your candidates is least bad.
+
+**Five simple rules for cognitive modelling**:
+
+1. **Design a good experiment.** Which signatures of the target process will actually be visible in the data?
+2. **Design a good model.** Interpretable, simple, and capturing all the real hypotheses.
+3. **Simulate, simulate, simulate.** How does the model behave under different parameter?
+4. **Fit the parameters.** Can you recover ground truth from your own simulations?
+5. **Compare models.** Can you actually arbitrate between them with the data you have?
+
+---
+
+## 2. Critical questions raised (carry into `comparisons/critical_issues.md`)
+
+- If a model reproduces human data, have we captured the process, or merely found _a_ process sufficient to mimic it? Slide 48's "(?)" is deliberate.
+- How do we know our considered model space is sensible when the universe of models is limitless (slide 37)? Model comparison is silent about models you never wrote down.
+- Is the normative/Bayesian move (slide 40) an explanation or an assumption smuggled in as one?
+- Where should the abstraction dial sit — is biological plausibility a virtue in itself, or only when it earns predictive/explanatory power? (Direct link to Lindsay Ch. 1.)
+- What made a _good_ model in the class discussion (slide 24)? The listed criteria — useful, normative, clinically relevant, inspires experiments, microscopic/macroscopic/behavioural realism, representational, compact, analytically tractable, interpretable, beautiful/elegant — cannot all be maximised at once. Which you prioritise _is_ your methodological position.
+
+---
+
+# Open Questions
+
+1. Explain what Wiener meant by "the best material model of a cat is another, or preferably the same, cat," and what this implies for how you should choose the level of abstraction of a cognitive model.
+
+2. A researcher claims that "attention is like a spotlight" is a theory of attention. Argue why a cognitive modeller would not be satisfied with this, and what formalisation would add.
+
+3. Name the four goals of scientific inquiry given in the lecture and, for each, give an example of what a cognitive model contributes.
+
+4. Distinguish descriptive from process models. Give one example of each and explain what question each can and cannot answer.
+
+5. Explain the criticism that a factor like g functions as an "inference ticket." What is the logical problem?
+
+6. Describe Marr's three levels and locate a model from this course at each level.
+
+7. The universe of models is limitless, but you can only ever compare the models you wrote down. Explain why this is a problem for model comparison and what, if anything, can be done.
+
+8. Outline the four strategies for choosing a model space discussed in the lecture, and give one weakness of each.
+
+9. A colleague argues people must be Bayesian because evolution favours optimality. Evaluate this argument.
+
+10. Why is likelihood generally preferred over sum of squared error or Pearson correlation as a cost function? Name and explain at least two properties of maximum likelihood estimation.
+
+11. Explain why parameter optimisation is difficult in practice, and describe three concrete steps you would take to make your fitting procedure more reliable.
+
+12. "A good fit is necessary but not sufficient." Explain this claim with reference to the relationship between model complexity, goodness of fit, and generalisability.
