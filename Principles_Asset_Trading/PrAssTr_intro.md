@@ -104,9 +104,9 @@ $$\text{Call: } \max(S_T - K,\ 0) \qquad \text{Put: } \max(K - S_T,\ 0)$$
 
 - Payoff diagrams: the call is flat at 0 up to $K$, then rises with slope +1. The put falls with slope −1 until $K$, then is flat at 0.
 
-  ![Payoff of a long call at maturity](../pictures/PrAssTr/PrAssTr_intro_call-payoff.png)
+  ![Payoff of a long call at maturity](../Figures/PrAssTr/PrAssTr_intro_call-payoff.png)
 
-  ![Payoff of a long put at maturity](../pictures/PrAssTr/PrAssTr_intro_put-payoff.png)
+  ![Payoff of a long put at maturity](../Figures/PrAssTr/PrAssTr_intro_put-payoff.png)
 
 **Long vs short**
 
@@ -195,16 +195,16 @@ Starting book:
 - **Trading members:** a member that gives access to non-members is a **broker** (e.g. Binck, DEGIRO). Otherwise it is a **dealer** (e.g. Flow Traders).
 - **Anonymous:** you never know your counterparty, because everyone trades against the **central counterparty (CCP)**.
 
-  ![Investors trade via brokers/dealers (trading members) on the exchange](../pictures/PrAssTr/PrAssTr_intro_trading-members.png)
+  ![Investors trade via brokers/dealers (trading members) on the exchange](../Figures/PrAssTr/PrAssTr_intro_trading-members.png)
 
 - **CCP:** a trade creates open positions at the clearing members. The CCP steps in between and **guarantees settlement of the net positions**.
 - **CSD (Central Securities Depository):** every clearing member is typically also a settlement member with an account at the CSD, where the securities are held.
 - **Delivery vs payment (DVP):** the CCP instructs the CSD to move securities from seller to buyer and cash from buyer to seller **simultaneously**, and guarantees that this succeeds.
 - **Settlement date:** $T+2$, two business days after the trade.
 
-  ![Trade day: orders via trading members to the platform, open positions at clearing members and the CCP](../pictures/PrAssTr/PrAssTr_intro_settlement-trade-day.png)
+  ![Trade day: orders via trading members to the platform, open positions at clearing members and the CCP](../Figures/PrAssTr/PrAssTr_intro_settlement-trade-day.png)
 
-  ![T+2: CCP instructs the CSD, delivery vs payment via settlement members and the central bank](../pictures/PrAssTr/PrAssTr_intro_settlement-T2.png)
+  ![T+2: CCP instructs the CSD, delivery vs payment via settlement members and the central bank](../Figures/PrAssTr/PrAssTr_intro_settlement-T2.png)
 
 - **Custody chain:** investor → broker → clearing member → settlement member → CSD. Each link is only a **claim** on the next one, and in international positions parts of the chain can sit in foreign jurisdictions.
 - **Asset segregation:** client assets are kept separate from the institution's business risk.
@@ -252,17 +252,17 @@ Starting book:
    - Market convention (S&P/Fitch, B&M) **[beyond slides]**: investment grade = AAA to **BBB-**. BB+ and below is high yield ("junk").
    - Check which one the exam expects.
 
-![Rating scales of the main agencies](../pictures/PrAssTr/PrAssTr_intro_rating-scales.png)
+![Rating scales of the main agencies](../Figures/PrAssTr/PrAssTr_intro_rating-scales.png)
 
 3. **CDO:** a pool of loans cut into senior (AAA), mezzanine (BBB) and equity tranches. Diversification in the pool means the senior tranche is "almost always" paid, so it gets investment grade. Institutions could now buy mortgage risk they couldn't access directly.
 
-![Basic CDO structure: collateral pool cut into senior, mezzanine and equity tranches](../pictures/PrAssTr/PrAssTr_intro_cdo-structure.png)
+![Basic CDO structure: collateral pool cut into senior, mezzanine and equity tranches](../Figures/PrAssTr/PrAssTr_intro_cdo-structure.png)
 
 4. **Running out of mortgages:** lending standards were softened (Alt-A, subprime), using low **teaser rates** and the plan to refinance once the normal rate kicked in.
 5. **CDOs of CDOs:** tranches that didn't qualify as investment grade were re-bundled into a new CDO.
 6. **CDS:** insurance against default. On a default event, you hand in the bond and receive the nominal value. The logic was _risky bond + CDS = investment grade_. The biggest seller was **AIG** (a "monoline"), which became too big to fail.
 
-![Growth of CDS notional outstanding, 2001–2008](../pictures/PrAssTr/PrAssTr_intro_cds-growth.png)
+![Growth of CDS notional outstanding, 2001–2008](../Figures/PrAssTr/PrAssTr_intro_cds-growth.png)
 
 7. **Collapse:**
    - Refinancing after the teaser period failed.

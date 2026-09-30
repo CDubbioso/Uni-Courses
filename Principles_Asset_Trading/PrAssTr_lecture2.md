@@ -29,7 +29,7 @@ $$A_n = (1 + n \cdot r) \cdot A_0 = A_{n-1} + r \cdot A_0$$
 
 _Example:_ €1,000 at 4% earns €40 every period. After 4 periods the interest is $4 \cdot 40 = €160$, so the balance is €1,160.
 
-![Simple interest: the same €40 every period](../pictures/PrAssTr/PrAssTr_lecture2_simple-interest.png)
+![Simple interest: the same €40 every period](../Figures/PrAssTr/PrAssTr_lecture2_simple-interest.png)
 
 ### 2.2 Compound interest
 
@@ -45,7 +45,7 @@ _Example:_ €1,000 at 4%, interest earned each year:
 
 After 4 years the balance is €1,169.86, compared with €1,160 under simple interest.
 
-![Compound interest: interest on interest](../pictures/PrAssTr/PrAssTr_lecture2_compound-interest.png)
+![Compound interest: interest on interest](../Figures/PrAssTr/PrAssTr_lecture2_compound-interest.png)
 
 ### 2.3 Nominal vs effective return
 
@@ -92,7 +92,7 @@ You buy a **5% Bund** (a German government bond, annual coupon) with 6 years to 
 | --------- | ------ | --- | --- | --- | --- | --- | ------- |
 | Cash flow | −price | 5   | 5   | 5   | 5   | 5   | 5 + 100 |
 
-![Cash-flow stream of a 6-year 5% Bund](../pictures/PrAssTr/PrAssTr_lecture2_bund-cash-flows.png)
+![Cash-flow stream of a 6-year 5% Bund](../Figures/PrAssTr/PrAssTr_lecture2_bund-cash-flows.png)
 
 ### 3.2 Price = PV of the cash flows
 
@@ -144,7 +144,7 @@ _Example:_ the 5% Bund trades at 102. The numerical solution is $y = 4.61\%$ (se
 
 **The Bloomberg screen example (T 2¼ 01/31/15):**
 
-![Bloomberg description of the T 2¼ 01/31/15 Treasury note](../pictures/PrAssTr/PrAssTr_lecture2_bloomberg-treasury.png)
+![Bloomberg description of the T 2¼ 01/31/15 Treasury note](../Figures/PrAssTr/PrAssTr_lecture2_bloomberg-treasury.png)
 
 - Coupon 2.25% per year, paid as 1.125% every half-year (CPN FREQ = 2, FIXED).
 - Maturity 31 Jan 2015.
@@ -157,7 +157,7 @@ $$P = \sum_{k=1}^{2T} \frac{C/2}{(1+y/2)^k} + \frac{N}{(1+y/2)^{2T}}$$
 
 **The WSJ yield table:** yields rise with maturity, from about 3.9% at 1 month to about 5.4% at 20–30 years. That is an upward-sloping **yield curve** **[beyond slides]**.
 
-![US Treasury yields by maturity (WSJ)](../pictures/PrAssTr/PrAssTr_lecture2_treasury-yields.png)
+![US Treasury yields by maturity (WSJ)](../Figures/PrAssTr/PrAssTr_lecture2_treasury-yields.png)
 
 ---
 
@@ -234,7 +234,7 @@ $$\Delta P \approx -(-0.002) \cdot 5.14 \cdot 105.24 = +1.08$$
 
 The price–yield relation is a **curve**, not a straight line. It is convex, meaning it bends upward.
 
-![Price vs yield for a 5% bond with 5 and 20 years to maturity](../pictures/PrAssTr/PrAssTr_lecture2_price-vs-yield.png)
+![Price vs yield for a 5% bond with 5 and 20 years to maturity](../Figures/PrAssTr/PrAssTr_lecture2_price-vs-yield.png)
 
 - **Consequence:** for the same size of yield move, the price **gain** when yields fall is larger than the price **loss** when yields rise.
   - _Example:_ a 5% 20-year bond priced at 100 at a 5% yield. At 4% its price is +13.59; at 6% it is −11.47.

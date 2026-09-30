@@ -19,9 +19,9 @@ Cash flows at several points in time form a **cash-flow stream**.
 | 2-year government bond       | −price         | +coupon    | +coupon + nominal                       |
 | Buy and hold ING for 2 years | −current price | +dividend? | +dividend? + price in 2 yrs (uncertain) |
 
-![Cash-flow stream of a 2-year government bond](../pictures/PrAssTr/PrAssTr_lecture1_bond-cash-flows.png)
+![Cash-flow stream of a 2-year government bond](../Figures/PrAssTr/PrAssTr_lecture1_bond-cash-flows.png)
 
-![Cash-flow stream of buying and holding ING for 2 years](../pictures/PrAssTr/PrAssTr_lecture1_stock-cash-flows.png)
+![Cash-flow stream of buying and holding ING for 2 years](../Figures/PrAssTr/PrAssTr_lecture1_stock-cash-flows.png)
 
 **Types of cash flow:**
 
@@ -56,7 +56,7 @@ Land costs €50,000 now and the building €320,000 now. You are _sure_ to sell
 
 $$PV = \frac{420{,}000}{1.05} = 400{,}000 \qquad NPV = 400{,}000 - 50{,}000 - 320{,}000 = +30{,}000$$
 
-![Discounting the 420 sale to now: PV 400, NPV +30](../pictures/PrAssTr/PrAssTr_lecture1_npv-office-building.png)
+![Discounting the 420 sale to now: PV 400, NPV +30](../Figures/PrAssTr/PrAssTr_lecture1_npv-office-building.png)
 
 **(b) Same risk as stocks, discounted at r = 12%:**
 
@@ -134,7 +134,7 @@ Take the office building again: invest 370, receive 420 in 1 year, rate 5%. **Ca
 
 - ⚠️ The lecture labels the "not doing the project" intercept as **385**. The correct value is 370 · 1.05 = **388.5**.
 
-  ![Consumption possibilities with and without the project (the 385 label should be 388.5)](../pictures/PrAssTr/PrAssTr_lecture1_consumption-lines.png)
+  ![Consumption possibilities with and without the project (the 385 label should be 388.5)](../Figures/PrAssTr/PrAssTr_lecture1_consumption-lines.png)
 
 - The "with project" line lies above the other one **everywhere**. The vertical gap at "now" is 400 − 370 = 30 = **NPV**.
 
@@ -153,7 +153,7 @@ Two investors each have €185k. That's half the project, so each gets 185/370 o
 
 B's gain of 200 − 185 = €15k is exactly B's share of the NPV: $30 \cdot \tfrac{185}{370} = 15$.
 
-![Saver A and spender B both end on the higher line](../pictures/PrAssTr/PrAssTr_lecture1_saver-spender.png)
+![Saver A and spender B both end on the higher line](../Figures/PrAssTr/PrAssTr_lecture1_saver-spender.png)
 
 > Saver or spender, **every investor is better off with a positive-NPV project**. Managers don't need to know shareholders' time preferences. **This is only true if capital markets are efficient**, i.e. everyone can borrow and lend at the rate that fits the risk.
 
@@ -171,7 +171,7 @@ Notation: $A$ = cash flow per period, $r$ = rate per period, and the **first pay
 
 ### 5.1 Perpetuity (infinite annuity)
 
-![Perpetuity: A every period, starting at the end of period 1](../pictures/PrAssTr/PrAssTr_lecture1_perpetuity.png)
+![Perpetuity: A every period, starting at the end of period 1](../Figures/PrAssTr/PrAssTr_lecture1_perpetuity.png)
 
 Split off the first term. Everything from period 2 onward is again a perpetuity, just one period later:
 
@@ -181,7 +181,7 @@ _Example:_ €50 per year forever at 5% gives $P = 50 / 0.05 = €1{,}000$.
 
 ### 5.2 n-step delayed perpetuity
 
-![Delayed perpetuity: payments from now+n+1 onward](../pictures/PrAssTr/PrAssTr_lecture1_delayed-perpetuity.png)
+![Delayed perpetuity: payments from now+n+1 onward](../Figures/PrAssTr/PrAssTr_lecture1_delayed-perpetuity.png)
 
 Payments run from $n+1$ onward. At time $n$ this is a normal perpetuity worth $P$, which you then discount $n$ periods back:
 
@@ -189,7 +189,7 @@ $$\boxed{P_{(n,\infty]} = \frac{P}{(1+r)^n} = \frac{A}{r \cdot (1+r)^n}}$$
 
 ### 5.3 Annuity (payments at 1 … n)
 
-![Annuity = perpetuity minus a perpetuity delayed by n](../pictures/PrAssTr/PrAssTr_lecture1_annuity.png)
+![Annuity = perpetuity minus a perpetuity delayed by n](../Figures/PrAssTr/PrAssTr_lecture1_annuity.png)
 
 An annuity = a perpetuity **minus** a perpetuity delayed by $n$. The minus cancels every payment after $n$:
 
@@ -237,7 +237,7 @@ _Why:_ the same tools (PV, NPV, cost of capital) apply to anyone trading assets,
 **Q3. In the corporation diagram (financial markets ⇄ financial manager ⇄ operations), the arrows are cash flows. What happens at each arrow?**
 **Answer:**
 
-![Cash flows between operations, the financial manager and the financial markets](../pictures/PrAssTr/PrAssTr_lecture1_corporation-cash-flows.png)
+![Cash flows between operations, the financial manager and the financial markets](../Figures/PrAssTr/PrAssTr_lecture1_corporation-cash-flows.png)
 
 1. Investors buy the firm's securities, and cash flows from the markets to the financial manager.
 2. The manager invests that cash in operations (develop, produce, sell).
