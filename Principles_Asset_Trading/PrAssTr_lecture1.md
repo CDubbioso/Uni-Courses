@@ -207,6 +207,67 @@ $$A = \frac{0.0045 \cdot 1.0045^{360}}{1.0045^{360} - 1} \cdot 250{,}000 \approx
 
 ---
 
+## Questions from the lecture
+
+**Q1. Asset trading deals with various types of assets. Examples?**
+**Answer:** Stocks, bonds, savings and term deposits, ETFs, derivatives (futures, options, swaps, turbos), plus real estate, commodities, currencies and crypto.
+_Why:_ an asset is anything that carries value and produces a (possibly uncertain) cash-flow stream. That's the definition that makes it tradeable.
+
+**Q2. The book is about corporate finance, the course about asset trading. What is the difference?**
+**Answer:** Corporate finance is about how **corporations** finance their activities. Asset trading is **broader**: it covers the trading of value-carrying assets by **retail, institutional and corporate** investors in the market.
+_Why:_ the same tools (PV, NPV, cost of capital) apply to anyone trading assets, not just to a firm's financial manager.
+
+**Q3. In the corporation diagram (financial markets ⇄ financial manager ⇄ operations), the arrows are cash flows. What happens at each arrow?**
+**Answer:**
+
+1. Investors buy the firm's securities, and cash flows from the markets to the financial manager.
+2. The manager invests that cash in operations (develop, produce, sell).
+3. Operations generate cash, which flows back to the manager.
+4. That cash is either (a) **reinvested** in the firm or (b) **returned** to investors as dividends or interest.
+
+_Why:_ the financial manager is the link between the markets and the business. Every arrow is money moving, which is the cash-flow view of Lecture 1.
+
+**Q4. Can you think of another instrument than shares?**
+**Answer:** **Bonds / bank loans** (debt).
+_Why:_ a firm can raise money by selling ownership (equity) or by borrowing (debt). With debt, investors get fixed coupons and their nominal back, not ownership.
+
+**Q5. Who is the boss of the company, and how is this arranged?**
+**Answer:** The **shareholders**. At the shareholder meeting they appoint the board, which appoints and oversees management.
+_Why:_ shareholders own the company and carry the residual risk, so they have final decision power. This is also why the goal is shareholder value (§4.2).
+
+**Q6. Is the office building a good investment, i.e. do you prefer €420k in one year over €370k now?**
+**Answer:** Yes. NPV = +30k at 5% (risk-free) and still +5k at 12% (stock-like risk).
+_Why:_ €420k in a year is worth €400k (or €375k if risky) today, which is more than the €370k it costs (§2.3).
+
+**Q7. Discounting at 12% instead of 5%: will the PV of the €420k increase or decrease?**
+**Answer:** Decrease, from 400 to 375.
+_Why:_ you pay less today for a risky euro, which is the same as demanding a higher return (§2.3).
+
+**Q8. The project (invest 100, payoff 80/110/140) vs a stock with the same outcomes at 95.65: which do you prefer and why?**
+**Answer:** The stock.
+_Why:_ it gives the identical risky payoff for 95.65 instead of 100. The project's expected return of 10% is below the 15% opportunity cost, so NPV = −4.35 (§3.4).
+
+**Q9. The bank lends at 8%. Does that justify the project? Why not? Then why does the bank lend at 8%?**
+**Answer:** No. The opportunity cost stays at 15%. The bank lends at 8% because its loan is **safer** than the project.
+_Why:_ the cost of capital depends on the project's risk, not on the financing. Borrowed money could still earn 15% in stock X at the same risk. The loan has a claim on the whole firm and priority over shareholders, so it needs a lower return (§3.5).
+
+**Q10. You want to consume part now and part later: what possibilities do you have?**
+**Answer:** Any point on the line through (370 now, 388.5 next year) without the project, or (400 now, 420 next year) with it.
+_Why:_ borrowing and lending at 5% lets you slide along a line with slope −1.05. The project shifts the whole line outward by the NPV (§4).
+
+**Q11. Two investors with €185k each: saver A and spender B. What is their strategy?**
+**Answer:** A invests in the project and has €210k next year (vs €194.25k at the bank). B invests in the project, borrows €200k against the €210k payoff and spends €200k now (vs €185k).
+_Why:_ capital markets move cash through time, so a positive-NPV project helps both savers and spenders (§4.1).
+
+**Q12. What should be the goal of the board? Why not increasing profit? Shareholders vs stakeholders?**
+**Answer:** **Creating shareholder value**, by doing only NPV > 0 projects.
+_Why:_
+
+- Profit ignores the **timing** and **risk** of cash flows; NPV includes both.
+- The stakeholder view adds employees, society and the environment. NPV-maximisation ignores those unless their effects are priced into the cash flows (§4.2).
+
+---
+
 ## Key-formulas box
 
 $$PV = \frac{C_t}{(1+r)^t} \qquad FV = C_0 \cdot (1+r)^t \qquad NPV = -C_0 + \sum_t \frac{C_t}{(1+r)^t}$$

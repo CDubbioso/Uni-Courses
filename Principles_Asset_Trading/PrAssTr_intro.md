@@ -284,6 +284,53 @@ Triggers:
 
 ---
 
+## Questions from the lecture
+
+**Q1. What is welfare?**
+**Answer:** There is no unique definition. The lecture uses "the extent to which scarcity can be reduced".
+_Why:_ the more of what people need that can be made available, the less scarcity, and the higher the welfare.
+
+**Q2. So, what do we have to do to reach welfare, and how?**
+**Answer:** Come up with things: use the earth's (fixed) resources to produce goods and services.
+_Why:_ resources are fixed, so more welfare can only come from producing more out of the same resources, i.e. becoming **more productive** over time.
+
+**Q3. How can productivity be increased?**
+**Answer:** With **tools** (hunters with weapons) and **specialisation of labour** (people are skilled differently: the small guy hunts in the narrow woods, the big guy builds houses).
+_Why:_ tools raise the output per person, and specialisation lets everyone do what they're best at. That in turn creates the need to exchange, which is why the financial system exists.
+
+**Q4. What is the accelerator of our current growth in productivity?**
+**Answer:** **Connectivity and automation.**
+_Why:_ automation removes repetitive work, and connectivity links specialists and markets worldwide.
+
+**Q5. Is growth intrinsic?**
+**Answer:** According to the lecture, yes, but it is growth in _productivity_, not necessarily in consumption.
+_Why:_ people prefer tools to manual labour and automate repetitive work. They are never satisfied with the status quo and enjoy being busy (joblessness is not attractive even without starvation).
+
+**Q6. What happens in the order book if we enter a buy order for 50@14.81, 500@14.81, 500@14.82 or 50@14.80?**
+**Answer:** See the four worked cases in §4.3.
+_Why:_ an incoming order executes against resting orders at **their** prices, as long as your limit allows. Anything left over rests in the book at your limit.
+
+**Q7. What happens after a transaction at the exchange?**
+**Answer:** Clearing and settlement.
+
+1. The CCP steps in between the clearing members and guarantees the net positions.
+2. At T+2, the CSD moves the securities and the cash simultaneously (delivery vs payment).
+
+See §4.4.
+_Why:_ this removes counterparty risk from anonymous trading and makes sure nobody delivers without being paid.
+
+**Q8. Why is Brexit such a hot issue in finance?**
+**Answer:**
+
+- The UK was the licensed **gateway** to the EU for non-European banks.
+- Finance is about **13% of UK GDP** (NL about 7%).
+- It raises questions about where activity relocates, and whether others leave the single market.
+
+See §6.2.
+_Why:_ losing EU passporting forces banks to move licensed activities and staff to the continent.
+
+---
+
 ## Key-formulas box
 
 $$\text{Coupon} = c \cdot N \qquad \text{(e.g. } 0.02 \cdot 1000 = €20\text{/yr; final payment } N + c \cdot N = €1{,}020)$$
