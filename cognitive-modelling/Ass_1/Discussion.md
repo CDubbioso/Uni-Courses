@@ -1,49 +1,55 @@
 # 4 Discussion
 
-In this report we examined whether in-group favouritism produced by attitude priming is larger than out-group derogation. We compared the accuracy and response times (RT) of 12 Caucasian participants classifying positive and negative words after a white (in-group) or black (out-group) face prime, and fitted a DDM in which the starting point depends on the face. Overall, participants answered correctly on 72.5% of the trials with an average RT of 0.56 seconds. They made significantly more errors on incompatible trials, and while correct responses were faster on compatible trials, errors were faster on incompatible trials. **[DDM – TBD: fitted starting points after in-group and out-group faces relative to the midpoint.]**
+In this report we examined whether in-group favouritism produced by attitude priming differs in magnitude from out-group derogation. We analysed accuracy and response times of 12 Caucasian participants and compared DDMs in which the face shifts the starting point or changes the drift rate. Incompatible trials led to more errors, slower correct responses and faster errors. The starting-point model fitted best, and both faces shifted the starting point in the expected direction (in-group: z = 0.57; out-group: z = 0.41), but the shifts did not differ significantly in size.
 
-The compatibility effect replicates the attitude priming findings of Fazio et al. (1995): in-group faces facilitate positive and out-group faces negative classifications, even though the faces were irrelevant to the task. This supports the view that such attitudes are activated automatically (Fazio et al., 1986; Greenwald & Banaji, 1995). The RT pattern is also informative about the mechanism. If the prime only lowered the drift rate on incompatible trials, both correct and error responses would be slower on those trials. Instead, responses in the direction of the prime were fast whether they were correct or not, which is the signature of a starting point lying closer to the prime-congruent threshold (White & Poldrack, 2014), in line with Todd et al. (2021). **[DDM – TBD: whether the in-group shift from the midpoint exceeds the out-group shift, i.e. whether favouritism outweighs derogation as expected from Brewer (1999).]** Finally, slower participants were not more accurate (Figure 1), suggesting individual differences in drift rate rather than in response caution.
+The compatibility effect replicates Fazio et al. (1995) and supports the view that attitudes are activated automatically (Fazio et al., 1986; Greenwald & Banaji, 1995). The starting-point model had the lowest total BIC and beat both drift models for every participant. When the face instead added a fading drift, its time constant was only 11–41 ms, close to the lower limit of 10 ms, making it practically a shifted starting point. This suggests that the face biases the decision before evidence from the word accumulates, rather than changing how the word is evaluated, in line with Todd et al. (2021). A shifted start also explains the fast errors on incompatible trials. Unlike Todd et al. (2021), we compared each starting point to the midpoint, which suggests that both faces contribute to the bias.
 
-Our analysis has several limitations. First, the sample is small and consists only of Caucasian participants, so we cannot test whether the bias is reciprocal, as Fazio et al. (1995) found for black participants. Second, the dataset contains no neutral prime condition. Comparing the starting point to the midpoint therefore assumes that participants have no general preference for one response; a general tendency to answer "positive" would inflate the estimated in-group favouritism and hide out-group derogation. Third, trial order and item identity are not recorded, so learning, fatigue and item effects could not be modelled. Fourth, the statistical tests used per-subject means of untrimmed RTs, and with 460 trials per participant spread over four face-word combinations and few errors per combination, per-subject DDM estimates may be unreliable. Lastly, our model only lets the face change the starting point, while primes might also affect the drift rate or the non-decision time.
+Contrary to our expectation based on Brewer (1999), the in-group shift was not larger; if anything, the out-group shift was larger (0.09 against 0.07). With 12 participants, however, this does not show that both shifts are equal. The effect also varied between people, as Fazio et al. (1995) reported: for four participants, the model without a face effect was slightly preferred. Finally, speed differences between participants mainly reflected non-decision time and accuracy differences reflected drift rate, with nearly constant boundary separation, so slower participants were not more accurate (Figure 1).
 
-Future work could include a neutral baseline prime, such as a scrambled face, to estimate the neutral starting point directly instead of assuming it. Recruiting black participants and a larger sample would allow testing whether the asymmetry between favouritism and derogation holds for both groups. A hierarchical Bayesian DDM (Wiecki et al., 2013) would make better use of the limited trials per participant, and formally comparing models in which the face affects the starting point, the drift rate, or both would test whether the bias is truly a response bias.
+The main limitation is the lack of a neutral prime: the midpoint is only assumed to be neutral. Our asymmetry test is mathematically identical to testing whether the average starting point differs from the midpoint, so a general tendency to answer "negative" would look exactly like a larger out-group shift. Unlike Fazio et al. (1995), who measured a baseline without primes, we cannot separate the two. Furthermore, the sample is small and only Caucasian. Our basic DDM, without across-trial variability and with a fixed lapse rate, slightly under-predicted compatible errors around 0.5 seconds, and we ran no parameter recovery. A face effect on non-decision time and a combined starting-point and drift model were also not tested.
+
+Future work could add a neutral prime, such as a scrambled face, to measure the unbiased starting point. Recruiting black participants would test whether the bias is reciprocal, as Fazio et al. (1995) found, and a hierarchical Bayesian DDM (Wiecki et al., 2013) would make better use of the limited trials per participant. Varying the interval between face and word would show how quickly the bias builds up.
 
 ---
 
 ## Notes (not part of the section)
 
-**Word count:** ~490 words of body text excluding the two **[DDM – TBD]** placeholders. Those two placeholders get ~40 words once the DDM results are in, so a few words will need trimming elsewhere to stay under 500 (the individual-differences sentence at the end of paragraph 2 is the easiest cut).
+**Word count:** 496 words (plain count, citations included), so it fits the 500-word limit.
 
-**To update once the DDM part is finished:**
+**What changed compared to the previous version**
 
-- Fill in the two **[DDM – TBD]** placeholders with the fitted starting points (in-group vs. out-group, distance from 0.5).
-- Check the limitations still match the final model: if the fit also frees drift rate / non-decision time per face, or if RTs get trimmed before fitting, edit the last two limitations accordingly.
-- If the fit is pooled rather than per subject, change "per-subject DDM estimates" in the fourth limitation.
+- Both DDM placeholders are replaced with the actual results: starting-point shifts, no significant asymmetry, the model comparison, and the fading-drift result.
+- The limitations that no longer applied are gone: "untrimmed RTs", "few errors per combination", and "only the starting point was tested".
+- The neutral-baseline limitation now names the "negative" direction and states that the asymmetry test equals a test of a general response bias.
+- The White & Poldrack (2014) argument is replaced by the model comparison and the model's fit of the fast errors. **Delete White & Poldrack (2014) from the reference list.** Wiecki et al. (2013) is still cited.
+- Individual differences are now explained with the fitted parameters instead of Figure 1 alone.
 
-**New references to add to the reference list** (same style as the existing ones):
+**Where each number comes from (notebook)**
 
-- White, C. N., & Poldrack, R. A. (2014). Decomposing bias in different types of simple decisions. _Journal of Experimental Psychology: Learning, Memory, and Cognition_, _40_, 385-398. doi: 10.1037/a0034851
-- Wiecki, T. V., Sofer, I., & Frank, M. J. (2013). HDDM: Hierarchical Bayesian estimation of the drift-diffusion model in Python. _Frontiers in Neuroinformatics_, _7_, 14. doi: 10.3389/fninf.2013.00014
+- z = 0.57 / 0.41 and the asymmetry test: cell 17 (t(11) = −1.31, p = .22)
+- Shift sizes 0.07 / 0.09: cell 19, mean distance of each starting point from 0.5
+- Model comparison (lowest total BIC; beats both drift models for all 12; no-face model slightly preferred for 4, ΔBIC < 6): cells 21–22
+- τ = 11–41 ms, lower bound 10 ms: cell 21
+- Model under-predicts compatible errors around 0.5 s: cell 23 figure
+- Fixed lapse rate: PyDDM's `gddm` default `mixture_coef = 0.02`, i.e. 2%
 
-```bibtex
-@article{white2014decomposing,
-  author  = {White, Corey N. and Poldrack, Russell A.},
-  title   = {Decomposing bias in different types of simple decisions},
-  journal = {Journal of Experimental Psychology: Learning, Memory, and Cognition},
-  year    = {2014},
-  volume  = {40},
-  number  = {2},
-  pages   = {385--398},
-  doi     = {10.1037/a0034851}
-}
+**Computed from the notebook's printed per-subject tables (cells 4 and 15). Not in the notebook yet; add these to Results:**
 
-@article{wiecki2013hddm,
-  author  = {Wiecki, Thomas V. and Sofer, Imri and Frank, Michael J.},
-  title   = {{HDDM}: Hierarchical {B}ayesian estimation of the drift-diffusion model in {P}ython},
-  journal = {Frontiers in Neuroinformatics},
-  year    = {2013},
-  volume  = {7},
-  pages   = {14},
-  doi     = {10.3389/fninf.2013.00014}
-}
-```
+- Mean RT vs. accuracy across participants: r = −0.17, p = .59. The Results text and the Figure 1 caption claim a negative correlation, which this does not support.
+- Mean RT vs. non-decision time: r = .99. Accuracy vs. mean drift rate: r = .98. Boundary separation B: 0.48–0.52 for everyone.
+- If the §0 check on B fails, replace the last sentence of paragraph 3 with: _"Finally, slower participants were not more accurate (Figure 1), suggesting that speed and accuracy reflected different processes."_
+
+**Must be consistent elsewhere in the report**
+
+- **Introduction:** "without a neutral baseline, one cannot tell… (Fazio et al., 1995)" now contradicts the Discussion ("Unlike Fazio et al. (1995), who measured a baseline without primes"). Suggested fix: _"…without a neutral baseline, which Fazio et al. (1995) obtained from a separate block without primes, one cannot tell whether a face adds positivity or negativity."_
+- **DDM Methods/Results (peer)** must define everything the Discussion uses:
+  - z on a 0–1 scale (0 = "negative" threshold, 1 = "positive" threshold, 0.5 = midpoint)
+  - BIC
+  - the four models
+  - the fading drift and its time constant τ
+  - the RT trimming (0.25–1.5 s; 16 of 5520 trials removed)
+  - the fixed 2% lapse rate
+- If Results labels the hypotheses H1/H2, the Introduction should introduce those labels. The Discussion avoids them on purpose.
+- **Methods 2.1, still wrong:** "115 per participant" should be 230 compatible and 230 incompatible. The sentence claiming R is "computed" contradicts Table 1: R is the raw response, and correctness is R = S.
+
+**LaTeX:** write the quotes as ` ``negative'' `, the range as `11--41~ms`, and the values in math mode (`$z = 0.57$`).
