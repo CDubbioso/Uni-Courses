@@ -72,6 +72,8 @@ The forward rate $f_{i,j}$ is the rate agreed **today** for a loan that runs fro
 
 Net result: zero cash today, +€100 at year 1, and a repayment at year 2. That is exactly a one-year loan starting next year, so its rate must be:
 
+![Building a forward loan from year 1 to year 2 out of two spot trades](../pictures/PrAssTr/PrAssTr_lecture3_forward-rate.png)
+
 $$f_{1,2} = \frac{(1+s_2)^2}{1+s_1} - 1$$
 
 If the forward rate were anything else, you could lock in a riskless profit (arbitrage).
@@ -99,6 +101,8 @@ To invest for 2 years, you can:
 
 Strategy B is equivalent to 5% followed by 7.01%, because $1.06^2 = 1.05 \cdot 1.0701$.
 
+![Rolling over at 1-year spot vs fixing at the 2-year spot (= 5% then 7.01%)](../pictures/PrAssTr/PrAssTr_lecture3_roll-vs-fix.png)
+
 - **Choose B (fix)** if you expect next year's 1-year spot rate to be **below 7.01%**.
 - **Choose A (roll)** if you expect it to be **above 7.01%**.
 
@@ -120,6 +124,8 @@ The bank grows your savings from $A$ to $A \cdot (1+r)$ **in euros**. That says 
 - The bank pays 10%, so €2.00 becomes €2.20.
 - Bread inflation is 6%, so a loaf goes from €2.00 to €2.12.
 - In loaves: 1 loaf now → $2.20 / 2.12 = 1.038$ loaves next year.
+
+![Nominal interest (euros) vs real interest (loaves of bread)](../pictures/PrAssTr/PrAssTr_lecture3_real-interest-bread.png)
 
 $$1 + r_{\text{real}} = \frac{1 + r_{\text{nominal}}}{1 + i} = \frac{1.10}{1.06} = 1.038 \;\Rightarrow\; r_{\text{real}} = 3.8\%$$
 
